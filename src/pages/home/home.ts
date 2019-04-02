@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import{RequstpagePage} from '../requstpage/requstpage';
 
 @Component({
   selector: 'page-home',
@@ -14,4 +15,8 @@ export class HomePage {
 
   }
 
+
+  navrequsttab(){
+    this.navCtrl.push(RequstpagePage);
+  }
 }
