@@ -8,9 +8,6 @@ import{RequstpagePage} from '../requstpage/requstpage';
 })
 export class HomePage {
 
-  // tab1Root = ;
-  // tab2Root = ;
-  // tab3Root = ;
   constructor(public navCtrl: NavController) {
 
   }
