@@ -7,6 +7,9 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  // tab1Root = ;
+  // tab2Root = ;
+  // tab3Root = ;
   constructor(public navCtrl: NavController) {
 
   }
