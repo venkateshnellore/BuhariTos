@@ -1,15 +1,22 @@
-<!--
-  Generated template for the RequestPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>request</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>Request</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <ion-list-header>Request for Items</ion-list-header>
+    <ion-item *ngFor="let entry of request_items">
+      <ion-label>{{entry.val}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" color="secondary"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <p style="margin-left:5%;">Request for other items</p>
+  <div style="text-align:center;">
+      <textarea rows="3" style="border-width: 2px;width:90%;" [(ngModel)]="custom_items"></textarea>
+  </div>
+  <ion-item no-lines>
+    <button ion-button item-end color="secondary" (click)="requestitem(request_items,custom_items)">Request</button>
+  </ion-item>
 </ion-content>
