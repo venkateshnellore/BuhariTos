@@ -1,31 +1,59 @@
-<<<<<<< HEAD
-<!-- <ion-header>
+<ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
-    <ion-buttons end>
-      <label>Veg only</label>
-      <ion-toggle color="primary"></ion-toggle>
-    </ion-buttons>
+    <ion-title>home page</ion-title>
   </ion-navbar>
-  <ion-tabs tabsPlacement="top" >
-      <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-      <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-      <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
-    </ion-tabs>
-</ion-header> -->
+  <ion-row>
+    <ion-searchbar></ion-searchbar>
+  </ion-row>
+</ion-header>
 
 <ion-content>
-   <button ion-button (click)="navrequsttab()">hello darling</button>
-=======
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
->>>>>>> 17b0f448bff65278f4e1ef7ca03566c87c84cd7f
+  <!-- <ion-row>
+    <ion-col col-2></ion-col>
+    <ion-col col-4>
+      <b>Popular Cuisines Around You</b>
+    </ion-col>
+</ion-row> -->
+  <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-10>
+          <h3>Popular Cuisines Around You</h3>
+      </ion-col>
+  </ion-row>
+  <ion-scroll scrollX="true" style="white-space:nowrap;height:210px;">
+    <ion-row>
+      <ion-col>
+        <ion-card class="width-85 card-background-page" style="margin-right: 15px !important;"
+          *ngFor="let dishes of dish">
+          <img [src]="dishes.img" />
+          <b>hello darling</b>
+          <div class="card-titlle margin">{{dishes.dishtitle}}</div>
+          <div class="card-subtitle margin-58">{{dishes.paces}}</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-scroll>
+  <ion-row>
+    <ion-col col-1></ion-col>
+    <ion-col col-5>
+      <h4>Bestsellers</h4>
+    </ion-col>
+  </ion-row>
+
+  <ion-item *ngFor="let bestitems of bestsellers">
+    <ion-row>
+      <ion-col col-1><img [src]="bestitems.img" /> </ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col col-3>
+        <b>{{bestitems.itemname}}</b>
+        <p>{{bestitems.itemtype}}</p>
+        <b>$ {{bestitems.prize}}</b>
+      </ion-col>
+      <ion-col col-3></ion-col>
+      <ion-col col-4>
+          <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-item>
 </ion-content>
