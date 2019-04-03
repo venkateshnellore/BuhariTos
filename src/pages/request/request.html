@@ -1,12 +1,16 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>Request</ion-title>
+      <h1 style="font-family: Colonna MT;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      margin: 5px;">Buhari</h1>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Request for Items</ion-list-header>
+    <p style="margin-left:5%;">Request for Items</p>
     <ion-item *ngFor="let entry of request_items">
       <ion-label>{{entry.val}}</ion-label>
       <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" color="secondary"></ion-checkbox>
@@ -16,7 +20,16 @@
   <div style="text-align:center;">
       <textarea rows="3" style="border-width: 2px;width:90%;" [(ngModel)]="custom_items"></textarea>
   </div>
-  <ion-item no-lines>
-    <button ion-button item-end color="secondary" (click)="requestitem(request_items,custom_items)">Request</button>
-  </ion-item>
+  <ion-row>
+    <ion-col col-6>
+    </ion-col>
+    <ion-col col-6>
+        <button 
+          ion-button 
+          color="secondary" 
+          style="width: 100%;"
+          outline
+          (click)="requestitem(request_items,custom_items)">Request</button>
+    </ion-col>
+  </ion-row>
 </ion-content>
