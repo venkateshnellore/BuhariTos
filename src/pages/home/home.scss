@@ -1,10 +1,11 @@
+.ios, .md{
 page-home {
 
-    // ion-card{
-    //     margin:0px !important;
-    //     display: -webkit-inline-box;
-    //     height: 200px;   
-    //   }
+    ion-card{
+        margin:0px !important;
+        display: -webkit-inline-box;
+        height: 200px;   
+      }
         .ion-swipe{
           margin:0px !important;
           display: -webkit-inline-box;
@@ -63,6 +64,15 @@ page-home {
   .height-25{
     height: 25px !important;
   }
-
-
+  ion-item{
+    width: 92%;
+    margin: 4%;
+    padding-left: 10px !important;
+    margin-bottom: 10px;
+    background-color: #fff;
+    opacity: 0.7;
+    font-size: 0.9em;
+    transition: 0.2s linear;
+  }
+}
 }

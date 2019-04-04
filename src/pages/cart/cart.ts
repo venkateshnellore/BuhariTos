@@ -81,7 +81,7 @@ export class CartPage {
     this.total = this.total + this.items[position].rate;
   }
   placeOrder(){
-
+    
     for(let i=0;i<this.items.length;i++){
       this.billing.push(this.items[i])
     }

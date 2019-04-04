@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-// import{RequstpagePage} from '../requstpage/requstpage';
 import {ItemlistPage} from '../itemlist/itemlist';
 
 @Component({
@@ -13,10 +12,9 @@ public dish:any=[];
 public bestsellers:any=[];
 public itemlist:any=[];
 public soups:any[];
-  constructor(public navCtrl: NavController) {
 
+constructor(public navCtrl: NavController) {
   }
-
 
   ionViewDidLoad() {
 
