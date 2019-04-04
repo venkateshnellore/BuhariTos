@@ -16,6 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 //requst page
 import{RequstpagePage} from '../pages/requstpage/requstpage';
+//item list
+import{ItemlistPage} from '../pages/itemlist/itemlist';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import{RequstpagePage} from '../pages/requstpage/requstpage';
     HomePage,
     RequestPage,
     CartPage,
-    TabsPage
+    TabsPage,
+    ItemlistPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import{RequstpagePage} from '../pages/requstpage/requstpage';
     HomePage,
     RequestPage,
     CartPage,
-    TabsPage
+    TabsPage,
+    ItemlistPage
   ],
   providers: [
     StatusBar,
