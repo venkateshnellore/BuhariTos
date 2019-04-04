@@ -45,11 +45,11 @@ export class CartPage {
   }
 
   ionViewDidLoad() {
-    this.storage.get('Orders').then((val:any)=>{
-      if(val){
-        this.items = val;
-      }
-    })
+    // this.storage.get('Orders').then((val:any)=>{
+    //   if(val){
+    //     this.items = val;
+    //   }
+    // })
     for(var i=0;i<this.items.length;i++){
       this.total = this.total + this.items[i].itemtotal;
     }
