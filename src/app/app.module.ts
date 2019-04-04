@@ -16,13 +16,10 @@ import { MainPage } from '../pages/main/main';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-<<<<<<< HEAD
 //requst page
-import{RequstpagePage} from '../pages/requstpage/requstpage';
+// import{RequstpagePage} from '../pages/requstpage/requstpage';
 //item list
 import{ItemlistPage} from '../pages/itemlist/itemlist';
-=======
->>>>>>> 5c2879beacc6a2778f24b4479312d67725190af1
 
 @NgModule({
   declarations: [
@@ -33,12 +30,9 @@ import{ItemlistPage} from '../pages/itemlist/itemlist';
     RequestPage,
     CartPage,
     TabsPage,
-<<<<<<< HEAD
-    ItemlistPage
-=======
+    ItemlistPage,
     LoginPage,
     MainPage
->>>>>>> 5c2879beacc6a2778f24b4479312d67725190af1
   ],
   imports: [
     BrowserModule,
@@ -56,12 +50,9 @@ import{ItemlistPage} from '../pages/itemlist/itemlist';
     RequestPage,
     CartPage,
     TabsPage,
-<<<<<<< HEAD
-    ItemlistPage
-=======
+    ItemlistPage,
     LoginPage,
     MainPage
->>>>>>> 5c2879beacc6a2778f24b4479312d67725190af1
   ],
   providers: [
     StatusBar,

@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-<<<<<<< HEAD
-import{RequstpagePage} from '../requstpage/requstpage';
+// import{RequstpagePage} from '../requstpage/requstpage';
 import {ItemlistPage} from '../itemlist/itemlist';
-=======
->>>>>>> 5c2879beacc6a2778f24b4479312d67725190af1
 
 @Component({
   selector: 'page-home',
