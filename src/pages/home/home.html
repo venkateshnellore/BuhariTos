@@ -1,13 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>home page</ion-title>
+    <!-- <ion-title>home page</ion-title> -->
+    <ion-searchbar></ion-searchbar>
   </ion-navbar>
   <ion-row>
-    <ion-searchbar></ion-searchbar>
+    
   </ion-row>
 </ion-header>
 
-<ion-content>
+<ion-content class="card-background-page">
   <!-- <ion-row>
     <ion-col col-2></ion-col>
     <ion-col col-4>
@@ -22,13 +23,13 @@
   </ion-row>
   <ion-scroll scrollX="true" style="white-space:nowrap;height:210px;">
     <ion-row>
-      <ion-col>
-        <ion-card class="width-85 card-background-page" style="margin-right: 15px !important;"
+      <ion-col >
+        <ion-card (click)="navitemlist()" class="width-85 ion-swipe" style="margin-right: 15px !important;"
           *ngFor="let dishes of dish">
           <img [src]="dishes.img" />
-          <b>hello darling</b>
-          <div class="card-titlle margin">{{dishes.dishtitle}}</div>
-          <div class="card-subtitle margin-58">{{dishes.paces}}</div>
+        
+          <div class="card-title">{{dishes.dishtitle}}</div>
+          <div class="card-subtitle ">{{dishes.paces}}</div>
         </ion-card>
       </ion-col>
     </ion-row>

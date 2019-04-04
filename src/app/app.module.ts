@@ -16,6 +16,10 @@ import { MainPage } from '../pages/main/main';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+//requst page
+// import{RequstpagePage} from '../pages/requstpage/requstpage';
+//item list
+import{ItemlistPage} from '../pages/itemlist/itemlist';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     RequestPage,
     CartPage,
     TabsPage,
+    ItemlistPage,
     LoginPage,
     MainPage
   ],
@@ -45,6 +50,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     RequestPage,
     CartPage,
     TabsPage,
+    ItemlistPage,
     LoginPage,
     MainPage
   ],
