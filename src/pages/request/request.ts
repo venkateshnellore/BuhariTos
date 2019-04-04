@@ -15,6 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RequestPage {
 
+  public request_items = [
+    { val: 'Tissue', isChecked: false },
+    { val: 'Finger Bowl', isChecked: false },
+    { val: 'Sambar', isChecked: false },
+    { val: 'Raitha', isChecked: false },
+    { val: 'Chutney', isChecked: false },
+    { val: 'Extra Plate', isChecked: false },
+    { val: 'Extra Spoon', isChecked: false }
+  ];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -22,4 +31,7 @@ export class RequestPage {
     console.log('ionViewDidLoad RequestPage');
   }
 
+  requestitem(default_req_item,custom_req_item){
+    console.log(default_req_item,custom_req_item);
+  }
 }
