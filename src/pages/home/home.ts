@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-// import{RequstpagePage} from '../requstpage/requstpage';
 import {ItemlistPage} from '../itemlist/itemlist';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -20,11 +19,14 @@ public dish:any=[];
 public bestsellers:any=[];
 public itemlist:any=[];
 public soups:any[];
+<<<<<<< HEAD
 
   constructor(public navCtrl: NavController) {
+=======
+>>>>>>> cde977bc636522f85c9250a4c8af2291177c1b0b
 
+constructor(public navCtrl: NavController) {
   }
-
 
   ionViewDidLoad() {
 
