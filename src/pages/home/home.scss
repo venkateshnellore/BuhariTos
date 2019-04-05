@@ -69,7 +69,6 @@ page-home {
   .height-25{
     height: 25px !important;
   }
-<<<<<<< HEAD
 //header
   page-expandable-header {
 		ion-item{
@@ -82,19 +81,43 @@ page-home {
 				font-size: 0.9em;
 				transition: 0.2s linear;
 			}
-	}
-
-=======
-  ion-item{
-    width: 92%;
-    margin: 4%;
-    padding-left: 10px !important;
-    margin-bottom: 10px;
-    background-color: #fff;
-    opacity: 0.7;
-    font-size: 0.9em;
-    transition: 0.2s linear;
   }
->>>>>>> cde977bc636522f85c9250a4c8af2291177c1b0b
+  
+  .the-header {
+    position: relative;
+    height: 30vh;
+
+    .header-text {
+        position: absolute;
+        z-index: 2;
+        top: 40px;
+        left: 15px;
+    }
+
+    .header-text h1 {
+        font-weight: bold;
+    }
+
+    .header-text p {
+        padding-left: 2rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    // .background {
+    //     height: 30vh;
+    //     position: relative;
+    //     clip-path: polygon(0 0, 100% 0, 100% 170px, 0 115%);
+    //     img {
+    //         max-width: 34rem;
+    //         position: absolute;
+    //         right: -90px;
+    //         bottom: 0;
+    //     }
+    }
+
+    
 }
+
 }
+
