@@ -8,7 +8,7 @@
 
     </expandable-header> -->
   <ion-navbar> 
-    <!-- <ion-title>home page</ion-title> -->
+ 
     <ion-searchbar></ion-searchbar>
   </ion-navbar>
   <ion-row>
@@ -17,37 +17,21 @@
 </ion-header>
 
 <ion-content class="card-background-page" >
-   <!-- <ion-row>
-    <ion-col col-2></ion-col>
-    <ion-col col-4>
-      <b>Popular Cuisines Around You</b>
-    </ion-col>
-</ion-row> -->
+   
   <ion-row>
       <ion-col col-1></ion-col>
       <ion-col col-10>
           <h3>Popular Cuisines Around You</h3>
       </ion-col>
   </ion-row>
-  <!-- <ion-scroll scrollX="true" style="white-space:nowrap;height:210px;">
-    <ion-row>
-      <ion-col >
-        <ion-card (click)="navitemlist()" class="width-85 ion-swipe" style="margin-right: 15px !important;"
-          *ngFor="let dishes of dish">
-          <img [src]="dishes.img" />
-        
-          <div class="card-title">{{dishes.dishtitle}}</div>
-          <div class="card-subtitle ">{{dishes.paces}}</div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-scroll> -->
-  <section margin-top margin-bottom>
+
+  
+  <!-- <section margin-top margin-bottom>
       <ion-slides autoplay="3000">
         <ion-slide *ngFor="let dishes of dish">
             <ion-card (click)="navitemlist()">
                 <div class="the-header">
-            <!-- <img [src]="dishes.img" /> -->
+           
             <div class="header-text">
             <div class="card-title">{{dishes.dishtitle}}</div>
             <div class="card-subtitle ">{{dishes.paces}}</div>
@@ -59,8 +43,14 @@
           </ion-card>
         </ion-slide>
       </ion-slides>
-    </section>
-  <ion-row>
+    </section> -->
+    <ion-slides #slider spaceBetween="10" slidesPerView="3" autoplay="3000">
+        <ion-slide *ngFor="let slide of slides"
+                   [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
+          <h2>{{slide.title}}</h2>
+        </ion-slide>
+      </ion-slides>
+    <ion-row>
     <ion-col col-1></ion-col>
     <ion-col col-5>
       <h4>Bestsellers</h4>
@@ -83,4 +73,4 @@
     </ion-row>
 
   </ion-item>
-</ion-content> -->
+</ion-content> 
