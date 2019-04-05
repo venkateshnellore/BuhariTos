@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {ItemlistPage} from '../itemlist/itemlist';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, Slides } from 'ionic-angular';
+import { ItemlistPage } from '../itemlist/itemlist';
 
 @Component({
   selector: 'page-home',
@@ -8,70 +8,76 @@ import {ItemlistPage} from '../itemlist/itemlist';
 })
 export class HomePage {
 
-public dish:any=[];
-public bestsellers:any=[];
-public itemlist:any=[];
-public soups:any[];
+  public dish: any = [];
+  public bestsellers: any = [];
+  public itemlist: any = [];
+  public soups: any[];
+  @ViewChild('slider') slider: Slides;
 
-constructor(public navCtrl: NavController) {
+  slides = [
+    {
+      title: 'Dream\'s Adventure',
+      imageUrl: '../assets/imgs/main/background-1.jpg',
+      songs: 2,
+      private: false
+    },
+    {
+      title: 'Dream\'s Adventure',
+      imageUrl: '../assets/imgs/main/background-1.jpg',
+      songs: 2,
+      private: false
+    },
+    {
+      title: 'Dream\'s Adventure',
+      imageUrl: '../assets/imgs/main/background-1.jpg',
+      songs: 2,
+      private: false
+    },
+    {
+      title: 'For the Weekend',
+      imageUrl: '../assets/imgs/main/background-1.jpg',
+      songs: 4,
+      private: false
+    },
+    {
+      title: 'Family Time',
+      imageUrl: '../assets/imgs/main/background-1.jpg',
+      songs: 5,
+      private: true
+    },
+    {
+      title: 'My Trip',
+      imageUrl: '../assets/imgs/main/background-1.jpg',
+      songs: 12,
+      private: true
+    }
+  ];
+
+  constructor(public navCtrl: NavController) {
+    for (let i = 0; i < this.slides.length; i++) {
+      this.slides.push(this.slides[i % 4]);
+    }
   }
 
   ionViewDidLoad() {
 
-    this.dish=[
-      {"id":"1","img":"../assets/imgs/img1.jpg","dishtitle":"North indian","paces":"10 palces"},
-      {"id":"1","img":"../assets/imgs/img1.jpg","dishtitle":"biryani","paces":"20 places"},
-      {"id":"1","img":"../assets/imgs/img1.jpg","dishtitle":"fish curry","paces":"30 places"},
-      {"id":"1","img":"../assets/imgs/img1.jpg","dishtitle":"kerala","paces":"40 places"},
-      {"id":"1","img":"../assets/imgs/img1.jpg","dishtitle":"North indian","paces":"30 places"}
+
+    this.bestsellers = [
+      { "id": "1", "img": "../assets/imgs/veg.png", "itemname": "Pappy Paneer", "itemtype": "veg pizza", "prize": "200" },
+      { "id": "1", "img": "../assets/imgs/veg.png", "itemname": "Pappy Paneer", "itemtype": "veg pizza", "prize": "200" },
+      { "id": "1", "img": "../assets/imgs/veg.png", "itemname": "Pappy Paneer", "itemtype": "veg pizza", "prize": "200" },
+      { "id": "1", "img": "../assets/imgs/veg.png", "itemname": "Pappy Paneer", "itemtype": "veg pizza", "prize": "200" },
+      { "id": "1", "img": "../assets/imgs/veg.png", "itemname": "Pappy Paneer", "itemtype": "veg pizza", "prize": "200" },
+      { "id": "1", "img": "../assets/imgs/veg.png", "itemname": "Pappy Paneer", "itemtype": "veg pizza", "prize": "200" },
+      { "id": "1", "img": "../assets/imgs/veg.png", "itemname": "Pappy Paneer", "itemtype": "veg pizza", "prize": "200" },
     ]
-
-    this.bestsellers=[
-      {"id":"1","img":"../assets/imgs/veg.png","itemname":"Pappy Paneer","itemtype":"veg pizza","prize":"200"},
-      {"id":"1","img":"../assets/imgs/veg.png","itemname":"Pappy Paneer","itemtype":"veg pizza","prize":"200"},
-      {"id":"1","img":"../assets/imgs/veg.png","itemname":"Pappy Paneer","itemtype":"veg pizza","prize":"200"},
-      {"id":"1","img":"../assets/imgs/veg.png","itemname":"Pappy Paneer","itemtype":"veg pizza","prize":"200"},
-      {"id":"1","img":"../assets/imgs/veg.png","itemname":"Pappy Paneer","itemtype":"veg pizza","prize":"200"},
-      {"id":"1","img":"../assets/imgs/veg.png","itemname":"Pappy Paneer","itemtype":"veg pizza","prize":"200"},
-      {"id":"1","img":"../assets/imgs/veg.png","itemname":"Pappy Paneer","itemtype":"veg pizza","prize":"200"},
-
-    ]
-     
-    
-
-    this.itemlist=[
-      { 
-      vegsoups:[
-        {"id":"1","soup":"Cream of Tomato Soup","price":"85"},
-        {"id":"2","soup":"Cream of mushroom soup","price":"85"},
-        {"id":"3","soup":"veg Sweet Corn Soup","price":"85"},
-        {"id":"4","soup":"Veg Clear Soup","price":"85"},
-        {"id":"5","soup":"Veg Hot N Sour Soup","price":"85"}, 
-      ],
-      Nonvegsoups:[
-        {"id":"1","soup":"Cream of Chicken Soup","price":"95"},
-        {"id":"2","soup":"Chicken Hot N Sour Soup","price":"95"},
-        {"id":"3","soup":"Chicken clear Soup","price":"95"},
-        {"id":"4","soup":"Chicken Sweet Corn Soup","price":"95"},
-        {"id":"5","soup":"Chicken Sweet Corn Soup","price":"95"},
-        // {"id":"6","soup":"Chicken Hot N Sour Soup","price":"95"},
-        // {"id":"7","soup":"Chicken Hot N Sour Soup","price":"95"},
-
-      ]
-      
-
-
-      } 
-      
-    ]
-    console.log("itemlist",JSON.stringify(this.itemlist));
-    console.log("dishes",this.dish);
   }
 
-  navrequsttab(){
-    // this.navCtrl.push(RequstpagePage);
+  ngAfterViewInit() {
+    this.slider.freeMode = true;
   }
-  navitemlist(){
-   this.navCtrl.push(ItemlistPage,{"itemlist":this.itemlist});
+
+  navitemlist() {
+    this.navCtrl.push(ItemlistPage, { "itemlist": this.itemlist });
   }
 }
