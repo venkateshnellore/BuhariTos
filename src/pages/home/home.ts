@@ -2,10 +2,17 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 // import{RequstpagePage} from '../requstpage/requstpage';
 import {ItemlistPage} from '../itemlist/itemlist';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+
+})
+
+@NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA],
+  providers: [],
 })
 export class HomePage {
 
@@ -13,6 +20,7 @@ public dish:any=[];
 public bestsellers:any=[];
 public itemlist:any=[];
 public soups:any[];
+
   constructor(public navCtrl: NavController) {
 
   }
@@ -69,6 +77,7 @@ public soups:any[];
     console.log("itemlist",JSON.stringify(this.itemlist));
     console.log("dishes",this.dish);
   }
+
 
   navrequsttab(){
     // this.navCtrl.push(RequstpagePage);

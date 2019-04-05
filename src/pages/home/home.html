@@ -1,5 +1,13 @@
+
 <ion-header>
-  <ion-navbar>
+    <!-- <expandable-header [scrollArea]="myContent" headerHeight="125">
+        <ion-item>
+            <ion-label><ion-icon name="search"></ion-icon></ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+    </expandable-header> -->
+  <ion-navbar> 
     <!-- <ion-title>home page</ion-title> -->
     <ion-searchbar></ion-searchbar>
   </ion-navbar>
@@ -8,8 +16,8 @@
   </ion-row>
 </ion-header>
 
-<ion-content class="card-background-page">
-  <!-- <ion-row>
+<ion-content class="card-background-page" >
+   <!-- <ion-row>
     <ion-col col-2></ion-col>
     <ion-col col-4>
       <b>Popular Cuisines Around You</b>
@@ -21,7 +29,7 @@
           <h3>Popular Cuisines Around You</h3>
       </ion-col>
   </ion-row>
-  <ion-scroll scrollX="true" style="white-space:nowrap;height:210px;">
+  <!-- <ion-scroll scrollX="true" style="white-space:nowrap;height:210px;">
     <ion-row>
       <ion-col >
         <ion-card (click)="navitemlist()" class="width-85 ion-swipe" style="margin-right: 15px !important;"
@@ -33,7 +41,19 @@
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-scroll>
+  </ion-scroll> -->
+  <section margin-top margin-bottom>
+      <ion-slides autoplay="2000">
+        <ion-slide *ngFor="let dishes of dish">
+            <ion-card (click)="navitemlist()">
+            <img [src]="dishes.img" />
+          
+            <div class="card-title">{{dishes.dishtitle}}</div>
+            <div class="card-subtitle ">{{dishes.paces}}</div>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </section>
   <ion-row>
     <ion-col col-1></ion-col>
     <ion-col col-5>
