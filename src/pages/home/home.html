@@ -1,76 +1,49 @@
 
 <ion-header>
-    <!-- <expandable-header [scrollArea]="myContent" headerHeight="125">
-        <ion-item>
-            <ion-label><ion-icon name="search"></ion-icon></ion-label>
-            <ion-input type="text"></ion-input>
-        </ion-item>
-
-    </expandable-header> -->
-  <ion-navbar> 
- 
-    <ion-searchbar></ion-searchbar>
-  </ion-navbar>
-  <ion-row>
-    
-  </ion-row>
-</ion-header>
-
-<ion-content class="card-background-page" >
-   
-  <ion-row>
-      <ion-col col-1></ion-col>
-      <ion-col col-10>
-          <h3>Popular Cuisines Around You</h3>
-      </ion-col>
-  </ion-row>
-
-  
-  <!-- <section margin-top margin-bottom>
-      <ion-slides autoplay="3000">
-        <ion-slide *ngFor="let dishes of dish">
-            <ion-card (click)="navitemlist()">
-                <div class="the-header">
-           
-            <div class="header-text">
-            <div class="card-title">{{dishes.dishtitle}}</div>
-            <div class="card-subtitle ">{{dishes.paces}}</div>
-          </div>
-          <div >
-              <img [src]="dishes.img"/>
-            </div>
-          </div>
-          </ion-card>
-        </ion-slide>
-      </ion-slides>
-    </section> -->
-    <ion-slides #slider spaceBetween="10" slidesPerView="3" autoplay="3000">
-        <ion-slide *ngFor="let slide of slides"
-                   [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
-          <h2>{{slide.title}}</h2>
-        </ion-slide>
-      </ion-slides>
-    <ion-row>
-    <ion-col col-1></ion-col>
-    <ion-col col-5>
-      <h4>Bestsellers</h4>
-    </ion-col>
-  </ion-row>
-
-  <ion-item *ngFor="let bestitems of bestsellers">
-    <ion-row>
-      <ion-col col-1><img [src]="bestitems.img" /> </ion-col>
-      <ion-col col-1></ion-col>
-      <ion-col col-3>
-        <b>{{bestitems.itemname}}</b>
-        <p>{{bestitems.itemtype}}</p>
-        <b>$ {{bestitems.prize}}</b>
-      </ion-col>
-      <ion-col col-3></ion-col>
-      <ion-col col-4>
-          <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
-      </ion-col>
-    </ion-row>
-
-  </ion-item>
-</ion-content> 
+    <expandable-header [scrollArea]="myContent" headerHeight="80">
+      <ion-item>
+          <ion-label><ion-icon name="search"></ion-icon></ion-label>
+          <ion-input type="text"></ion-input>
+      </ion-item>
+    </expandable-header>
+    <ion-navbar color="secondary">
+       <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <h1 style="font-family: Colonna MT;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      margin: 5px;">Buhari</h1>
+    </ion-navbar>
+  </ion-header>
+  <ion-content fullscreen #myContent >
+      <h3>Popular Cuisines Around You</h3>
+      <ion-slides #slider spaceBetween="10" slidesPerView="3" autoplay="3000">
+          <ion-slide *ngFor="let slide of slides"
+                     [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
+            <h2>{{slide.title}}</h2>
+          </ion-slide>
+        </ion-slides>
+        <ion-row>
+            <ion-col col-1></ion-col>
+            <ion-col col-5>
+              <h4>Bestsellers</h4>
+            </ion-col>
+          </ion-row>
+        <ion-item *ngFor="let bestitems of bestsellers">
+            <ion-row>
+              <ion-col col-1><img [src]="bestitems.img" /> </ion-col>
+              <ion-col col-1></ion-col>
+              <ion-col col-3>
+                <b>{{bestitems.itemname}}</b>
+                <p>{{bestitems.itemtype}}</p>
+                <b>$ {{bestitems.prize}}</b>
+              </ion-col>
+              <ion-col col-3></ion-col>
+              <ion-col col-4>
+                  <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+ </ion-content>
