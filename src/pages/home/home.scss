@@ -1,6 +1,10 @@
 .ios, .md{
 page-home {
-    ion-item{
+
+    .height-25{
+      height: 25px;
+    }
+    .expandable-item{
       width: 92%;
       margin: 4%;
       padding-left: 10px !important;
