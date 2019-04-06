@@ -16,31 +16,26 @@
       margin: 5px;">Buhari</h1>
     </ion-navbar>
   </ion-header>
-  <ion-content fullscreen #myContent >
-      <h3>Popular Cuisines Around You</h3>
-      <ion-slides #slider spaceBetween="10" slidesPerView="3" autoplay="3000">
-          <ion-slide *ngFor="let slide of slides"
-                     [ngStyle]="{'background' : 'url(' + slide.imageUrl + ')'}">
-            <h2>{{slide.title}}</h2>
+  <ion-content fullscreen #myContent padding>
+      <h6>Food Categories</h6>
+      <ion-slides #slider spaceBetween="10" slidesPerView="3" autoplay="3000" loop="true">
+          <ion-slide *ngFor="let slide of menu"
+                     [ngStyle]="{'background' : 'url(' + slide.category_image + ')'}">
+            <h2>{{slide.category}}</h2>
           </ion-slide>
         </ion-slides>
-        <ion-row>
-            <ion-col col-1></ion-col>
-            <ion-col col-5>
-              <h4>Bestsellers</h4>
-            </ion-col>
-          </ion-row>
-        <ion-item *ngFor="let bestitems of bestsellers">
+        <h6>Bestsellers</h6>
+        <ion-item *ngFor="let items of bestseller">
             <ion-row>
-              <ion-col col-1><img [src]="bestitems.img" /> </ion-col>
+              <ion-col col-1><img src="../../assets/imgs/veg.png" /> </ion-col>
               <ion-col col-1></ion-col>
               <ion-col col-3>
-                <b>{{bestitems.itemname}}</b>
-                <p>{{bestitems.itemtype}}</p>
-                <b>$ {{bestitems.prize}}</b>
+                <h6 style="font-weight: bold;">{{items.item_name}}</h6>
+                <p style="font-size:12px;">In {{items.item_category}}</p>
+                <b>₹{{items.item_rate}}</b>
               </ion-col>
               <ion-col col-3></ion-col>
-              <ion-col col-4>
+              <ion-col col-4 style="text-align: center;">
                   <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
               </ion-col>
             </ion-row>
