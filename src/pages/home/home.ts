@@ -4,8 +4,11 @@ import { ItemlistPage } from '../itemlist/itemlist';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+
 })
+
+
 export class HomePage {
 
   public dish: any = [];
@@ -1010,6 +1013,8 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
    
   }
+// constructor(public navCtrl: NavController) {
+//   }
 
   ionViewDidLoad() {
     for(var i=0;i<this.menu.length;i++){
