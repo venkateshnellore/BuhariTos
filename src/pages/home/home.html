@@ -1,7 +1,7 @@
 
 <ion-header>
     <expandable-header [scrollArea]="myContent" headerHeight="80">
-      <ion-item>
+      <ion-item class="expandable-item">
           <ion-label><ion-icon name="search"></ion-icon></ion-label>
           <ion-input type="text"></ion-input>
       </ion-item>
@@ -19,9 +19,9 @@
   </ion-header>
   <ion-content fullscreen #myContent padding>
       <h6>Food Categories</h6>
-      <ion-slides #slider spaceBetween="10" slidesPerView="3" autoplay="3000" loop="true">
+      <ion-slides #slider spaceBetween="10" slidesPerView="2" autoplay="3000" loop="true">
           <ion-slide *ngFor="let slide of menu"
-                     [ngStyle]="{'background' : 'url(' + slide.category_image + ')'}">
+                     [ngStyle]="{'background' : 'url(' + slide.category_image + ')'}" (click)="navtoitems()">
             <h2>{{slide.category}}</h2>
           </ion-slide>
         </ion-slides>

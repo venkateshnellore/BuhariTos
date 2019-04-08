@@ -17,7 +17,8 @@ export class HomePage {
   public soups: any[];
   @ViewChild('slider') slider: Slides;
 
-  public menu:any = [
+  public menu:any = 
+  [
     {
       category: "Best Sellers",
       category_image: "../assets/imgs/main/background-1.jpg",
@@ -1031,7 +1032,7 @@ export class HomePage {
     this.slider.freeMode = true;
   }
 
-  navitemlist() {
-    this.navCtrl.push(ItemlistPage, { "itemlist": this.itemlist });
+  navtoitems() {
+    this.navCtrl.push(ItemlistPage);
   }
 }
