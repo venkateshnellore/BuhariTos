@@ -1,0 +1,25 @@
+page-descriptionpage {
+
+    $black-overlay: rgba(16, 238, 46, 0.3);
+    $text-color: #666;
+    $banner-text-color: white;
+    $content-color: whitesmoke;
+    $detail-background: rgba(236,236,236,.8);
+
+
+    .toolbar-background {
+        border-color: transparent;
+        background: $black-overlay;
+    }
+
+
+
+    .fontstyle-italic{
+        font-style:italic;
+      }
+
+      .text-align-jusstify{
+        text-align: justify !important;
+      }
+      
+}
