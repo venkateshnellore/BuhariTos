@@ -16,30 +16,51 @@
       font-weight: bold;
       color: white;
       margin: 5px;">Buhari</h1>
-    </ion-navbar>
-  </ion-header>
-  <ion-content fullscreen #myContent padding>
-      <h6>Food Categories</h6>
-      <ion-slides #slider spaceBetween="10" slidesPerView="3" autoplay="3000" loop="true">
-          <ion-slide *ngFor="let slide of menu" (click)="navitemlist(slide)"
-                     [ngStyle]="{'background' : 'url(' + slide.category_image + ')'}">
-            <h2>{{slide.category}}</h2>
-          </ion-slide>
-        </ion-slides>
-        <h6>Bestsellers</h6>
-        <ion-item *ngFor="let items of bestseller" >
-            <ion-row>
-              <ion-col col-1><img src="../../assets/imgs/veg.png" /> </ion-col>
-              <ion-col col-1></ion-col>
-              <ion-col col-3>
-                <h6 style="font-weight: bold;">{{items.item_name}}</h6>
-                <p style="font-size:12px;">In {{items.item_category}}</p>
-                <b>₹{{items.item_rate}}</b>
-              </ion-col>
-              <ion-col col-3></ion-col>
-              <ion-col col-4 style="text-align: center;">
-                  <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
-              </ion-col>
-            </ion-row>
-          </ion-item>
- </ion-content>
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen #myContent padding>
+  <h6>Food Categories</h6>
+  <ion-slides #slider spaceBetween="10" slidesPerView="3" autoplay="3000" loop="true">
+    <ion-slide *ngFor="let slide of foodcategory" (click)="navitemlist(slide)" [ngStyle]="{'background' : 'url(' + slide.category_image + ')'}">
+      <h2>{{slide.category}}</h2>
+    </ion-slide>
+  </ion-slides>
+  <h6>Bestsellers</h6>
+  <ion-item *ngFor="let items of bestsellers">
+    <ion-row>
+      <ion-col col-1>
+        <img src="../../assets/imgs/veg.png" /> </ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col col-3>
+        <h6 style="font-weight: bold;">{{items.item_name}}</h6>
+        <p style="font-size:12px;">In {{items.item_category}}</p>
+        <b>₹{{items.item_rate}}</b>
+      </ion-col>
+      <ion-col col-3></ion-col>
+      <ion-col col-4 style="text-align: center;">
+        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+  <h6>Offers</h6>
+  <ion-item *ngFor="let items of offers" style="padding-left: 0px;" class="item-ribbon">
+    <span class="ribbon default">
+      <span>{{items.item_offer}} ₹ OFF</span>
+    </span>
+    <ion-row>
+      <ion-col col-1>
+        <img src="../../assets/imgs/veg.png" />
+      </ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col col-3>
+        <h6 style="font-weight: bold;">{{items.item_name}}</h6>
+        <p style="font-size:12px;">In {{items.item_category}}</p>
+        <b>₹{{items.item_rate}}</b>
+      </ion-col>
+      <ion-col col-3></ion-col>
+      <ion-col col-4 style="text-align: center;">
+        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+</ion-content>

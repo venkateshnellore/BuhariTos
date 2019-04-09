@@ -32,9 +32,6 @@ export class ItemlistPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemlistPage');
-    // this.this.navParams.
-
-
     console.log("soups",this.soups);
   }
 
