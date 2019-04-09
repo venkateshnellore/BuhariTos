@@ -1,0 +1,47 @@
+<!--
+  Generated template for the BillingdetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>billingdetails</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+   <ion-row>
+       <h5>BILL DETAILS</h5>
+   </ion-row>
+   <ion-row  *ngFor="let billdetails of itemdetails">
+     <ion-col col-1>
+       <img src="../../assets/imgs/veg.png"/>
+     </ion-col>
+     <ion-col col-1></ion-col>
+     <ion-col col-6 class="margin-10">
+       <p>{{billdetails.item_name}}</p>
+      </ion-col>
+      <ion-col col-2></ion-col>
+     <ion-col col-2 class="margin-p">
+       <p> ₹ {{billdetails.item_price}}</p>
+     </ion-col>
+   </ion-row>
+   <ion-item-divider ></ion-item-divider>  
+      <ion-row>
+        <ion-col col-6>
+          <p>Item Total</p>
+          <p>GST</p>
+          <p>Delivery Charges</p>
+          <p>Discount Applied(SUPERBHF)</p>
+        </ion-col>
+        <ion-col col-3>
+        </ion-col>
+        <ion-col col-3>
+          <p>₹ 600</p>
+          <p>₹ 9.45</p>
+          <p>₹ 9.45</p>
+          <p>- ₹ 99.45</p>
+        </ion-col>
+      </ion-row>
+</ion-content>

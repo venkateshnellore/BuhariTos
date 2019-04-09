@@ -21,9 +21,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // import{RequstpagePage} from '../pages/requstpage/requstpage';
 //item list
 import{ItemlistPage} from '../pages/itemlist/itemlist';
-// import {ItemdescriptionPage} from '../pages/itemdescription/itemdescription';
-import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
 
+import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
+import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
 @NgModule({
   declarations: [
     MyApp,
@@ -34,8 +34,10 @@ import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
     CartPage,
     TabsPage,
     ItemlistPage,
+    BillingdetailsPage,
     // ItemdescriptionPage,
     DescriptionpagePage,
+
     LoginPage,
     MainPage
   ],
@@ -57,6 +59,7 @@ import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
     CartPage,
     TabsPage,
     ItemlistPage,
+    BillingdetailsPage,
     // ItemdescriptionPage,
     DescriptionpagePage,
     LoginPage,

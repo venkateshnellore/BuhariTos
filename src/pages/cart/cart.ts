@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import {BillingdetailsPage} from '../billingdetails/billingdetails';
 
 @IonicPage()
 @Component({
@@ -93,5 +94,9 @@ export class CartPage {
     this.storage.set("Orders",JSON.stringify(this.billing));
     // this.items.length = 0;
     // console.log("To KOT",JSON.stringify(this.items))
+  }
+
+  navbillingdetails(){
+    this.navCtrl.push(BillingdetailsPage);
   }
 }
