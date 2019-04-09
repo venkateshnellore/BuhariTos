@@ -24,6 +24,7 @@ import{ItemlistPage} from '../pages/itemlist/itemlist';
 
 import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
 import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
+import { BuhariServiceProvider } from '../providers/buhari-service/buhari-service';
 // import { FeedbackPageModule } from '../pages/feedback/feedback.module';
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BuhariServiceProvider
   ]
 })
 export class AppModule {}
