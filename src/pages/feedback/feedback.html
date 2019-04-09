@@ -1,20 +1,128 @@
 <ion-header no-border>
-    <ion-navbar transparent>
-      <ion-buttons right>
-        <button ion-button (click)="dismiss(false)">
-            <ion-icon name="close"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
-  <ion-content fullscreen>
-    <ion-slides pager>
-      <ion-slide>
-        Slide 1
-      </ion-slide>
-      <ion-slide>
-        Slide 2
-      </ion-slide>
-    </ion-slides>
-  </ion-content>
-  
+  <ion-navbar transparent>
+    <ion-buttons right>
+      <button ion-button (click)="dismiss(false)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <ion-row>
+      <h4>Would you like to give us feedback ?</h4>
+  </ion-row>
+  <br><br>
+  <ion-row>
+    <h6>1. How was the Ambiance of the hotel ?</h6>
+    <ion-list radio-group no-lines>
+      <ion-item>
+        <ion-label>Excellent</ion-label>
+        <ion-radio item-start value="Excellent" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Good</ion-label>
+        <ion-radio item-start value="Good" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fair</ion-label>
+        <ion-radio item-start value="Fair" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Poor</ion-label>
+        <ion-radio item-start value="Poor" color="light"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row>
+    <h6>2. How was the food from our hotel ?</h6>
+    <ion-list radio-group no-lines>
+      <ion-item>
+        <ion-label>Excellent</ion-label>
+        <ion-radio item-start value="Excellent" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Good</ion-label>
+        <ion-radio item-start value="Good" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fair</ion-label>
+        <ion-radio item-start value="Fair" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Poor</ion-label>
+        <ion-radio item-start value="Poor" color="light"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row>
+    <h6>3. How did our office staff behave during service ?</h6>
+    <ion-list radio-group no-lines>
+      <ion-item>
+        <ion-label>Excellent</ion-label>
+        <ion-radio item-start value="Excellent" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Good</ion-label>
+        <ion-radio item-start value="Good" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fair</ion-label>
+        <ion-radio item-start value="Fair" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Poor</ion-label>
+        <ion-radio item-start value="Poor" color="light"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row>
+    <h6>4. Would you recommend our hotel to other people ?</h6>
+    <ion-list radio-group no-lines>
+      <ion-item>
+        <ion-label>Excellent</ion-label>
+        <ion-radio item-start value="Excellent" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Good</ion-label>
+        <ion-radio item-start value="Good" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fair</ion-label>
+        <ion-radio item-start value="Fair" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Poor</ion-label>
+        <ion-radio item-start value="Poor" color="light"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row>
+    <h6>5. How would you rate our hotel overall ?</h6>
+    <ion-list radio-group no-lines>
+      <ion-item>
+        <ion-label>Excellent</ion-label>
+        <ion-radio item-start value="Excellent" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Good</ion-label>
+        <ion-radio item-start value="Good" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fair</ion-label>
+        <ion-radio item-start value="Fair" color="light"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Poor</ion-label>
+        <ion-radio item-start value="Poor" color="light"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button block color="light">Skip</button>
+    </ion-col>
+    <ion-col col-6>
+      <button ion-button block color="light">Send Feedback</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

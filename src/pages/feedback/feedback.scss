@@ -6,11 +6,14 @@ page-feedback {
     }
   
     .scroll-content {
-      background: #00ccb2;
+      background:color($colors,feedback);
     }
   
     ion-icon, div {
         color: white;
         font-weight: bold;
+    }
+    ion-item{
+      background: transparent !important;
     }
 }
