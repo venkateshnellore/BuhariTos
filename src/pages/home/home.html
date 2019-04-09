@@ -1,44 +1,43 @@
-
 <ion-header>
-    <expandable-header [scrollArea]="myContent" headerHeight="80">
-      <ion-item class="expandable-item">
-          <ion-label><ion-icon name="search"></ion-icon></ion-label>
-          <ion-input type="text"></ion-input>
-      </ion-item>
-    </expandable-header>
-    <ion-navbar color="secondary">
-       <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <h1 style="font-family: Colonna MT;
+  <expandable-header [scrollArea]="myContent" headerHeight="80">
+    <ion-item class="expandable-item">
+      <ion-label>
+        <ion-icon name="search"></ion-icon>
+      </ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  </expandable-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <h1 style="font-family: Colonna MT;
       font-size: 24px;
       font-weight: bold;
       color: white;
       margin: 5px;">Buhari</h1>
-    </ion-navbar>
-  </ion-header>
-  <ion-content fullscreen #myContent padding>
-      <h6>Food Categories</h6>
-      <ion-slides #slider spaceBetween="10" slidesPerView="2" autoplay="3000" loop="true">
-          <ion-slide *ngFor="let slide of menu"
-                     [ngStyle]="{'background' : 'url(' + slide.category_image + ')'}" (click)="navtoitems()">
-            <h2>{{slide.category}}</h2>
-          </ion-slide>
-        </ion-slides>
-        <h6>Bestsellers</h6>
-        <ion-item *ngFor="let items of bestseller">
-            <ion-row>
-              <ion-col col-1><img src="../../assets/imgs/veg.png" /> </ion-col>
-              <ion-col col-1></ion-col>
-              <ion-col col-3>
-                <h6 style="font-weight: bold;">{{items.item_name}}</h6>
-                <p style="font-size:12px;">In {{items.item_category}}</p>
-                <b>₹{{items.item_rate}}</b>
-              </ion-col>
-              <ion-col col-3></ion-col>
-              <ion-col col-4 style="text-align: center;">
-                  <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
-              </ion-col>
-            </ion-row>
-          </ion-item>
- </ion-content>
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen #myContent padding>
+  <h6>Food Categories</h6>
+  <ion-slides #slider spaceBetween="10" slidesPerView="2" autoplay="3000" loop="true">
+    <ion-slide *ngFor="let slide of category" [ngStyle]="{'background' : 'url(' + slide.category_image + ')'}">
+      <h2>{{slide.category}}</h2>
+    </ion-slide>
+  </ion-slides>
+  <h6>Bestsellers</h6>
+  <ion-item *ngFor="let bestitems of items">
+    <ion-row>
+      <ion-col col-1><img src="../assets/img/veg.png" /> </ion-col>
+      <ion-col col-3>
+        <b>{{bestitems.item_name}}</b>
+        <p>{{bestitems.item_type}}</p>
+        <b>$ {{bestitems.item_rate}}</b>
+      </ion-col>
+      <ion-col col-5></ion-col>
+      <ion-col col-3>
+        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+</ion-content>
