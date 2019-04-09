@@ -9,7 +9,6 @@ export class BuhariServiceProvider {
     console.log('Hello BuhariServiceProvider Provider');
   }
 
-
   // Get Template
   getfunction(): Observable<object[]> {
     return this.http.get('')
@@ -120,23 +119,19 @@ export class BuhariServiceProvider {
     // 6 - Request Extra Items (Select Items --> Request Page)
     requestItemsSelect(): Observable<object[]> {
   
-      return this.http.get('http://192.168.99.1:5000/Get_Order_Item_Table')
+      return this.http.get('http://192.168.99.1:5000/Query_Extra_Item_Category')
         .map(this.extractData)
         .catch(this.handleError);
     }
 
-    // 7 - Reuest Extra Items
+    // 7 - Reuest Extra Items (Request Items --> Request Page)(No Service)
     requestItems(): Observable<object[]> {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
       const options = new RequestOptions({ headers: headers });
   
-      let body =
-      {
-        "table_no":2
-      }
   
-      return this.http.post('http://192.168.99.1:5000/Get_Order_Item_Table', body, options)
+      return this.http.post('', options)
         .map(this.extractData)
         .catch(this.handleError);
     }
