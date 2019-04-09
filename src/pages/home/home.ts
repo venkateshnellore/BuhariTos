@@ -10,18 +10,11 @@ import { ItemlistPage } from '../itemlist/itemlist';
 
 
 export class HomePage {
-  public foodcategory:any=[];  
-
-  // public dish: any = [];
-  public bestsellers: any=[];
-  // public itemlist: any = [];
-  // public soups: any[];
-  // public category:any[];
-  // public bestseller:any[];
-  // public bestsellersitems:any[];
-  // public items:any=[];
   @ViewChild('slider') slider: Slides;
 
+  public foodcategory:any=[];  
+  public bestsellers: any=[];
+  public offers: any = [];
   public menu:any = 
   [
     {
@@ -1103,7 +1096,8 @@ export class HomePage {
   ionViewDidLoad() {
     this.foodcategory = this.menu[0].Food_Category;
     this.bestsellers = this.menu[0].Best_Sellers;
-    console.log("Food Category----",JSON.stringify(this.bestsellers));
+    this.offers = this.menu[0].Offers;
+    console.log("Food Category----",JSON.stringify(this.offers));
     
   }
 
