@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular'; 
+
+import {DescriptionpagePage} from '../descriptionpage/descriptionpage';
 
 /**
  * Generated class for the ItemlistPage page.
@@ -15,38 +17,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ItemlistPage {
   public soups:any=[];
-
+   public itemlist:any=[];
+   public items:any=[];
+   public item_category;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+       this.itemlist = this.navParams.get("itemlist");
+       console.log("item listsss",this.itemlist);
+       this.items = this.itemlist.items;
+       console.log("items",this.items);
+       this.item_category = this.itemlist.category;
+       console.log("item_catagory",this.item_category);
+
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemlistPage');
-    // this.this.navParams.
-
-
-    this.soups=[
-      {id:"1",
-      itemame:"Cream of tomoto soup",
-      price:"95",
-      spicy:"hot"},
-      {id:"2",
-      itemame:"Cream of tomoto soup",
-      price:"95",
-      spicy:"hot"},
-      {id:"3",
-      itemame:"Cream of tomoto soup",
-      price:"95",
-      spicy:"hot"},
-      {id:"4",
-      itemame:"Cream of tomoto soup",
-      price:"95",
-      spicy:"hot"},
-      {id:"5 ",
-      itemame:"Cream of tomoto soup",
-      price:"95",
-      spicy:"hot"},
-    ]
     console.log("soups",this.soups);
+  }
+
+  navdescription(soups){
+    this.navCtrl.push(DescriptionpagePage,{"itemdescription":soups});
   }
 
 }
