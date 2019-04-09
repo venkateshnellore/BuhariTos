@@ -13,7 +13,7 @@ import { CartPage } from '../pages/cart/cart';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { MainPage } from '../pages/main/main';
-
+import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -24,6 +24,7 @@ import{ItemlistPage} from '../pages/itemlist/itemlist';
 
 import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
 import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
+// import { FeedbackPageModule } from '../pages/feedback/feedback.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -37,12 +38,13 @@ import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
     BillingdetailsPage,
     // ItemdescriptionPage,
     DescriptionpagePage,
-
+    FeedbackPage,
     LoginPage,
     MainPage
   ],
   imports: [
     BrowserModule,
+    // FeedbackPageModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding:false,
     }),    
@@ -63,7 +65,8 @@ import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
     // ItemdescriptionPage,
     DescriptionpagePage,
     LoginPage,
-    MainPage
+    MainPage,
+    FeedbackPage
   ],
   providers: [
     StatusBar,

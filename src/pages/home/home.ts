@@ -1091,14 +1091,12 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
    
   }
-
   
   ionViewDidLoad() {
     this.foodcategory = this.menu[0].Food_Category;
     this.bestsellers = this.menu[0].Best_Sellers;
     this.offers = this.menu[0].Offers;
     console.log("Food Category----",JSON.stringify(this.offers));
-    
   }
 
   ngAfterViewInit() {
