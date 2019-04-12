@@ -31,14 +31,21 @@
       <ion-col col-1>
         <img src="../../assets/imgs/veg.png" /> </ion-col>
       <ion-col col-1></ion-col>
-      <ion-col col-6>
+      <ion-col col-4>
         <h6 style="font-weight: bold;">{{items.item_name}}</h6>
         <p style="font-size:12px;">In {{items.item_category}}</p>
         <b>₹{{items.item_rate}}</b>
       </ion-col>
-      <!-- <ion-col col-3></ion-col> -->
-      <ion-col col-4 style="text-align: center;">
-        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+      <!-- <ion-col col-2></ion-col> -->
+      <ion-col col-6 style="text-align: center;" *ngIf="addbutton">
+        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline   (click)="onButtonClick()">Add +</button>
+      </ion-col>
+      <ion-col col-6 *ngIf="buttonClicked">
+        <ion-row style="margin-left:43%">
+          <button ion-button outline class="custom-left-btn" color="secondary" (click)="reduce(i,item,items)">-</button>
+          <p class="custom-p">10</p>
+          <button ion-button outline class="custom-right-btn" color="secondary" (click)="add(i,item,items)">+</button>
+        </ion-row>
       </ion-col>
     </ion-row>
   </ion-item>
@@ -57,17 +64,17 @@
         <p style="font-size:12px;">In {{items.item_category}}</p>
         <b>₹{{items.item_rate}}</b>
       </ion-col>
-      <ion-col col-3></ion-col>
-      <ion-col col-4>
+      <ion-col col-1></ion-col>
+      <ion-col col-6>
         <ion-row style="margin-left:43%">
           <button ion-button outline class="custom-left-btn" color="secondary" (click)="reduce(i,item,items)">-</button>
           <p class="custom-p">10</p>
           <button ion-button outline class="custom-right-btn" color="secondary" (click)="add(i,item,items)">+</button>
         </ion-row>
       </ion-col>
-      <!-- <ion-col col-4 style="text-align: center;">
+      <ion-col col-6 style="text-align: center;">
         <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
-      </ion-col> -->
+      </ion-col>
     </ion-row>
   </ion-item>
 </ion-content>

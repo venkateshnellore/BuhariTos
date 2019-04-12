@@ -1087,7 +1087,8 @@ export class HomePage {
       ]
     }
   ];
-
+  public buttonClicked: boolean = false;
+  public  addbutton:boolean = true;
   constructor(public navCtrl: NavController) {
    
   }
@@ -1106,5 +1107,42 @@ export class HomePage {
   navitemlist(param) {
     this.navCtrl.push(ItemlistPage,{"itemlist":param});
   }
+  public onButtonClick() {
 
+    this.buttonClicked = !this.buttonClicked;
+    this.addbutton = false;
 }
+
+// reduce(position,item,array){
+//     if(item.count != 1 ){
+//       this.items[position].count = item.count-1;
+//       this.items[position].itemtotal = item.rate * item.count;
+//       this.total = this.total - this.items[position].rate;
+//     }
+//     else{
+//       this.total = this.total - this.items[position].rate;
+//       array.splice(position,1);
+//     }
+//   }
+//   add(position,item,array){
+//     this.item_price = item.rate;
+//     this.items[position].count = item.count +1;
+//     this.items[position].itemtotal = item.rate * item.count;
+//     this.total = this.total + this.items[position].rate;
+//   }
+//   placeOrder(){
+    
+//     for(let i=0;i<this.items.length;i++){
+//       this.billing.push(this.items[i])
+//     }
+//     this.storage.get("Orders").then((val:any)=>{
+//       if(val){
+        
+//       }
+//     })
+//     this.storage.set("Orders",JSON.stringify(this.billing));
+    // this.items.length = 0;
+    // console.log("To KOT",JSON.stringify(this.items))
+  }
+
+// }
