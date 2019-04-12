@@ -22,10 +22,10 @@ export class ItemlistPage {
    public item_category;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
        this.itemlist = this.navParams.get("itemlist");
-       console.log("item listsss",this.itemlist);
-       this.items = this.itemlist.items;
+      //  console.log("item listsss",this.itemlist);
+       this.items = this.itemlist.item;
        console.log("items",this.items);
-       this.item_category = this.itemlist.category;
+       this.item_category = this.itemlist.categry_name;
        console.log("item_catagory",this.item_category);
 
     }
@@ -35,8 +35,8 @@ export class ItemlistPage {
     console.log("soups",this.soups);
   }
 
-  navdescription(soups){
-    this.navCtrl.push(DescriptionpagePage,{"itemdescription":soups});
+  navdescription(param){
+    this.navCtrl.push(DescriptionpagePage,{"itemdescription":param});
   }
 
 }

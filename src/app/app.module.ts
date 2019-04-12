@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { SharedModule } from './shared.module';
+import { HttpModule } from '@angular/http';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -45,6 +46,7 @@ import { BuhariServiceProvider } from '../providers/buhari-service/buhari-servic
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     // FeedbackPageModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding:false,

@@ -1,29 +1,22 @@
-<!--
-  Generated template for the DescriptionpagePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title style="font-family: Colonna MT;
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    margin: 5px;">
+  <ion-navbar color="secondary">
+    <ion-title>
       {{item_name}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content >
-    <ion-row >
-      <ion-slides pager autoplay="3000" loop="true" slidesPerView="1">
-        <ion-slide >
-          <img class="minwidth-100" src="../assets/imgs/main/background-1.jpg"/>
+<ion-content>
+    <ion-row>
+      <ion-slides *ngIf="item_images && item_images.length" pager autoplay="3000" loop="true" slidesPerView="1">
+        <ion-slide *ngFor="let image of item_images">
+          <img class="minwidth-100" [src]="image.item_image"/>
         </ion-slide>
       </ion-slides>
-
-      <h5><p>{{item_description}}</p></h5>
     </ion-row>
+    <ion-row padding>
+      <h5>Description</h5>
+      <p>{{item_description}}</p>  
+    </ion-row>
+    
 </ion-content>
