@@ -60,9 +60,16 @@
         <b>₹{{items.price}}</b>
       </ion-col>
       <ion-col col-3></ion-col>
-      <ion-col col-4 style="text-align: center;">
-        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+      <ion-col col-4>
+        <ion-row style="margin-left:43%">
+          <button ion-button outline class="custom-left-btn" color="secondary" (click)="reduce(i,item,items)">-</button>
+          <p class="custom-p">10</p>
+          <button ion-button outline class="custom-right-btn" color="secondary" (click)="add(i,item,items)">+</button>
+        </ion-row>
       </ion-col>
+      <!-- <ion-col col-4 style="text-align: center;">
+        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+      </ion-col> -->
     </ion-row>
   </ion-item>
 </ion-content>
