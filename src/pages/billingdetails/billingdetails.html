@@ -8,17 +8,18 @@
    <ion-row>
        <h5>BILL DETAILS</h5>
    </ion-row>
-   <ion-row  *ngFor="let billdetails of itemdetails">
+   <ion-row  *ngFor="let item of itemdetails.items">
      <ion-col col-1>
-       <img src="../../assets/imgs/veg.png"/>
+      <img *ngIf="item.food_type == 'VEG'" src="../../assets/imgs/veg.png" /> 
+      <img *ngIf="item.food_type == 'NON VEG'" src="../../assets/imgs/nonveg.png" /> 
      </ion-col>
      <ion-col col-1></ion-col>
      <ion-col col-6 class="margin-10">
-       <p>{{billdetails.item_name}}</p>
+       <p>{{item.food_name}}</p>
       </ion-col>
       <ion-col col-2></ion-col>
      <ion-col col-2 class="margin-p">
-       <p> ₹ {{billdetails.item_price}}</p>
+       <p> ₹ {{item.price}}</p>
      </ion-col>
    </ion-row>
    <ion-item-divider ></ion-item-divider>  
@@ -26,16 +27,12 @@
         <ion-col col-6>
           <p>Item Total</p>
           <p>GST</p>
-          <p>Delivery Charges</p>
-          <p>Discount Applied(SUPERBHF)</p>
         </ion-col>
         <ion-col col-3>
         </ion-col>
         <ion-col col-3>
           <p>₹ 600</p>
           <p>₹ 9.45</p>
-          <p>₹ 9.45</p>
-          <p>- ₹ 9.45</p>
         </ion-col>
       </ion-row>
       <ion-item-divider ></ion-item-divider>
@@ -46,7 +43,7 @@
         <ion-col col-4>
         </ion-col>
         <ion-col col-4 style="text-align:center;">
-          <h6>₹ 609.45</h6>
+          <h6>₹ {{itemdetails.total_amount}}</h6>
         </ion-col>
       </ion-row>
       <ion-row>

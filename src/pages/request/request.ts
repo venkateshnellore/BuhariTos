@@ -1,37 +1,51 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RequestPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 @IonicPage()
 @Component({
   selector: 'page-request',
   templateUrl: 'request.html',
 })
 export class RequestPage {
+  public requestItem:boolean[];
+  public sendItem:any=[];
+  public request_items = [];
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public service: BuhariServiceProvider) 
+  {
+    this.service.requestItemsSelect().subscribe((resp:any)=>{
+      if(resp.ReturnCode == "RRS"){
+        this.request_items = resp.Returnvalue;
+        this.requestItem = new Array(this.request_items.length);
+        console.log("extra items *****",JSON.stringify(this.request_items));
+      }
+    })
 
-  public request_items = [
-    { val: 'Tissue', isChecked: false },
-    { val: 'Finger Bowl', isChecked: false },
-    { val: 'Sambar', isChecked: false },
-    { val: 'Raitha', isChecked: false },
-    { val: 'Chutney', isChecked: false },
-    { val: 'Extra Plate', isChecked: false },
-    { val: 'Extra Spoon', isChecked: false }
-  ];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RequestPage');
   }
 
-  requestitem(default_req_item,custom_req_item){
-    console.log(default_req_item,custom_req_item);
+  updateRequestItem(position,item){
+    if(this.requestItem[position] === true){
+      this.sendItem.push(item);
+    }
+    else{
+      console.log("removing item")
+      this.sendItem.slice(item,position)
+    }
+    console.log("Item Selected",JSON.stringify(this.sendItem));  
+  }
+  public dummyarr:any=[];
+  requestitem(custom_req_item){
+    this.dummyarr=[];
+    for(var i=0;i<this.request_items.length;i++){
+      if(this.request_items[i].checked === true){
+        this.dummyarr.push(this.request_items[i])
+      }
+    }
+    console.log("Request Item from Checkbox",this.dummyarr);
   }
 }

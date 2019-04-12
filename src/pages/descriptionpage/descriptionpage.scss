@@ -1,29 +1,26 @@
 page-descriptionpage {
 
-    $black-overlay: rgba(248, 123, 6,0.9);
-    $text-color: #666;
-    $banner-text-color: white;
-    $content-color: whitesmoke;
-    $detail-background: rgba(236,236,236,.8);
+  $black-overlay: rgba(248, 123, 6,0.9);
+  $text-color: #666;
+  $banner-text-color: white;
+  $content-color: whitesmoke;
+  $detail-background: rgba(236,236,236,.8);
 
+  .toolbar-background {
+    border-color: transparent;
+    background: $black-overlay;
+  }
 
-    .toolbar-background {
-        border-color: transparent;
-        background: $black-overlay;
-    }
+  .fontstyle-italic{
+    font-style:italic;
+   }
 
+  .text-align-jusstify{
+    text-align: justify !important;
+  }
 
-
-    .fontstyle-italic{
-        font-style:italic;
-      }
-
-      .text-align-jusstify{
-        text-align: justify !important;
-      }
-      .minwidth-100{
-       
-        min-width: 100% !important;
-      }
-      
+  .minwidth-100{
+    min-width: 100% !important;
+  }
+  
 }

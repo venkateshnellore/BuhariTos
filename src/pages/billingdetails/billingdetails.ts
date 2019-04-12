@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FeedbackPage } from '../feedback/feedback';
+import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 /**
  * Generated class for the BillingdetailsPage page.
  *
@@ -16,7 +17,8 @@ import { FeedbackPage } from '../feedback/feedback';
 export class BillingdetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              public service: BuhariServiceProvider) {
   }
    public itemdetails:any=[];
 
@@ -26,6 +28,11 @@ export class BillingdetailsPage {
    preload  = true;
  
   ionViewDidLoad() {
+    this.service.billing().subscribe((resp:any)=>{
+      if(resp.ReturnCode == "RRS"){
+        this.itemdetails = resp.Returnvalue;
+      }
+    })
     console.log('ionViewDidLoad BillingdetailsPage');
 
     this.itemdetails=[

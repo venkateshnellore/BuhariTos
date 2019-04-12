@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides } from 'ionic-angular';
 import { ItemlistPage } from '../itemlist/itemlist';
+import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 
 @Component({
   selector: 'page-home',
@@ -15,6 +16,7 @@ export class HomePage {
   public foodcategory:any=[];  
   public bestsellers: any=[];
   public offers: any = [];
+<<<<<<< HEAD
   public menu:any = 
   [
     {
@@ -1090,18 +1092,27 @@ export class HomePage {
   public buttonClicked: boolean = false;
   public  addbutton:boolean = true;
   constructor(public navCtrl: NavController) {
+=======
+  public menu:any = [];
+
+  constructor(public navCtrl: NavController,public service: BuhariServiceProvider) {
+>>>>>>> adc0494eb823f920dfe07cd9fb0c4edc29e15ca8
    
   }
   
   ionViewDidLoad() {
-    this.foodcategory = this.menu[0].Food_Category;
-    this.bestsellers = this.menu[0].Best_Sellers;
-    this.offers = this.menu[0].Offers;
-    console.log("Food Category----",JSON.stringify(this.offers));
+    this.service.menus().subscribe((resp:any)=>{
+      if(resp.ReturnCode == "RRS"){
+        this.menu = resp.Returnvalue;
+        this.foodcategory = this.menu[0].Food_Category;
+        this.bestsellers = this.menu[0].Best_Sellers;
+        this.offers = this.menu[0].Offers;
+        console.log("Food Category----",JSON.stringify(this.offers));
+      }
+    })
   }
 
   ngAfterViewInit() {
-    this.slider.freeMode = true;
   }
 
   navitemlist(param) {

@@ -11,9 +11,10 @@
 <ion-content>
   <ion-list>
     <p style="margin-left:5%;">Request for Items</p>
-    <ion-item *ngFor="let entry of request_items">
-      <ion-label>{{entry.val}}</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" color="secondary"></ion-checkbox>
+    <ion-item *ngFor="let entry of request_items;let i=index">
+      <ion-label>{{entry.food_name}}</ion-label>
+      <!-- <ion-checkbox slot="end" color="secondary" [(ngModel)]="requestItem[i]" (ionChange)="updateRequestItem(i,entry)"></ion-checkbox> -->
+      <ion-checkbox slot="end" color="secondary" [(ngModel)]="entry.checked"></ion-checkbox>
     </ion-item>
   </ion-list>
   <p style="margin-left:5%;">Request for other items</p>
@@ -29,7 +30,7 @@
           color="secondary" 
           style="width: 100%;"
           outline
-          (click)="requestitem(request_items,custom_items)">Request</button>
+          (click)="requestitem(custom_items)">Request</button>
     </ion-col>
   </ion-row>
 </ion-content>

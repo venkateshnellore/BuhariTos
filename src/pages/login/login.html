@@ -6,11 +6,11 @@
   <div padding>
     <h1 class="hotel-title">Buhari</h1>
     <ion-item>
-      <ion-input type="text" placeholder="Username"></ion-input>
+      <ion-input type="number" placeholder="Table Number" [(ngModel)]="table.number"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Password"></ion-input>
+      <ion-input type="text" placeholder="Password" [(ngModel)]="table.password"></ion-input>
     </ion-item>
-    <button ion-button block outline (click)="login()" color="light" class="login-button">Login</button>
+    <button ion-button block outline (click)="login(table)" color="light" class="login-button">Login</button>
   </div>
 </ion-content>

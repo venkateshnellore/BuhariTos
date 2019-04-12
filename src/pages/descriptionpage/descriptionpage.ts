@@ -19,17 +19,18 @@ export class DescriptionpagePage {
    public itemdescription:any=[];
    public item_description;
    public item_name;
+   public item_images:any=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.itemdescription = this.navParams.get("itemdescription");
-      console.log("itemdescription",this.itemdescription);
-      this.item_description = this.itemdescription.item_description;
-      this.item_name = this.itemdescription.item_name;
-      console.log("itemdescription",this.item_description);
   }
 
   ionViewDidLoad() {
+    this.item_description = this.itemdescription.food_description;
+    this.item_name = this.itemdescription.food_name;
+    this.item_images = this.itemdescription.item_images;
     console.log('ionViewDidLoad DescriptionpagePage');
+    console.log("Item Description",this.itemdescription);
   }
 
 }
