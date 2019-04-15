@@ -17,7 +17,7 @@ export class CartPage {
   public removefromcart: any = [];
   public item_price: any;
   public billing: any = [];
-  public cartdata: any ={};
+  public cartdata: any =[];
   public cartdataitems:any=[];
   publ
   items = [
@@ -49,13 +49,6 @@ export class CartPage {
   }
 
   ionViewDidLoad() {
-    // this.storage.get('Orders').then((val:any)=>{
-    //   if(val){
-    //     this.items = val;
-    //   }
-    // })
-
-    // this.
     for (var i = 0; i < this.items.length; i++) {
       this.total = this.total + this.items[i].itemtotal;
     }
@@ -70,6 +63,17 @@ export class CartPage {
       }
     });
      
+  }
+
+  ionViewWillEnter(){
+    this.storage.get("cartdata").then((val: any) => {
+      if (val) {
+        this.cartdata = val;
+        console.log("cartdataaaaaaaaaaaaaa", this.cartdata);
+      // this.cartdataitems.push(this.cartdata);
+    //  console.log("cartdataitemssssss",this.cartdataitems);
+      }
+    });
   }
 
   delete(position, item, items) {

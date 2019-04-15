@@ -52,7 +52,7 @@
         
   </ion-item>
   <h6>Offers</h6>
-  <ion-item *ngFor="let items of offers" class="item-ribbon">
+  <ion-item *ngFor="let items of offers;let i=index" class="item-ribbon">
     <span class="ribbon default">
       <span>{{items.offer_value}} ₹ OFF</span>
     </span>
@@ -62,22 +62,14 @@
         <img *ngIf="items.food_type == 'NON VEG'" src="../../assets/imgs/nonveg.png" /> 
       </ion-col>
       <ion-col col-1></ion-col>
-      <ion-col col-3>
+      <ion-col col-6>
         <h6 style="font-weight: bold;">{{items.food_name}}</h6>
         <p style="font-size:12px;">In {{items.category}}</p>
         <b>₹{{items.price}}</b>
       </ion-col>
-      <ion-col col-1></ion-col>
-      <!-- <ion-col col-6>
-        
-      </ion-col> -->
-      <ion-col col-6 style="text-align: center;">
-        <button class="height-25" ion-button color="secondary"  style="text-transform: none;" *ngIf="offersaddbutton" (click)="offerbuttonclicked()" outline>Add +</button>
-        <ion-row style="margin-left:43%"  *ngIf="offersbutton">
-          <button ion-button outline class="custom-left-btn" color="secondary" (click)="reduce(i,item,items)">-</button>
-          <p class="custom-p">10</p>
-          <button ion-button outline class="custom-right-btn" color="secondary" (click)="add(i,item,items)">+</button>
-        </ion-row>
+      <ion-col col-4 style="text-align: center;" >
+        <button class="height-25" ion-button color="secondary"  *ngIf="items.add"  style="text-transform: none;" (click)="onButtonClick(i,items,offers)" outline>Add +</button>
+        <button class="height-25" ion-button color="secondary"   style="text-transform: none;" *ngIf="items.added" disabled  outline>Added</button>
       </ion-col>
     </ion-row>
   </ion-item>

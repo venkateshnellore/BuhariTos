@@ -18,27 +18,19 @@ export class HomePage {
   public bestsellers: any = [];
   public offers: any = [];
   public menu: any = [];
-  public dummyarry: any = [];
-  public dummyobj: any = { "count": 0 };
   public buttonClicked: boolean = false;
   public addbutton: boolean = true;
 
-  public offersbutton: boolean = false;
-  public offersaddbutton: boolean = true;
-
   public item_price;
-  public currentNumber = 0;
-  public total: any;
-  // public count = 1;
-  public price;
-
   public item_count = 0;
-
-  public cart: any = [];
-
+  public cartItems: any = [];
 
 
-  constructor(public navCtrl: NavController, public service: BuhariServiceProvider, public storage: Storage) {
+
+  constructor(
+    public navCtrl: NavController, 
+    public service: BuhariServiceProvider, 
+    public storage: Storage) {
 
   }
 
@@ -58,24 +50,35 @@ export class HomePage {
           this.bestsellers[i].add = this.addbutton;
           this.bestsellers[i].added = this.buttonClicked;
         }
+        for (var i = 0; i < this.offers.length; i++) {
+          this.offers[i].item_count = 0;
+          this.offers[i].add = this.addbutton;
+          this.offers[i].added = this.buttonClicked;
+        }
+        console.log("OFFERRSSSSSSSSSSSSSSS",JSON.stringify(this.offers));
       }
     })
   }
   ionViewDidLoad() {
-    this.service.menus().subscribe((resp: any) => {
-      if (resp.ReturnCode == "RRS") {
-        this.menu = resp.Returnvalue;
-        this.foodcategory = this.menu[0].Food_Category;
-        this.bestsellers = this.menu[0].Best_Sellers;
-        this.offers = this.menu[0].Offers;
-        for (var i = 0; i < this.bestsellers.length; i++) {
-          this.bestsellers[i].item_count = 0;
-          this.bestsellers[i].add = this.addbutton;
-          this.bestsellers[i].added = this.buttonClicked;
-        }
-        console.log("Food bestsellersssssssssss----", JSON.stringify(this.dummyobj));
-      }
-    })
+    // this.service.menus().subscribe((resp: any) => {
+    //   if (resp.ReturnCode == "RRS") {
+    //     this.menu = resp.Returnvalue;
+    //     this.foodcategory = this.menu[0].Food_Category;
+    //     this.bestsellers = this.menu[0].Best_Sellers;
+    //     this.offers = this.menu[0].Offers;
+    //     for (var i = 0; i < this.bestsellers.length; i++) {
+    //       this.bestsellers[i].item_count = 0;
+    //       this.bestsellers[i].add = this.addbutton;
+    //       this.bestsellers[i].added = this.buttonClicked;
+    //     }
+    //     for (var i = 0; i < this.offers.length; i++) {
+    //       this.offers[i].item_count = 0;
+    //       this.offers[i].add = this.addbutton;
+    //       this.offers[i].added = this.buttonClicked;
+    //     }
+    //     console.log("OFFERRSSSSSSSSSSSSSSS",JSON.stringify(this.offers));
+    //   }
+    // })
   }
 
   ngAfterViewInit() {
@@ -84,10 +87,21 @@ export class HomePage {
   navitemlist(param) {
     this.navCtrl.push(ItemlistPage, { "itemlist": param });
   }
+
   public onButtonClick(position, items, array) {
     this.bestsellers[position].item_count = this.item_count + 1;
-    console.log("ITEMS************", items);
-    this.storage.set("cartdata", items);
+    this.storage.get('cartdata').then((val: any) => {
+      if (val) {
+        this.cartItems = val;
+        this.cartItems.push(items)
+        this.storage.set("cartdata", this.cartItems);
+        console.log("Items in Cart*******************", JSON.stringify(this.cartItems));
+      } else {
+        this.cartItems = [];
+        this.cartItems.push(items);
+        this.storage.set("cartdata", this.cartItems);
+      }
+    })
     if (items.added == false) {
       items.added = !items.added;
       items.add = false;
@@ -97,10 +111,4 @@ export class HomePage {
       console.log('elseeeee')
     }
   }
-
-  offerbuttonclicked() {
-    this.offersbutton = !this.offersbutton;
-    this.offersaddbutton = false;
-  }
-
 }
