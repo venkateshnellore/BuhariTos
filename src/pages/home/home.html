@@ -25,6 +25,12 @@
       <h4>{{slide.categry_name}}</h4>
     </ion-slide>
   </ion-slides>
+  <h6>Todays Special</h6>
+  <div class="card-background-page">
+    <ion-card>
+      <img src="../../assets/imgs/todayspecial.jpg" style="height:300px;"/>
+    </ion-card>
+  </div>
   <h6>Bestsellers</h6>
   <ion-item *ngFor="let items of bestsellers">
     <ion-row>
@@ -60,16 +66,16 @@
         <b>₹{{items.price}}</b>
       </ion-col>
       <ion-col col-3></ion-col>
-      <ion-col col-4>
+      <!-- <ion-col col-4>
         <ion-row style="margin-left:43%">
           <button ion-button outline class="custom-left-btn" color="secondary" (click)="reduce(i,item,items)">-</button>
           <p class="custom-p">10</p>
           <button ion-button outline class="custom-right-btn" color="secondary" (click)="add(i,item,items)">+</button>
         </ion-row>
-      </ion-col>
-      <!-- <ion-col col-4 style="text-align: center;">
-        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
       </ion-col> -->
+      <ion-col col-4 style="text-align: center;">
+        <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+      </ion-col>
     </ion-row>
   </ion-item>
 </ion-content>

@@ -4,16 +4,13 @@ page-feedback {
       0%   { opacity: 0; }
       100% { opacity: 1; }
     }
-  
     .scroll-content {
       background:color($colors,feedback);
-    }
-  
+    }  
     ion-icon, div {
         color: white;
         font-weight: bold;
     }
-
     ion-item{
         background: transparent !important;
     }
