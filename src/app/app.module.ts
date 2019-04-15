@@ -52,11 +52,6 @@ import { BuhariServiceProvider } from '../providers/buhari-service/buhari-servic
   imports: [
     BrowserModule,
     HttpModule,
-<<<<<<< HEAD
-    // Ng2Webstorage,
-    // Ng2Webstorage,
-=======
->>>>>>> 7507135cad369fe9ba9ab93f2ecde8fd4aaae6d7
     // NgxWebstorageModule,
     // FeedbackPageModule,
     IonicModule.forRoot(MyApp,{
