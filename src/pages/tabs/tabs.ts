@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import { CartPage } from '../cart/cart';
 import { HomePage } from '../home/home';
@@ -15,7 +15,10 @@ export class TabsPage {
   tab3Root = CartPage;
   tab4Root = AboutPage;
 
-  constructor() {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
 
+
+    this.navParams = navParams;
+    console.log(this.navParams);
   }
 }
