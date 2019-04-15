@@ -21,6 +21,7 @@ import { MainPage } from '../pages/main/main';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+// import {NgxWebstorageModule} from 'ngx-webstorage';
 
 //requst page
 // import{RequstpagePage} from '../pages/requstpage/requstpage';
@@ -51,8 +52,11 @@ import { BuhariServiceProvider } from '../providers/buhari-service/buhari-servic
   imports: [
     BrowserModule,
     HttpModule,
+<<<<<<< HEAD
     // Ng2Webstorage,
     // Ng2Webstorage,
+=======
+>>>>>>> 7507135cad369fe9ba9ab93f2ecde8fd4aaae6d7
     // NgxWebstorageModule,
     // FeedbackPageModule,
     IonicModule.forRoot(MyApp,{
@@ -83,6 +87,6 @@ import { BuhariServiceProvider } from '../providers/buhari-service/buhari-servic
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BuhariServiceProvider
-  ]
+  ],
 })
 export class AppModule {}

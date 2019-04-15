@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 import { FeedbackPage } from '../feedback/feedback';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 /**
@@ -16,7 +16,9 @@ import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-ser
 })
 export class BillingdetailsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public toast: ToastController,
               public modalCtrl: ModalController,
               public service: BuhariServiceProvider) {
   }
@@ -34,32 +36,38 @@ export class BillingdetailsPage {
       }
     })
     console.log('ionViewDidLoad BillingdetailsPage');
-
-    this.itemdetails=[
-      { id:"1",item_name:"chicken biryani x2",item_price:"150",},
-      {id:"2",item_name:"chicken biryani 65 x2",item_price:"150",},
-      {id:"3",item_name:"gobi x2",item_price:"150",},
-      {id:"4",item_name:"chicken special biryani x2",item_price:"150",},
-    ]
   }
 
-  expand() {
+  expand(param) {
     //send ready for billing will come here
-    
-
-    //open modal for feedback
-    this.expanded = true;
-    this.contracted = !this.expanded;
-    this.showIcon = false;
-    setTimeout(() => {
-      const modal = this.modalCtrl.create(FeedbackPage);
-      modal.onDidDismiss(data => {
-        this.expanded = false;
+    this.service.readyForBilling(param).subscribe((resp:any)=>{
+      if(resp.ReturnCode == "RUS"){
+        this.showtoast("Waiter Will soon come with Bill");     
+        //open modal for feedback
+        this.expanded = true;
         this.contracted = !this.expanded;
-        setTimeout(() => this.showIcon = true, 30);
-      });
-      modal.present();
-    },         200);
+        this.showIcon = false;
+        setTimeout(() => {
+          const modal = this.modalCtrl.create(FeedbackPage);
+          modal.onDidDismiss(data => {
+            this.expanded = false;
+            this.contracted = !this.expanded;
+            setTimeout(() => this.showIcon = true, 30);
+          });
+          modal.present();
+        },         200);
+      }
+      else{
+        this.showtoast("There is problem in Generate the Bill");
+      }
+    })
   }
 
+  showtoast(message){
+    const toast = this.toast.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();   
+  }
 }
