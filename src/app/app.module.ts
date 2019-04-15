@@ -5,6 +5,10 @@ import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { SharedModule } from './shared.module';
 import { HttpModule } from '@angular/http';
+// import {NgxWebstorageModule} from 'ngx-webstorage';
+// import { Ng2Webstorage } from '@ngx-webstorage';
+// import {Ng2Webstorage} from 'ngx-webstorage';
+// import {Ng2Webstorage} from 'ngx-webstorage';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -47,6 +51,9 @@ import { BuhariServiceProvider } from '../providers/buhari-service/buhari-servic
   imports: [
     BrowserModule,
     HttpModule,
+    // Ng2Webstorage,
+    // Ng2Webstorage,
+    // NgxWebstorageModule,
     // FeedbackPageModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding:false,

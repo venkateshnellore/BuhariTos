@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides } from 'ionic-angular';
 import { ItemlistPage } from '../itemlist/itemlist';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -16,1090 +17,50 @@ export class HomePage {
   public foodcategory:any=[];  
   public bestsellers: any=[];
   public offers: any = [];
-<<<<<<< HEAD
-  public menu:any = 
-  [
-    {
-      "Food_Category":
-      [
-        {
-        category: "Soups",
-        category_image:"../assets/imgs/main/background-2.jpg",
-        items:[
-          {
-          item_id:"01",
-          item_name:"Cream of Tomato Soup",
-          item_type:"veg",
-          item_category:"Soups",
-          item_rate:135,
-          item_images:
-          [
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"02",
-          item_name:"Cream of Mushroom Soup",
-          item_type:"veg",
-          item_category:"Soups",
-          item_rate:135,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"03",
-          item_name:"Sweet Corn Veg Soup",
-          item_type:"veg",
-          item_category:"Soups",
-          item_rate:135,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"04",
-          item_name:"Cream of Chicken Soup",
-          item_type:"non-veg",
-          item_category:"Soups",
-          item_rate:155,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"05",
-          item_name:"Chicken Pepper Soup",
-          item_type:"non-veg",
-          item_category:"Soups",
-          item_rate:155,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"06",
-          item_name:"Sweet Corn Chicken Soup",
-          item_type:"non-veg",
-          item_category:"Soups",
-          item_rate:155,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-        ]
-        },
-        {
-        category: "Starters",
-        category_image:"../assets/imgs/main/background-3.jpg",
-        items:[
-          {
-          item_id:"01",
-          item_name:"Paneer 65",
-          item_type:"veg",
-          item_category:"Starters",
-          item_rate:210,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"02",
-          item_name:"Gobi 65",
-          item_type:"veg",
-          item_category:"Starters",
-          item_rate:210,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"03",
-          item_name:"Crispy Veg",
-          item_type:"veg",
-          item_category:"Starters",
-          item_rate:245,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"04",
-          item_name:"Chicken 90",
-          item_type:"non-veg",
-          item_category:"Starters",
-          item_rate:280,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"05",
-          item_name:"Chicken 65",
-          item_type:"non-veg",
-          item_category:"Starters",
-          item_rate:255,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"06",
-          item_name:"Ginger Chicken Dry",
-          item_type:"non-veg",
-          item_category:"Starters",
-          item_rate:275,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-        ]
-        },
-        {
-        category: "Main Course",
-        category_image:"../assets/imgs/main/background-4.jpg",
-        items:[
-          {
-          item_id:"01",
-          item_name:"Vegetable Curry",
-          item_type:"veg",
-          item_category:"MainCourse",
-          item_rate:200,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"02",
-          item_name:"Dal Fry",
-          item_type:"veg",
-          item_category:"MainCourse",
-          item_rate:200,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"03",
-          item_name:"Mushroom Masala",
-          item_type:"veg",
-          item_category:"MainCourse",
-          item_rate:210,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"04",
-          item_name:"Egg Curry",
-          item_type:"veg",
-          item_category:"MainCourse",
-          item_rate:145,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"05",
-          item_name:"Chicken 82 Gravy",
-          item_type:"non-veg",
-          item_category:"MainCourse",
-          item_rate:275,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"06",
-          item_name:"Chicken Kuruma",
-          item_type:"non-veg",
-          item_category:"MainCourse",
-          item_rate:240,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-        ]
-        },
-        {
-        category: "Breads",
-        category_image:"../assets/imgs/main/background-5.jpg",
-        items:[
-          {
-          item_id:"01",
-          item_name:"Chapati",
-          item_type:"veg",
-          item_category:"Breads",
-          item_rate:50,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"02",
-          item_name:"Wheat Parota",
-          item_type:"veg",
-          item_category:"Breads",
-          item_rate:50,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"03",
-          item_name:"Tandoori Parota",
-          item_type:"veg",
-          item_category:"Breads",
-          item_rate:55,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"04",
-          item_name:"Ceylon Chicken Parota",
-          item_type:"veg",
-          item_category:"Breads",
-          item_rate:240,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"05",
-          item_name:"Mutton Kothu Parota",
-          item_type:"non-veg",
-          item_category:"Breads",
-          item_rate:255,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"06",
-          item_name:"Ceylon Mutton Parota",
-          item_type:"non-veg",
-          item_category:"Breads",
-          item_rate:240,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-        ]
-        },
-        {
-        category: "Rice and Biriyani",
-        category_image:"../assets/imgs/main/background-1.jpg",
-        items:[
-          {
-          item_id:"01",
-          item_name:"Veg Biriyani",
-          item_type:"veg",
-          item_category:"Rice and Biriyani",
-          item_rate:200,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"02",
-          item_name:"Ghee Biriyani",
-          item_type:"veg",
-          item_category:"BRice and Biriyanireads",
-          item_rate:190,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"03",
-          item_name:"Steamed Rice",
-          item_type:"veg",
-          item_category:"Rice and Biriyani",
-          item_rate:145,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"04",
-          item_name:"Chicken Biriyani",
-          item_type:"non-veg",
-          item_category:"Rice and Biriyani",
-          item_rate:250,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"05",
-          item_name:"Chicken Biriyani [1 Kg]",
-          item_type:"non-veg",
-          item_category:"Rice and Biriyani",
-          item_rate:2250,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"06",
-          item_name:"Chicken Pulao",
-          item_type:"non-veg",
-          item_category:"Rice and Biriyani",
-          item_rate:245,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-        ]
-        },
-        {
-        category: "Fried Rice and Noodles",
-        category_image:"../assets/imgs/main/background-2.jpg",
-        items:[
-          {
-          item_id:"01",
-          item_name:"Veg Fried Rice",
-          item_type:"veg",
-          item_category:"Fried Rice",
-          item_rate:200,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"02",
-          item_name:"Mushroom Fried Rice",
-          item_type:"veg",
-          item_category:"Fried Rice",
-          item_rate:220,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"03",
-          item_name:"Schezwan Veg Fried Rice",
-          item_type:"veg",
-          item_category:"Fried Rice",
-          item_rate:220,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"04",
-          item_name:"Chicken Fried Rice",
-          item_type:"non-veg",
-          item_category:"Fried Rice",
-          item_rate:245,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"05",
-          item_name:"Schezwan Chicken Fried Rice",
-          item_type:"non-veg",
-          item_category:"Fried Rice",
-          item_rate:245,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"07",
-          item_name:"Chicken Noodles",
-          item_type:"non-veg",
-          item_category:"Noodles",
-          item_rate:245,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"08",
-          item_name:"Veg Noodles",
-          item_type:"veg",
-          item_category:"Noodles",
-          item_rate:200,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-        ]
-        },
-        {
-        category: "Quick Bites",
-        category_image:"../assets/imgs/main/background-3.jpg",
-        items:[
-          {
-          item_id:"01",
-          item_name:"Boiled Egg",
-          item_type:"egg",
-          item_category:"Quick Bites",
-          item_rate:60,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"02",
-          item_name:"Egg Podimas",
-          item_type:"veg",
-          item_category:"Quick Bites",
-          item_rate:80,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"03",
-          item_name:"Omelette",
-          item_type:"egg",
-          item_category:"Quick Bites",
-          item_rate:75,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"04",
-          item_name:"Tomato Omelette",
-          item_type:"non-veg",
-          item_category:"Quick Bites",
-          item_rate:80,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-        ]
-        },
-        {
-        category: "Desserts and Beverages",
-        category_image:"../assets/imgs/main/background-4.jpg",
-        items:[
-          {
-          item_id:"01",
-          item_name:"Faluda",
-          item_type:"veg",
-          item_category:"Desserts",
-          item_rate:200,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"02",
-          item_name:"Peach Melba",
-          item_type:"veg",
-          item_category:"Desserts",
-          item_rate:190,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"03",
-          item_name:"TuttiFruty",
-          item_type:"veg",
-          item_category:"Desserts",
-          item_rate:190,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"04",
-          item_name:"Lime Soda",
-          item_type:"veg",
-          item_category:"Beverages",
-          item_rate:90,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"05",
-          item_name:"Lime Mint Soda",
-          item_type:"veg",
-          item_category:"Beverages",
-          item_rate:100,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-          {
-          item_id:"06",
-          item_name:"Sweet Lassi",
-          item_type:"veg",
-          item_category:"Beverages",
-          item_rate:100,
-          item_images:[
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"},
-            {item_img:"s3 url"}
-          ],
-          item_description:"bla bla bla"
-          },
-        ]
-        },
-      ],
-      "Offers":
-      [
-        {
-        item_id:"01",
-        item_name:"Gobi 65",
-        item_type:"veg",
-        item_category:"Starters",
-        item_rate:210,
-        item_offer:20,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"02",
-        item_name:"Tandoori Chicken",
-        item_type:"non-veg",
-        item_category:"Starters",
-        item_rate:270,
-        item_offer:20,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"03",
-        item_name:"Chicken Fried Rice",
-        item_type:"non-veg",
-        item_category:"Fried Rice and Noodles",
-        item_rate:245,
-        item_offer:20,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"04",
-        item_name:"Mutton Biriyani [500 Grams]",
-        item_type:"non-veg",
-        item_category:"Rice and Biriyani",
-        item_rate:1450,
-        item_offer:20,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"05",
-        item_name:"Mutton Biriyani [1 Kg]",
-        item_type:"non-veg",
-        item_category:"Rice and Biriyani",
-        item_rate:2900,
-        item_offer:20,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"06",
-        item_name:"Egg Biriyani",
-        item_type:"egg",
-        item_category:"Rice and Biriyani",
-        item_rate:220,
-        item_offer:20,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-      ],
-      "Best_Sellers":
-      [
-        {
-        item_id:"01",
-        item_name:"Gobi 65",
-        item_type:"veg",
-        item_category:"Starters",
-        item_rate:210,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"02",
-        item_name:"Tandoori Chicken",
-        item_type:"non-veg",
-        item_category:"Starters",
-        item_rate:270,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"03",
-        item_name:"Chicken Fried Rice",
-        item_type:"non-veg",
-        item_category:"Fried Rice and Noodles",
-        item_rate:245,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"04",
-        item_name:"Mutton Biriyani [500 Grams]",
-        item_type:"non-veg",
-        item_category:"Rice and Biriyani",
-        item_rate:1450,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"05",
-        item_name:"Mutton Biriyani [1 Kg]",
-        item_type:"non-veg",
-        item_category:"Rice and Biriyani",
-        item_rate:2900,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-        {
-        item_id:"06",
-        item_name:"Egg Biriyani",
-        item_type:"egg",
-        item_category:"Rice and Biriyani",
-        item_rate:220,
-        item_images:[
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"},
-          {item_img:"s3 url"}
-        ],
-        item_description:"bla bla bla"
-        },
-      ]
-    }
-  ];
-  public buttonClicked: boolean = false;
-  public  addbutton:boolean = true;
-  constructor(public navCtrl: NavController) {
-=======
   public menu:any = [];
+  public dummyarry:any=[];
+  public dummyobj:any={"count":0};
+  public buttonClicked:boolean = false;
+  public addbutton:boolean = true;
 
-  constructor(public navCtrl: NavController,public service: BuhariServiceProvider) {
->>>>>>> adc0494eb823f920dfe07cd9fb0c4edc29e15ca8
+   public offersbutton:boolean = false;
+   public offersaddbutton:boolean = true;
+
+    public item_price;
+    public currentNumber = 0;
+    public total:any;
+    // public count = 1;
+    public price;
+
+  public item_count = 0;
+
+  public cart:any=[];
+
+
+
+  constructor(public navCtrl: NavController,public service: BuhariServiceProvider,public storage: Storage) {
    
   }
   
+  ionViewWillEnter(){
+
+    // keep 1 variable in session on button click of place order in cart page
+    // and check if condition here to reload this service
+
+    this.service.menus().subscribe((resp:any)=>{
+      if(resp.ReturnCode == "RRS"){
+        this.menu = resp.Returnvalue;
+        this.foodcategory = this.menu[0].Food_Category;
+        this.bestsellers = this.menu[0].Best_Sellers;
+        this.offers = this.menu[0].Offers;
+        for(var i=0;i<this.bestsellers.length;i++){
+          this.bestsellers[i].item_count =0;
+          this.bestsellers[i].add = this.addbutton;
+          this.bestsellers[i].added = this.buttonClicked;
+        }
+      }
+    }) 
+  }
   ionViewDidLoad() {
     this.service.menus().subscribe((resp:any)=>{
       if(resp.ReturnCode == "RRS"){
@@ -1107,7 +68,23 @@ export class HomePage {
         this.foodcategory = this.menu[0].Food_Category;
         this.bestsellers = this.menu[0].Best_Sellers;
         this.offers = this.menu[0].Offers;
-        console.log("Food Category----",JSON.stringify(this.offers));
+        // this.dummyarry.length = this.bestsellers.length;
+        for(var i=0;i<this.bestsellers.length;i++){
+          this.bestsellers[i].item_count =0;
+          this.bestsellers[i].add = this.addbutton;
+          this.bestsellers[i].added = this.buttonClicked;
+          // let dummyobj = {
+          //   "food_id":this.bestsellers[i].food_id,
+          //   "count":this.item_count,
+          //   "food_price":this.bestsellers[i].price,
+          //   "food_type":this.bestsellers[i].food_type,
+          //   "quantity":this.bestsellers[i].quantity,
+          //   "food_total":this.bestsellers[i].price * this.item_count,
+          //   "food_name":this.bestsellers[i].food_name
+          // }
+          // this.dummyarry.push(dummyobj);
+        }
+        console.log("Food bestsellersssssssssss----",JSON.stringify(this.dummyobj));
       }
     })
   }
@@ -1118,42 +95,84 @@ export class HomePage {
   navitemlist(param) {
     this.navCtrl.push(ItemlistPage,{"itemlist":param});
   }
-  public onButtonClick() {
+  public onButtonClick(position,items,array) {
+    this.bestsellers[position].item_count = this.item_count +1;
+    // this.bestsellers[position].itemcount = this.item_count;
+    // this.bestsellers[position].bestsellers =items;
+    // this.bestsellers[position].bestsellers =items.food_id;
+    // var food_id = this.bestsellers[position].bestsellers 
+    // this.bestsellers[position].bestsellers= items.food_name;
+    // var food_name = this.bestsellers[position].bestsellers;
+    // this.bestsellers[position].bestsellers = items.price
+    // var item_price = this.bestsellers[position].bestsellers
+    // console.log("food_id",food_id);
+    // console.log("food_id",food_name);
+    // console.log("food_id",item_price);
+    console.log("ITEMS************",items);
+    // this.cart.set("cartdata",food_id,item_price,food_name);
+    this.storage.set("cartdata",items);
+    // console.log("ADDED AN ITEM***************",JSON.stringify(items.item_count));
 
-    this.buttonClicked = !this.buttonClicked;
-    this.addbutton = false;
+    if(items.added == false){
+      items.added = !items.added;
+      items.add = false;
+      console.log('iffff')
+    }else{
+      items.add = true;
+      console.log('elseeeee')
+    }
+    
 }
 
-// reduce(position,item,array){
-//     if(item.count != 1 ){
-//       this.items[position].count = item.count-1;
-//       this.items[position].itemtotal = item.rate * item.count;
-//       this.total = this.total - this.items[position].rate;
-//     }
-//     else{
-//       this.total = this.total - this.items[position].rate;
-//       array.splice(position,1);
-//     }
-//   }
-//   add(position,item,array){
-//     this.item_price = item.rate;
-//     this.items[position].count = item.count +1;
-//     this.items[position].itemtotal = item.rate * item.count;
-//     this.total = this.total + this.items[position].rate;
-//   }
-//   placeOrder(){
+    offerbuttonclicked(){
+   
+      this.offersbutton = !this.offersbutton;
+      this.offersaddbutton = false;
+  }
+  
+  // add(position,item,array){
+  //   this.dummyarry[position].count = this.dummyarry[position].count +1;
+  //   console.log("ADD BUTTON*********",JSON.stringify(this.dummyarry));
+  // }
+
+  reduce(position,item,array){
+    if(item.count != -1 ){
+      this.bestsellers[position].item_count = item.item_count -1;
+      console.log('counttttttttttt',this.bestsellers[position].item_count)
+      if(this.bestsellers[position].item_count == 0){
+        this.addbutton = true;
+        this.buttonClicked = !this.buttonClicked;
+        console.log('ifffff')
+      }
+      //this.addbutton = true;
+      //console.log('ifffff')
+      //this.buttonClicked = !this.buttonClicked
+        console.log('else ifffff')
+    }
+  }
+  add(position,item,items){
+    // this.item_price = item.rate;
+
+    // this.bestsellers[position].item_count = item.item_count +1;
+    // var count_item = this.bestsellers[position].item_count
+    // this.bestsellers[position].bestsellers = item.price * item.item_count;
+    // var item_price = this.bestsellers[position].bestsellers
+    // this.bestsellers[position].bestsellers =item.food_id;
+    // var food_id = this.bestsellers[position].bestsellers 
+    // this.bestsellers[position].bestsellers= item.food_name;
+    // var food_name = this.bestsellers[position].bestsellers;
+    // console.log("adding to cart***************",this.bestsellers);
+    // console.log("food_iddddddd",food_name);
+    //   console.log("food_iddddddd",food_id);
+    //   console.log('best sellersssssssss',item_price)
+    //   console.log("item count",count_item);
+      // this.cart.push(food_id,item_price,count_item,food_name)
+      // console.log('arrayyyy',JSON.stringify(this.cart))
+
+      // this.storage.set("cartdata",this.cart);
+      // console.log("cartttttt",this.storage.set("cartdata",this.cart));
     
-//     for(let i=0;i<this.items.length;i++){
-//       this.billing.push(this.items[i])
-//     }
-//     this.storage.get("Orders").then((val:any)=>{
-//       if(val){
-        
-//       }
-//     })
-//     this.storage.set("Orders",JSON.stringify(this.billing));
-    // this.items.length = 0;
-    // console.log("To KOT",JSON.stringify(this.items))
   }
 
-// }
+
+}

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import {BillingdetailsPage} from '../billingdetails/billingdetails';
+import { BillingdetailsPage } from '../billingdetails/billingdetails';
 
 @IonicPage()
 @Component({
@@ -13,10 +13,13 @@ export class CartPage {
   public total = 0;
   public tax = 30;
   public ordercount = 0;
-  public order:any;
-  public removefromcart:any=[];
-  public item_price:any;
-  public billing:any = [];
+  public order: any;
+  public removefromcart: any = [];
+  public item_price: any;
+  public billing: any = [];
+  public cartdata: any ={};
+  public cartdataitems:any=[];
+  publ
   items = [
     {
       imageUrl: 'assets/imgs/veg.png',
@@ -41,8 +44,8 @@ export class CartPage {
     },
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public storage: Storage
-            ) {
+    public storage: Storage
+  ) {
   }
 
   ionViewDidLoad() {
@@ -51,52 +54,66 @@ export class CartPage {
     //     this.items = val;
     //   }
     // })
-    for(var i=0;i<this.items.length;i++){
+
+    // this.
+    for (var i = 0; i < this.items.length; i++) {
       this.total = this.total + this.items[i].itemtotal;
     }
     console.log('ionViewDidLoad CartPage');
+    console.log("totalllllll")
+    this.storage.get("cartdata").then((val: any) => {
+      if (val) {
+        this.cartdata = val;
+        console.log("cartdataaaaaaaaaaaaaa", this.cartdata);
+      this.cartdataitems.push(this.cartdata);
+     console.log("cartdataitemssssss",this.cartdataitems);
+      }
+    });
+     
   }
 
-  delete(position,item,items) {
+  delete(position, item, items) {
     this.items[position].itemtotal = item.rate * item.count;
     this.total = this.total - this.items[position].itemtotal;
-    items.splice(position,1);
+    items.splice(position, 1);
 
   }
 
-  reduce(position,item,array){
-    if(item.count != 1 ){
-      this.items[position].count = item.count-1;
+  reduce(position, item, array) {
+    if (item.count != 1) {
+      this.items[position].count = item.count - 1;
       this.items[position].itemtotal = item.rate * item.count;
+
       this.total = this.total - this.items[position].rate;
     }
-    else{
+    else {
       this.total = this.total - this.items[position].rate;
-      array.splice(position,1);
+      array.splice(position, 1);
     }
   }
-  add(position,item,array){
+  add(position, item, array) {
     this.item_price = item.rate;
-    this.items[position].count = item.count +1;
+    this.items[position].count = item.count + 1;
     this.items[position].itemtotal = item.rate * item.count;
+    // alert(itemtotal);
     this.total = this.total + this.items[position].rate;
   }
-  placeOrder(){
-    
-    for(let i=0;i<this.items.length;i++){
+  placeOrder() {
+
+    for (let i = 0; i < this.items.length; i++) {
       this.billing.push(this.items[i])
     }
-    this.storage.get("Orders").then((val:any)=>{
-      if(val){
-        
+    this.storage.get("Orders").then((val: any) => {
+      if (val) {
+
       }
     })
-    this.storage.set("Orders",JSON.stringify(this.billing));
+    this.storage.set("Orders", JSON.stringify(this.billing));
     // this.items.length = 0;
     // console.log("To KOT",JSON.stringify(this.items))
   }
 
-  navbillingdetails(){
+  navbillingdetails() {
     this.navCtrl.push(BillingdetailsPage);
   }
 }
