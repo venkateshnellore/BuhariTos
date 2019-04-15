@@ -9,9 +9,8 @@
     <ion-title>{{item_category}}</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content >
-        <ion-item *ngFor="let item of items " (click)="navdescription(item)" >
+        <ion-item *ngFor="let item of items;let i=index">
             <ion-row>
             <ion-col col-1>
               <img *ngIf="item.food_type == 'VEG'" src="../assets/imgs/veg.png" /> 
@@ -23,7 +22,8 @@
             </ion-col>
             <ion-col col-2></ion-col>
             <ion-col col-3>
-                <button class="height-25" ion-button color="secondary" style="text-transform: none;" outline>Add +</button>
+              <button class="height-25" ion-button color="secondary"  *ngIf="item.add"  style="text-transform: none;" (click)="onButtonClick(i,item,items)" outline>Add +</button>
+              <button class="height-25" ion-button color="secondary"   style="text-transform: none;" *ngIf="item.added" disabled  outline>Added</button>
             </ion-col>
           </ion-row>
           </ion-item>
