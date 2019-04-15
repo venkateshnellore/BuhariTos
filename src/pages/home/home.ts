@@ -18,9 +18,9 @@ export class HomePage {
   public bestsellers: any = [];
   public offers: any = [];
   public menu: any = [];
+
   public buttonClicked: boolean = false;
   public addbutton: boolean = true;
-
   public item_price;
   public item_count = 0;
   public cartItems: any = [];
@@ -89,7 +89,7 @@ export class HomePage {
   }
 
   public onButtonClick(position, items, array) {
-    this.bestsellers[position].item_count = this.item_count + 1;
+    array[position].item_count = this.item_count + 1;
     this.storage.get('cartdata').then((val: any) => {
       if (val) {
         this.cartItems = val;
