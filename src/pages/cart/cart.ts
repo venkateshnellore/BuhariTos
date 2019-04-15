@@ -62,43 +62,47 @@ export class CartPage {
   }
 
   ionViewWillEnter() {
+    //loading this data each time when the screen enters
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
         this.cartdata = val;
         for (var i = 0; i < this.cartdata.length; i++) {
           this.cartdata[i].itemtotal = this.cartdata[i].price;
-          this.total = this.total + this.items[i].itemtotal;
-
+          this.total = this.total + this.cartdata[i].itemtotal;
         }
       }
     });
   }
 
+  ionViewWillLeave(){
+    //setting the increased count for the items while leaving the cart
+    this.storage.set('cartdata',this.cartdata);
+  }
+
   delete(position, item, items) {
     this.cartdata[position].itemtotal = item.price * item.item_count;
-    this.total = this.total - this.items[position].itemtotal;
+    this.total = this.total - this.cartdata[position].itemtotal;
     items.splice(position, 1);
 
   }
 
   reduce(position, item, array) {
     if (item.item_count != 1) {
-      this.cartdata[position].item_count = item.item_count - 1;
-      this.cartdata[position].itemtotal = item.price * item.item_count;
-
-      this.total = this.total - this.cartdata[position].price;
+      array[position].item_count = item.item_count - 1;
+      array[position].itemtotal = item.price * item.item_count;
+      this.total = this.total - array[position].price;
     }
     else {
-      this.total = this.total - this.cartdata[position].price;
+      this.total = this.total - array[position].price;
       array.splice(position, 1);
     }
   }
   add(position, item, array) {
     this.item_price = item.rate;
-    this.cartdata[position].item_count = item.item_count + 1;
-    this.cartdata[position].itemtotal = item.price * item.item_count;
+    array[position].item_count = item.item_count + 1;
+    array[position].itemtotal = item.price * item.item_count;
     // alert(itemtotal);
-    this.total = this.total + this.cartdata[position].price;
+    this.total = this.total + array[position].price;
   }
 
   placeOrder() {

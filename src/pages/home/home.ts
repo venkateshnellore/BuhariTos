@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { NavController, Slides, Events } from 'ionic-angular';
 import { ItemlistPage } from '../itemlist/itemlist';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { Storage } from '@ionic/storage';
@@ -26,11 +26,11 @@ export class HomePage {
   public cartItems: any = [];
 
 
-
   constructor(
-    public navCtrl: NavController, 
-    public service: BuhariServiceProvider, 
-    public storage: Storage) {
+    public navCtrl: NavController,
+    public service: BuhariServiceProvider,
+    public storage: Storage,
+    public events: Events) {
 
   }
 
@@ -47,15 +47,17 @@ export class HomePage {
         this.offers = this.menu[0].Offers;
         for (var i = 0; i < this.bestsellers.length; i++) {
           this.bestsellers[i].item_count = 0;
+          this.bestsellers[i].itemtotal = this.bestsellers[i].price;
           this.bestsellers[i].add = this.addbutton;
           this.bestsellers[i].added = this.buttonClicked;
         }
         for (var i = 0; i < this.offers.length; i++) {
           this.offers[i].item_count = 0;
+          this.offers[i].itemtotal = this.offers[i].price;
           this.offers[i].add = this.addbutton;
           this.offers[i].added = this.buttonClicked;
         }
-        console.log("OFFERRSSSSSSSSSSSSSSS",JSON.stringify(this.offers));
+        console.log("OFFERRSSSSSSSSSSSSSSS", JSON.stringify(this.offers));
       }
     })
   }
@@ -91,15 +93,23 @@ export class HomePage {
   public onButtonClick(position, items, array) {
     array[position].item_count = this.item_count + 1;
     this.storage.get('cartdata').then((val: any) => {
-      if (val) {
+      if (val && val.length != 0) {
         this.cartItems = val;
-        this.cartItems.push(items)
-        this.storage.set("cartdata", this.cartItems);
-        console.log("Items in Cart*******************", JSON.stringify(this.cartItems));
+        var isPresent = this.cartItems.some(function (el) { return el.food_id == items.food_id });
+        if (isPresent === true) {
+          console.log("Items Exists in Cart so Dont add Again");
+        }
+        else {
+          console.log("Item Not Exists in Cart so Add it in Cart");
+          this.cartItems.push(items)
+          this.storage.set("cartdata", this.cartItems);
+          this.events.publish('cart:updated', this.cartItems.length);
+        }
       } else {
         this.cartItems = [];
         this.cartItems.push(items);
         this.storage.set("cartdata", this.cartItems);
+        this.events.publish('cart:updated', this.cartItems.length);
       }
     })
     if (items.added == false) {
