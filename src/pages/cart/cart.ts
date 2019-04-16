@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { BillingdetailsPage } from '../billingdetails/billingdetails';
-
+import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 @IonicPage()
 @Component({
   selector: 'page-cart',
@@ -11,40 +11,21 @@ import { BillingdetailsPage } from '../billingdetails/billingdetails';
 export class CartPage {
   public item_count = 1;
   public total = 0;
-  public tax = 30;
-  public ordercount = 0;
-  public order: any;
+  // public tax = 30;
+  // public ordercount = 0;
+  // public order: any;
   public removefromcart: any = [];
   public item_price: any;
   public billing: any = [];
   public cartdata: any = [];
-  public cartdataitems: any = [];
-  public tablenumber;
-  items = [
-    // {
-    //   imageUrl: 'assets/imgs/veg.png',
-    //   title: 'Chicken Fried Rice',
-    //   rate: 140,
-    //   count: this.item_count,
-    //   itemtotal: 140,
-    // },
-    // {
-    //   imageUrl: 'assets/imgs/veg.png',
-    //   title: 'Mutton Biriyani',
-    //   rate: 240,
-    //   count: this.item_count,
-    //   itemtotal: 240,
-    // },
-    // {
-    //   imageUrl: 'assets/imgs/veg.png',
-    //   title: 'Fish Biriyani',
-    //   rate: 320,
-    //   count: this.item_count,
-    //   itemtotal: 320,
-    // },
-  ];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
+<<<<<<< HEAD
     public storage: Storage,public toast: ToastController,
+=======
+    public storage: Storage,
+    public service: BuhariServiceProvider
+>>>>>>> bd98a6d94e2f3ce3679102370ffdc89bdd7c7aa6
   ) {
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
@@ -73,6 +54,7 @@ export class CartPage {
         }
       }
     });  
+<<<<<<< HEAD
 
 
 
@@ -82,6 +64,8 @@ export class CartPage {
         console.log("tablenumber",this.tablenumber);
       }
     });
+=======
+>>>>>>> bd98a6d94e2f3ce3679102370ffdc89bdd7c7aa6
   }
 
   ionViewWillLeave(){
@@ -111,7 +95,6 @@ export class CartPage {
     this.item_price = item.rate;
     array[position].item_count = item.item_count + 1;
     array[position].itemtotal = item.price * item.item_count;
-    // alert(itemtotal);
     this.total = this.total + array[position].price;
   }
 
@@ -120,19 +103,26 @@ export class CartPage {
     this.showtoast("Your order was processed");
     
     for (let i = 0; i < this.cartdata.length; i++) {
-      this.billing.push(this.cartdata[i])
+      let items={
+        "food_id":this.cartdata[i].food_id,
+        "quantity":this.cartdata[i].item_count,
+        "order_status_id":5
+      }
+      this.billing.push(items)
     }
-    this.storage.get("Orders").then((val: any) => {
-      if (val) {
-
+    this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
+      if(resp.ReturnCode == "RIS"){
+        console.log("ORDER PLACED WILL BE DELIVERED SHORTLY");
+      }
+      else{
+        console.log("THERE IS PROBLEM IN PLACING ORDER");
       }
       else{
         this.showtoast("Your order was processed");
       }
     })
-    this.storage.set("Orders", JSON.stringify(this.cartdata));
-    // this.items.length = 0;
-    // console.log("To KOT",JSON.stringify(this.items))
+    // this.storage.set("Orders", JSON.stringify(this.billing));
+    console.log("To KOT",JSON.stringify(this.billing))
   }
 
   navbillingdetails() {
