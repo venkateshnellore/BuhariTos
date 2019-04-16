@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular'; 
+import { IonicPage, NavController, NavParams,Events } from 'ionic-angular'; 
 
 import {DescriptionpagePage} from '../descriptionpage/descriptionpage';
 import { Storage } from '@ionic/storage';
@@ -26,12 +26,13 @@ export class ItemlistPage {
 
   public item_price;
   public item_count = 0;
-  public cartItemsss:any;
+  public cartItems:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage, public events: Events) {
        this.itemlist = this.navParams.get("itemlist");
       //  console.log("item listsss",this.itemlist);
-       this.items = this.itemlist.item;
+       this.items = this.itemlist.items;
+      
        console.log("items",this.items);
        this.item_category = this.itemlist.categry_name;
        console.log("item_catagory",this.item_category);
@@ -58,15 +59,24 @@ export class ItemlistPage {
   public onButtonClick(position, items, array) {
     array[position].item_count = this.item_count + 1;
     this.storage.get('cartdata').then((val: any) => {
-      if (val) {
-        this.cartItemsss = val;
-        this.cartItemsss.push(items)
-        this.storage.set("cartdata", this.cartItemsss);
-        console.log("Items in Cart*******************", JSON.stringify(this.cartItemsss));
+
+      if (val && val.length != 0) {
+        this.cartItems = val;
+        var isPresent = this.cartItems.some(function (el) { return el.food_id == items.food_id });
+        if (isPresent === true) {
+          console.log("Items Exists in Cart so Dont add Again");
+        }
+        else {
+          console.log("Item Not Exists in Cart so Add it in Cart");
+          this.cartItems.push(items)
+          this.storage.set("cartdata", this.cartItems);
+          this.events.publish('cart:updated', this.cartItems.length);
+        }
       } else {
-        this.cartItemsss = [];
-        this.cartItemsss.push(items);
-        this.storage.set("cartdata", this.cartItemsss);
+        this.cartItems = [];
+        this.cartItems.push(items);
+        this.storage.set("cartdata", this.cartItems);
+        this.events.publish('cart:updated', this.cartItems.length);
       }
     })
     if (items.added == false) {

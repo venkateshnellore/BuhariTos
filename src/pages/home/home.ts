@@ -24,6 +24,9 @@ export class HomePage {
   public item_price;
   public item_count = 0;
   public cartItems: any = [];
+  public tablenumber;
+  public Todaysspesials:any=[];
+  public today_catagory_name;
 
 
   constructor(
@@ -45,7 +48,10 @@ export class HomePage {
         this.foodcategory = this.menu[0].Food_Category;
         this.bestsellers = this.menu[0].Best_Sellers;
         this.offers = this.menu[0].Offers;
-        for (var i = 0; i < this.bestsellers.length; i++) {
+        this.Todaysspesials =this.menu[0].Today_Special;
+        this.today_catagory_name = this.Todaysspesials.categry_name;
+        
+         for (var i = 0; i < this.bestsellers.length; i++) {
           this.bestsellers[i].item_count = 0;
           this.bestsellers[i].itemtotal = this.bestsellers[i].price;
           this.bestsellers[i].add = this.addbutton;
@@ -57,11 +63,25 @@ export class HomePage {
           this.offers[i].add = this.addbutton;
           this.offers[i].added = this.buttonClicked;
         }
-        console.log("OFFERRSSSSSSSSSSSSSSS", JSON.stringify(this.offers));
+
+        console.log("Todaysspesialssssssssssss", JSON.stringify(this.Todaysspesials));
       }
     })
+
+
+
+     
   }
   ionViewDidLoad() {
+     
+
+
+
+    // this.storage.get("cartdata").then((val: any) => {
+    //   if (val) {
+    //     this.cartdata = val;
+    //   }
+    // }
     // this.service.menus().subscribe((resp: any) => {
     //   if (resp.ReturnCode == "RRS") {
     //     this.menu = resp.Returnvalue;
@@ -121,4 +141,6 @@ export class HomePage {
       console.log('elseeeee')
     }
   }
+  
+
 }

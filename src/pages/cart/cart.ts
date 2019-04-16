@@ -19,7 +19,7 @@ export class CartPage {
   public billing: any = [];
   public cartdata: any = [];
   public cartdataitems: any = [];
-  publ
+  public tablenumber;
   items = [
     // {
     //   imageUrl: 'assets/imgs/veg.png',
@@ -71,6 +71,15 @@ export class CartPage {
           this.cartdata[i].itemtotal = this.cartdata[i].price;
           this.total = this.total + this.cartdata[i].itemtotal;
         }
+      }
+    });  
+
+    
+
+    this.storage.get("tablenumber").then((val: any) =>{
+      if(val){
+        this.tablenumber = val;
+        console.log("tablenumber",this.tablenumber);
       }
     });
   }
