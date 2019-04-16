@@ -62,6 +62,7 @@ export class CartPage {
   }
 
   ionViewWillEnter() {
+    this.total = 0;
     //loading this data each time when the screen enters
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
