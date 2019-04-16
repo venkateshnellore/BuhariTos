@@ -61,7 +61,7 @@ export class BuhariServiceProvider {
 
     let body =
     {
-      "table_no": 4,
+      "table_no": 1,
       "items": items,
       "comments": comments
     }
@@ -97,7 +97,7 @@ export class BuhariServiceProvider {
 
     let body =
     {
-      "table_no":2
+      "table_no":1
     }
 
     return this.http.post('https://table-ordering-system.herokuapp.com/Get_Order_Item_Table', body, options)
