@@ -20,15 +20,15 @@
 </ion-header>
 <ion-content fullscreen #myContent padding>
   <h6>Food Categories</h6>
-  <ion-slides #slider *ngIf="foodcategory && foodcategory.length" freeMode="true" spaceBetween="10" slidesPerView="3" autoplay="3000" loop="true">
+  <ion-slides #slider *ngIf="foodcategory && foodcategory.length" freeMode="true" spaceBetween="10" slidesPerView="1" autoplay="3000" loop="true">
     <ion-slide *ngFor="let slide of foodcategory" (click)="navitemlist(slide)" [ngStyle]="{'background' : 'url(' + slide.category_img + ')'}">
       <h4>{{slide.categry_name}}</h4>
     </ion-slide>
   </ion-slides>
-  <h6>Todays Special</h6>
+  <h6 >{{Todaysspesials.categry_name}}</h6>
   <div class="card-background-page">
-    <ion-card>
-      <img src="../../assets/imgs/todayspecial.jpg" style="height:300px;"/>
+    <ion-card (click)="navitemlist(Todaysspesials)">
+      <img src="Todaysspesials.category_img"  style="height:300px;"/>
     </ion-card>
   </div>
   <h6>Bestsellers</h6>

@@ -49,7 +49,7 @@ export class CartPage {
           this.total = this.total + this.cartdata[i].itemtotal;
         }
       }
-    });
+    });  
   }
 
   ionViewWillLeave(){

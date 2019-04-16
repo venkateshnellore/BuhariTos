@@ -21,6 +21,6 @@ export class TabsPage {
       this.cartItemCount = count;
     });
     this.navParams = navParams;
-    console.log(this.navParams);
+    console.log("itemcountttttttttt",this.navParams);
   }
 }
