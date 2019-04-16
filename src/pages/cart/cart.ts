@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { BillingdetailsPage } from '../billingdetails/billingdetails';
 
@@ -44,7 +44,7 @@ export class CartPage {
     // },
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public storage: Storage
+    public storage: Storage,public toast: ToastController,
   ) {
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
@@ -74,7 +74,7 @@ export class CartPage {
       }
     });  
 
-    
+
 
     this.storage.get("tablenumber").then((val: any) =>{
       if(val){
@@ -117,12 +117,17 @@ export class CartPage {
 
   placeOrder() {
 
+    this.showtoast("Your order was processed");
+    
     for (let i = 0; i < this.cartdata.length; i++) {
       this.billing.push(this.cartdata[i])
     }
     this.storage.get("Orders").then((val: any) => {
       if (val) {
 
+      }
+      else{
+        this.showtoast("Your order was processed");
       }
     })
     this.storage.set("Orders", JSON.stringify(this.cartdata));
@@ -132,5 +137,13 @@ export class CartPage {
 
   navbillingdetails() {
     this.navCtrl.push(BillingdetailsPage);
+  }
+
+  showtoast(message){
+    const toast = this.toast.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();   
   }
 }
