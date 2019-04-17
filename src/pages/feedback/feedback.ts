@@ -44,7 +44,7 @@ export class FeedbackPage {
     }
     this.service.submitFeedback(body).subscribe((resp:any)=>{
       if(resp.ReturnCode == "RIS"){
-        
+         console.log("feed back successfully submitted");
       }
     })
   }

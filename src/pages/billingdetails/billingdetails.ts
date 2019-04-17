@@ -33,6 +33,9 @@ export class BillingdetailsPage {
     this.service.billing().subscribe((resp:any)=>{
       if(resp.ReturnCode == "RRS"){
         this.itemdetails = resp.Returnvalue;
+        // this.itemdetails.clearCache();
+        // window.cache.clear( success, error );
+        // window.cache.cleartemp(); 
       }
     })
     console.log('ionViewDidLoad BillingdetailsPage');

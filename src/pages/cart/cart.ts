@@ -20,12 +20,7 @@ export class CartPage {
   public cartdata: any = [];
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
-<<<<<<< HEAD
-    public storage: Storage,public toast: ToastController,
-=======
-    public storage: Storage,
-    public service: BuhariServiceProvider
->>>>>>> bd98a6d94e2f3ce3679102370ffdc89bdd7c7aa6
+    public storage: Storage,public toast: ToastController,public service:BuhariServiceProvider,
   ) {
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
@@ -54,18 +49,6 @@ export class CartPage {
         }
       }
     });  
-<<<<<<< HEAD
-
-
-
-    this.storage.get("tablenumber").then((val: any) =>{
-      if(val){
-        this.tablenumber = val;
-        console.log("tablenumber",this.tablenumber);
-      }
-    });
-=======
->>>>>>> bd98a6d94e2f3ce3679102370ffdc89bdd7c7aa6
   }
 
   ionViewWillLeave(){
@@ -112,14 +95,17 @@ export class CartPage {
     }
     this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
       if(resp.ReturnCode == "RIS"){
+        alert(resp.Return);
         console.log("ORDER PLACED WILL BE DELIVERED SHORTLY");
+        this.cartdata.localStorage.clear();
+            console.log("billingdetailssssssss",this.billing);
       }
       else{
         console.log("THERE IS PROBLEM IN PLACING ORDER");
       }
-      else{
-        this.showtoast("Your order was processed");
-      }
+      // else{
+      //   this.showtoast("Your order was processed");
+      // }
     })
     // this.storage.set("Orders", JSON.stringify(this.billing));
     console.log("To KOT",JSON.stringify(this.billing))
