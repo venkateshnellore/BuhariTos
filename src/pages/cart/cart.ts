@@ -86,7 +86,6 @@ export class CartPage {
 
   placeOrder() {
 
-    this.showtoast("Your order was processed");
     
     for (let i = 0; i < this.cartdata.length; i++) {
       let items={
@@ -98,10 +97,10 @@ export class CartPage {
     }
     this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
       if(resp.ReturnCode == "RIS"){
-        console.log("ORDER PLACED WILL BE DELIVERED SHORTLY");
+        this.showtoast("Your order will be delivered shortly");
       }
       else{
-        console.log("THERE IS PROBLEM IN PLACING ORDER");
+        this.showtoast("There is problem in placing order");
       }
     })
     // this.storage.set("Orders", JSON.stringify(this.billing));
