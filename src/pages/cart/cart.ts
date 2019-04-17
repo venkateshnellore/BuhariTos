@@ -52,6 +52,7 @@ export class CartPage {
   }
 
   ionViewWillLeave(){
+    this.total = 0;
     //setting the increased count for the items while leaving the cart
     this.storage.set('cartdata',this.cartdata);
   }
@@ -83,7 +84,6 @@ export class CartPage {
 
   placeOrder() {
 
-    this.showtoast("Your order was processed");
     
     for (let i = 0; i < this.cartdata.length; i++) {
       let items={
