@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-/**
- * Generated class for the MainPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 
 @IonicPage()
 @Component({
@@ -15,15 +10,25 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class MainPage {
 
-  backgrounds = [
-    'assets/imgs/main/background-1.jpg',
-    'assets/imgs/main/background-2.jpg',
-    'assets/imgs/main/background-3.jpg',
-    'assets/imgs/main/background-4.jpg',
-    'assets/imgs/main/background-5.jpg'
+  public backgrounds:any = [
+    // {"image":'assets/imgs/main/background-1.jpg'},
+    // {"image":'assets/imgs/main/background-2.jpg'},
+    // {"image":'assets/imgs/main/background-3.jpg'},
+    // {"image":'assets/imgs/main/background-4.jpg'},
+    // {"image":'assets/imgs/main/background-5.jpg'},
   ];
+  public foodcategory:any=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public service: BuhariServiceProvider) {
+
+    this.service.menus().subscribe((resp:any)=>{
+      if (resp.ReturnCode == "RRS") {
+        this.backgrounds = resp.Returnvalue[0].Today_Special.items;
+        console.log("BACKGROUND IMAGES*******",JSON.stringify(this.backgrounds));
+      }
+    })
   }
 
   ionViewDidLoad() {

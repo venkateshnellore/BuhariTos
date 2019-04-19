@@ -58,7 +58,8 @@ export class BillingdetailsPage {
         },         200);
       }
       else{
-        this.showtoast("There is problem in Generate the Bill");
+        this.showtoast(resp.Return);
+        // this.showtoast("There is problem in Generate the Bill");
       }
     })
   }

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angula
 import { Storage } from '@ionic/storage';
 import { BillingdetailsPage } from '../billingdetails/billingdetails';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
+
 @IonicPage()
 @Component({
   selector: 'page-cart',
@@ -45,10 +46,14 @@ export class CartPage {
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
         this.cartdata = val;
+        alert("cartdata is there");
         for (var i = 0; i < this.cartdata.length; i++) {
           this.cartdata[i].itemtotal = this.cartdata[i].price;
           this.total = this.total + this.cartdata[i].itemtotal;
         }
+      }
+      else{
+        alert("there is no cartdata array exists");
       }
     });  
   }
@@ -85,8 +90,6 @@ export class CartPage {
   }
 
   placeOrder() {
-
-    
     for (let i = 0; i < this.cartdata.length; i++) {
       let items={
         "food_id":this.cartdata[i].food_id,
@@ -98,12 +101,14 @@ export class CartPage {
     this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
       if(resp.ReturnCode == "RIS"){
         this.showtoast("Your order will be delivered shortly");
+        this.cartdata = [];
+        this.total = 0;
+        this.storage.clear();
       }
       else{
         this.showtoast("There is problem in placing order");
       }
     })
-    // this.storage.set("Orders", JSON.stringify(this.billing));
     console.log("To KOT",JSON.stringify(this.billing))
   }
 
