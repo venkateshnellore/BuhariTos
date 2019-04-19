@@ -3,6 +3,7 @@ import { NavController, Slides, Events } from 'ionic-angular';
 import { ItemlistPage } from '../itemlist/itemlist';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { Storage } from '@ionic/storage';
+import {MainPage} from  '../main/main';
 
 @Component({
   selector: 'page-home',

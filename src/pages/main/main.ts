@@ -10,23 +10,16 @@ import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-ser
 })
 export class MainPage {
 
-  public backgrounds:any = [
-    // {"image":'assets/imgs/main/background-1.jpg'},
-    // {"image":'assets/imgs/main/background-2.jpg'},
-    // {"image":'assets/imgs/main/background-3.jpg'},
-    // {"image":'assets/imgs/main/background-4.jpg'},
-    // {"image":'assets/imgs/main/background-5.jpg'},
-  ];
-  public foodcategory:any=[];
+  public backgrounds:any = [];
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public service: BuhariServiceProvider) {
-
-    this.service.menus().subscribe((resp:any)=>{
+  constructor(public navCtrl: NavController, public navParams: NavParams,public service:BuhariServiceProvider) {
+  }
+  ionViewWillEnter() {
+    this.service.menus().subscribe((resp: any) => {
       if (resp.ReturnCode == "RRS") {
-        this.backgrounds = resp.Returnvalue[0].Today_Special.items;
-        console.log("BACKGROUND IMAGES*******",JSON.stringify(this.backgrounds));
+        this.backgrounds  = resp.Returnvalue[0].Today_Special.items;
+        // this.item_image = this.items.item_image;/
+        console.log("toda*****************",JSON.stringify(this.backgrounds));
       }
     })
   }

@@ -21,9 +21,7 @@ export class CartPage {
   public cartdata: any = [];
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public toast: ToastController,
-    public storage: Storage,
-    public service: BuhariServiceProvider
+    public storage: Storage,public toast: ToastController,public service:BuhariServiceProvider,
   ) {
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
@@ -106,7 +104,7 @@ export class CartPage {
         this.storage.clear();
       }
       else{
-        this.showtoast("There is problem in placing order");
+        console.log("There is problem in placing order");
       }
     })
     console.log("To KOT",JSON.stringify(this.billing))
