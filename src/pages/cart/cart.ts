@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import { IonicPage, NavController, NavParams,ToastController,} from 'ionic-angular';
+import { Storage,} from '@ionic/storage';
 import { BillingdetailsPage } from '../billingdetails/billingdetails';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 @IonicPage()
@@ -31,6 +31,8 @@ export class CartPage {
         }
       }
     });
+    // this.billing = new Storage(LocalStorage);
+    // this.storage.set('didTutorial', 'true');
   }
 
   ionViewDidLoad() {
@@ -92,20 +94,33 @@ export class CartPage {
         "order_status_id":5
       }
       this.billing.push(items)
+      // this.storage.clear();
     }
     this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
       if(resp.ReturnCode == "RIS"){
         alert(resp.Return);
         console.log("ORDER PLACED WILL BE DELIVERED SHORTLY");
-        this.cartdata.localStorage.clear();
-            console.log("billingdetailssssssss",this.billing);
+       this.cartdata= [];
+        this.storage.clear();
+          // this.storage.ready().then(() => {
+          //   this.storage.clear().then((billing) => {
+          //     console.log("the handler is removed from the local storage", this.billing);
+          //   }, (billing) => {
+          //     console.log("Error while removing ", billing);
+          //   });
+          // });
+        
       }
       else{
+        // localStorage.clear();
+            console.log("billingdetailssssssss",this.billing);
         console.log("THERE IS PROBLEM IN PLACING ORDER");
       }
-      // else{
-      //   this.showtoast("Your order was processed");
-      // }
+     
+      
+// function resetLocalStorage(){
+//   this.billing.clear();
+// }
     })
     // this.storage.set("Orders", JSON.stringify(this.billing));
     console.log("To KOT",JSON.stringify(this.billing))

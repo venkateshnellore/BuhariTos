@@ -33,6 +33,7 @@ export class BillingdetailsPage {
     this.service.billing().subscribe((resp:any)=>{
       if(resp.ReturnCode == "RRS"){
         this.itemdetails = resp.Returnvalue;
+        console.log("billing details&&&&&&&&&&&&&&&&",this.itemdetails);
         // this.itemdetails.clearCache();
         // window.cache.clear( success, error );
         // window.cache.cleartemp(); 
