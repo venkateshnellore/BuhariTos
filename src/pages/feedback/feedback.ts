@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
-/**
- * Generated class for the FeedbackPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { MainPage } from '../main/main';
 
 @IonicPage()
 @Component({
@@ -26,6 +21,7 @@ export class FeedbackPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public viewCtrl: ViewController,
+              public toast: ToastController,
               public service: BuhariServiceProvider) {
   }
 
@@ -44,11 +40,25 @@ export class FeedbackPage {
     }
     this.service.submitFeedback(body).subscribe((resp:any)=>{
       if(resp.ReturnCode == "RIS"){
-         console.log("feed back successfully submitted");
+        this.showtoast("Thanks for your feedback. Please come again..");
+        this.navCtrl.push(MainPage);         
       }
     })
   }
+
+  skipfeedback(){
+    this.showtoast("Thanks for coming. Please come again");
+    this.navCtrl.push(MainPage);
+  }
+
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+  showtoast(message){
+    const toast = this.toast.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();   
   }
 }

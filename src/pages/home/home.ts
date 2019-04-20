@@ -44,7 +44,8 @@ export class HomePage {
     public navCtrl: NavController,
     public service: BuhariServiceProvider,
     public storage: Storage,
-    public events: Events) {
+    public events: Events
+  ) {
 
   }
 

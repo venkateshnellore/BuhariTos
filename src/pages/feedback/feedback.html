@@ -13,8 +13,8 @@
   </ion-row>
   <br><br>
   <ion-row>
-    <h6>1. How was the Ambiance of the hotel ?</h6>
     <ion-list radio-group no-lines [(ngModel)]="feed.q1">
+      <h6>1. How was the Ambiance of the hotel ?</h6>
       <ion-item>
         <ion-label>Excellent</ion-label>
         <ion-radio item-start value="Excellent" color="light"></ion-radio>
@@ -34,8 +34,8 @@
     </ion-list>
   </ion-row>
   <ion-row>
-    <h6>2. How was the food from our hotel ?</h6>
     <ion-list radio-group no-lines [(ngModel)]="feed.q2">
+      <h6>2. How was the food from our hotel ?</h6>
       <ion-item>
         <ion-label>Excellent</ion-label>
         <ion-radio item-start value="Excellent" color="light"></ion-radio>
@@ -55,8 +55,8 @@
     </ion-list>
   </ion-row>
   <ion-row>
-    <h6>3. How did our office staff behave during service ?</h6>
     <ion-list radio-group no-lines [(ngModel)]="feed.q3">
+      <h6>3. How did our office staff behave during service ?</h6>
       <ion-item>
         <ion-label>Excellent</ion-label>
         <ion-radio item-start value="Excellent" color="light"></ion-radio>
@@ -76,8 +76,8 @@
     </ion-list>
   </ion-row>
   <ion-row>
-    <h6>4. Would you recommend our hotel to other people ?</h6>
     <ion-list radio-group no-lines [(ngModel)]="feed.q4">
+      <h6>4. Would you recommend our hotel to other people ?</h6>
       <ion-item>
         <ion-label>Yes</ion-label>
         <ion-radio item-start value="Yes" color="light"></ion-radio>
@@ -89,8 +89,8 @@
     </ion-list>
   </ion-row>
   <ion-row>
-    <h6>5. How would you rate our hotel overall ?</h6>
     <ion-list radio-group no-lines [(ngModel)]="feed.q5">
+      <h6>5. How would you rate our hotel overall ?</h6>
       <ion-item>
         <ion-label>Excellent</ion-label>
         <ion-radio item-start value="Excellent" color="light"></ion-radio>
@@ -111,7 +111,7 @@
   </ion-row>
   <ion-row>
     <ion-col col-6>
-      <button ion-button block color="light">Skip</button>
+      <button ion-button block color="light" (click)="skipfeedback()">Skip</button>
     </ion-col>
     <ion-col col-6>
       <button ion-button block color="light" (click)="submitfeedback(feed)">Send Feedback</button>

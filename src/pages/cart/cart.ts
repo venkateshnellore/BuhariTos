@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController, Events} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { BillingdetailsPage } from '../billingdetails/billingdetails';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
@@ -21,7 +21,10 @@ export class CartPage {
   public cartdata: any = [];
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public storage: Storage,public toast: ToastController,public service:BuhariServiceProvider,
+    public storage: Storage,
+    public toast: ToastController,
+    public service:BuhariServiceProvider,
+    public events: Events
   ) {
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
@@ -66,7 +69,7 @@ export class CartPage {
     this.cartdata[position].itemtotal = item.price * item.item_count;
     this.total = this.total - this.cartdata[position].itemtotal;
     items.splice(position, 1);
-
+    this.events.publish('cart:updated', this.cartdata.length);
   }
 
   reduce(position, item, array) {
@@ -78,6 +81,8 @@ export class CartPage {
     else {
       this.total = this.total - array[position].price;
       array.splice(position, 1);
+      this.events.publish('cart:updated', this.cartdata.length);
+
     }
   }
   add(position, item, array) {
@@ -88,26 +93,29 @@ export class CartPage {
   }
 
   placeOrder() {
-    for (let i = 0; i < this.cartdata.length; i++) {
-      let items={
-        "food_id":this.cartdata[i].food_id,
-        "quantity":this.cartdata[i].item_count,
-        "order_status_id":5
+    this.billing=[];
+    if(this.cartdata.length !=0){
+      for (let i = 0; i < this.cartdata.length; i++) {
+        let items={
+          "food_id":this.cartdata[i].food_id,
+          "quantity":this.cartdata[i].item_count,
+          "order_status_id":5
+        }
+        this.billing.push(items)
       }
-      this.billing.push(items)
+      this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
+        if(resp.ReturnCode == "RIS"){
+          this.showtoast("Your order will be delivered shortly");
+          this.cartdata = [];
+          this.total = 0;
+          this.storage.clear();
+        }
+        else{
+          console.log("There is problem in placing order");
+        }
+      })
     }
-    this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
-      if(resp.ReturnCode == "RIS"){
-        this.showtoast("Your order will be delivered shortly");
-        this.cartdata = [];
-        this.total = 0;
-        this.storage.clear();
-      }
-      else{
-        console.log("There is problem in placing order");
-      }
-    })
-    console.log("To KOT",JSON.stringify(this.billing))
+    // console.log("To KOT",JSON.stringify(this.billing))
   }
 
   navbillingdetails() {
