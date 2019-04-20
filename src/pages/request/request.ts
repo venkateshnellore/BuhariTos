@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
-import { Observable } from '../../../node_modules/rxjs';
+
 @IonicPage()
 @Component({
   selector: 'page-request',
@@ -17,7 +17,6 @@ export class RequestPage {
               public navParams: NavParams,
               public service: BuhariServiceProvider,
               public toast: ToastController,
-              // public session: SessionStorageService,
             ) 
   {
     this.requestItemsSelect();
@@ -27,7 +26,6 @@ export class RequestPage {
     this.service.requestItemsSelect().subscribe((resp:any)=>{
       if(resp.ReturnCode == "RRS"){
         this.request_items = resp.Returnvalue;
-        this.requestItem = new Array(this.request_items.length);
         console.log("extra items *****",JSON.stringify(this.request_items));
       }
     })
@@ -35,30 +33,12 @@ export class RequestPage {
 
   ionViewDidLoad() {
     this.requestItemsSelect();
-    this.requstitemloop();
     console.log('ionViewDidLoad RequestPage');
-    // this.tablenum  = this.session.retrieve("tablenumber");
-    // console.log("tablenummmmm",this.tablenum);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  requstitemloop() {
-    this.subscription = Observable.interval(5000).subscribe(x => {
-      this.requestItemsSelect();
-    });
-  }
 
-  updateRequestItem(position,item){
-    if(this.requestItem[position] === true){
-      this.sendItem.push(item);
-    }
-    else{
-      console.log("removing item")
-      this.sendItem.slice(item,position)
-    }
-    console.log("Item Selected",JSON.stringify(this.sendItem));  
-  }
   public dummyarr:any=[];
   public dummyobj:any={
     "food_id":"",
@@ -92,10 +72,11 @@ export class RequestPage {
       this.service.placeOrder(this.sendItem,"").subscribe((resp:any)=>{
         if(resp.ReturnCode == "RIS"){
           this.showtoast("your items has been requested");
+          this.requestItemsSelect();
           for(var i=0;i<this.request_items.length;i++){
               this.request_items[i].checked = false;
           }   
-          console.log(resp.Return);
+        console.log(resp.Return);
         }else{
           this.showtoast("The Item you Requested has been disabled");
           console.log(resp.Return);
@@ -110,7 +91,7 @@ export class RequestPage {
   showtoast(message){
     const toast = this.toast.create({
       message: message,
-      duration: 6000
+      duration: 3000
     });
     toast.present();   
   }
