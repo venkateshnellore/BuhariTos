@@ -35,6 +35,8 @@ export class CartPage {
         }
       }
     });
+    // this.billing = new Storage(LocalStorage);
+    // this.storage.set('didTutorial', 'true');
   }
 
   ionViewDidLoad() {
@@ -82,7 +84,6 @@ export class CartPage {
       this.total = this.total - array[position].price;
       array.splice(position, 1);
       this.events.publish('cart:updated', this.cartdata.length);
-
     }
   }
   add(position, item, array) {
@@ -109,13 +110,16 @@ export class CartPage {
           this.cartdata = [];
           this.total = 0;
           this.storage.clear();
+          this.events.publish('cart:updated', this.cartdata.length);
         }
         else{
           console.log("There is problem in placing order");
         }
       })
     }
-    // console.log("To KOT",JSON.stringify(this.billing))
+    else{
+      this.showtoast("There is no Items in Cart please add some items");
+    }
   }
 
   navbillingdetails() {

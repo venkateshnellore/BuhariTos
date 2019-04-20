@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
+import { Observable } from '../../../node_modules/rxjs';
 @IonicPage()
 @Component({
   selector: 'page-request',
@@ -11,6 +12,7 @@ export class RequestPage {
   public sendItem:any=[];
   public request_items = [];
   public tablenum;
+  public subscription;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public service: BuhariServiceProvider,
@@ -18,6 +20,10 @@ export class RequestPage {
               // public session: SessionStorageService,
             ) 
   {
+    this.requestItemsSelect();
+  }
+
+  requestItemsSelect(){
     this.service.requestItemsSelect().subscribe((resp:any)=>{
       if(resp.ReturnCode == "RRS"){
         this.request_items = resp.Returnvalue;
@@ -25,13 +31,22 @@ export class RequestPage {
         console.log("extra items *****",JSON.stringify(this.request_items));
       }
     })
-
   }
 
   ionViewDidLoad() {
+    this.requestItemsSelect();
+    this.requstitemloop();
     console.log('ionViewDidLoad RequestPage');
     // this.tablenum  = this.session.retrieve("tablenumber");
     // console.log("tablenummmmm",this.tablenum);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  requstitemloop() {
+    this.subscription = Observable.interval(5000).subscribe(x => {
+      this.requestItemsSelect();
+    });
   }
 
   updateRequestItem(position,item){
@@ -95,7 +110,7 @@ export class RequestPage {
   showtoast(message){
     const toast = this.toast.create({
       message: message,
-      duration: 3000
+      duration: 6000
     });
     toast.present();   
   }

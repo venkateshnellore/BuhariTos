@@ -4,6 +4,7 @@ import { ItemlistPage } from '../itemlist/itemlist';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { Storage } from '@ionic/storage';
 import {MainPage} from  '../main/main';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'page-home',
@@ -38,6 +39,7 @@ export class HomePage {
   public offersfilter:any;
   public todayspecialfilter:any;
   public mixedfilter:any=[];
+  public subscription;
   //hideshowonfilter when length=0
 
   constructor(
@@ -51,6 +53,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.serviceForMenu();
+    this.MainmenuLoop();
     // keep 1 variable in session on button click of place order in cart page
     // and check if condition here to reload this service
   }
@@ -80,8 +83,24 @@ export class HomePage {
     //   }
     // })
   }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+ 
+  // serviceForMenu1(){
+  //   this.subscription = Observable.interval(5000).subscribe(x => {
+  //     this.serviceForMenu();
+  // }
+
+
+  MainmenuLoop() {
+    this.subscription = Observable.interval(10000).subscribe(x => {
+      this.serviceForMenu();
+    });
+  }
 
   public serviceForMenu(){
+    
   this.service.menus().subscribe((resp: any) => {
     if (resp.ReturnCode == "RRS") {
       this.menu = resp.Returnvalue;
@@ -118,7 +137,7 @@ export class HomePage {
           this.foodcategoryitems[i].items[j].added = this.buttonClicked;
         }
       }
-      console.log("main food categories*********", JSON.stringify(this.foodcategoryitems));
+      console.log("main food categories*********", JSON.stringify(this.foodcategory));
     }
   })
 }
