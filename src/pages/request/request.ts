@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { IonicPage, NavController, NavParams, ItemSliding,ToastController} from 'ionic-angular';
-import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
-// import {SessionStorageService} from 'ngx-webstorage';
-import { Observable } from '../../../node_modules/rxjs';
-
-=======
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
->>>>>>> ad2d262b5f7382c4f1d1cd616c33d21914b8ff0b
+import { Observable } from '../../../node_modules/rxjs';
 @IonicPage()
 @Component({
   selector: 'page-request',
@@ -95,16 +88,6 @@ export class RequestPage {
     }
     console.log("Request Item from Checkbox",this.sendItem);
 
-<<<<<<< HEAD
-    this.service.placeOrder(this.sendItem,"").subscribe((resp:any)=>{
-      if(resp.ReturnCode == "RIS"){
-        this.showtoast("Your requst was processed "); 
-        console.log(resp.Return);
-      }else{
-        console.log(resp.Return);
-      }
-    })
-=======
     if(this.sendItem.length != 0){
       this.service.placeOrder(this.sendItem,"").subscribe((resp:any)=>{
         if(resp.ReturnCode == "RIS"){
@@ -122,17 +105,12 @@ export class RequestPage {
       this.showtoast("Please Choose Items Before You Request");
     }
     
->>>>>>> ad2d262b5f7382c4f1d1cd616c33d21914b8ff0b
   }
 
   showtoast(message){
     const toast = this.toast.create({
       message: message,
-<<<<<<< HEAD
       duration: 6000
-=======
-      duration: 3000
->>>>>>> ad2d262b5f7382c4f1d1cd616c33d21914b8ff0b
     });
     toast.present();   
   }

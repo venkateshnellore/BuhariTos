@@ -101,31 +101,6 @@ export class CartPage {
     }
     this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
       if(resp.ReturnCode == "RIS"){
-<<<<<<< HEAD
-        alert(resp.Return);
-        console.log("ORDER PLACED WILL BE DELIVERED SHORTLY");
-       this.cartdata= [];
-        this.storage.clear();
-          // this.storage.ready().then(() => {
-          //   this.storage.clear().then((billing) => {
-          //     console.log("the handler is removed from the local storage", this.billing);
-          //   }, (billing) => {
-          //     console.log("Error while removing ", billing);
-          //   });
-          // });
-        
-      }
-      else{
-        // localStorage.clear();
-            console.log("billingdetailssssssss",this.billing);
-        console.log("THERE IS PROBLEM IN PLACING ORDER");
-      }
-     
-      
-// function resetLocalStorage(){
-//   this.billing.clear();
-// }
-=======
         this.showtoast("Your order will be delivered shortly");
         this.cartdata = [];
         this.total = 0;
@@ -134,7 +109,6 @@ export class CartPage {
       else{
         console.log("There is problem in placing order");
       }
->>>>>>> ad2d262b5f7382c4f1d1cd616c33d21914b8ff0b
     })
     console.log("To KOT",JSON.stringify(this.billing))
   }
