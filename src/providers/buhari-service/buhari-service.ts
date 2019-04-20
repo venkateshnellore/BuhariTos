@@ -80,7 +80,7 @@ export class BuhariServiceProvider {
 
     let body =
     {
-      "table_no":2,
+      "table_no":1,
       "payment_type_id":payment_type
     }
 
