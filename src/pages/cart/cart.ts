@@ -35,8 +35,6 @@ export class CartPage {
         }
       }
     });
-    // this.billing = new Storage(LocalStorage);
-    // this.storage.set('didTutorial', 'true');
   }
 
   ionViewDidLoad() {
@@ -50,6 +48,7 @@ export class CartPage {
       if (val) {
         this.cartdata = val;
         alert("cartdata is there");
+        console.log("CART ITEMS THROUGH ORDER",JSON.stringify(this.cartdata));
         for (var i = 0; i < this.cartdata.length; i++) {
           this.cartdata[i].itemtotal = this.cartdata[i].price;
           this.total = this.total + this.cartdata[i].itemtotal;

@@ -23,6 +23,7 @@ export class DescriptionpagePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.itemdescription = this.navParams.get("itemdescription");
+      console.log("itemdescriptionnnn",this.itemdescription);
   }
 
   ionViewDidLoad() {

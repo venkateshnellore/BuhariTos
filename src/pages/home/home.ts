@@ -5,6 +5,7 @@ import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-ser
 import { Storage } from '@ionic/storage';
 import {MainPage} from  '../main/main';
 import { Observable } from '../../../node_modules/rxjs';
+import {DescriptionpagePage} from '../descriptionpage/descriptionpage'
 
 @Component({
   selector: 'page-home',
@@ -225,5 +226,7 @@ export class HomePage {
     }
   }
   
-
+  navdescription(param){
+    this.navCtrl.push(DescriptionpagePage,{"itemdescription":param});
+  }
 }

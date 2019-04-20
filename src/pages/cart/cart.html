@@ -7,21 +7,25 @@
     margin: 5px;">Buhari</h1>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content >
   <!-- list of items added in cart -->
   <ion-list>
     <ion-item-sliding *ngFor="let item of cartdata;let i=index">
       <ion-item>
         <ion-row>
           <ion-col col-1>
-            <img [src]="item.imageUrl" style="height:16px;width:16px;">
+              <img *ngIf="item.food_type == 'VEG'" src="../../assets/imgs/veg.png" />
+              <img *ngIf="item.food_type == 'NON VEG'" src="../../assets/imgs/nonveg.png" />
           </ion-col>
           <ion-col col-5>
             <ion-row>
-              <b>{{item.food_name}}</b>
+              <h6>{{item.food_name}}</h6>
             </ion-row>
             <ion-row>
-              <p>₹{{item.price}}</p>
+              <p>{{item.category}}</p>
+            </ion-row>
+            <ion-row>
+              <b>₹{{item.price}}</b>
             </ion-row>
           </ion-col>
           <ion-col col-6 style="text-align: center;">
@@ -31,7 +35,7 @@
               <button ion-button outline class="custom-right-btn" color="secondary" (click)="add(i,item,cartdata)">+</button>
             </ion-row>
             <ion-row style="margin-left: 50%;">
-              <p>₹{{item.itemtotal}}</p>
+              <b>₹{{item.itemtotal}}</b>
             </ion-row>
           </ion-col>
         </ion-row>
@@ -50,8 +54,8 @@
       </ion-row>
     </ion-item>
     <ion-item>
-      <h6 item-start style="font-weight: bold;color:gray;margin: 0px;">Item Total</h6>
-      <h6 item-end style="font-weight: bold;color:gray;margin: 0px;">₹{{total}}</h6>
+      <h6 item-start style="font-weight: bold;margin: 0px;">Item Total</h6>
+      <h6 item-end style="font-weight: bold;margin: 0px;">₹{{total}}</h6>
     </ion-item>
   </ion-list>
   <p style="font-size: 12px;background: whitesmoke;text-align: center">*Orders once placed cannot be cancelled because the kitchen orders starts preparing the food as soon as they receive the
