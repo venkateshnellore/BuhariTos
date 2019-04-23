@@ -28,15 +28,21 @@ export class BillingdetailsPage {
    contracted: any;
    showIcon = true;
    preload  = true;
- 
+   public billing:boolean = false;
+   public no_billing:boolean = false;
   ionViewDidLoad() {
     this.service.billing().subscribe((resp:any)=>{
       if(resp.ReturnCode == "RRS"){
         this.itemdetails = resp.Returnvalue;
+        if(this.itemdetails.length == 0){
+          this.no_billing = true;
+          this.billing = false;
+        }
+        else{
+          this.no_billing = false;
+          this.billing = true;
+        }
         console.log("billing details&&&&&&&&&&&&&&&&",this.itemdetails);
-        // this.itemdetails.clearCache();
-        // window.cache.clear( success, error );
-        // window.cache.cleartemp(); 
       }
     })
     console.log('ionViewDidLoad BillingdetailsPage');

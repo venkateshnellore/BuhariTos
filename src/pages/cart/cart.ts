@@ -10,6 +10,8 @@ import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-ser
   templateUrl: 'cart.html',
 })
 export class CartPage {
+  public empty_cart:boolean=false;
+  public not_empty_cart:boolean=false;
   public item_count = 1;
   public total = 0;
   // public tax = 30;
@@ -19,6 +21,7 @@ export class CartPage {
   public item_price: any;
   public billing: any = [];
   public cartdata: any = [];
+  public showplaceorderbtn:boolean = true;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public storage: Storage,
@@ -29,6 +32,14 @@ export class CartPage {
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
         this.cartdata = val;
+        if(this.cartdata.length == 0){
+          this.empty_cart = true;
+          this.not_empty_cart = false;
+        }
+        else{
+          this.empty_cart = false;
+          this.not_empty_cart = true;
+        }
         for (var i = 0; i < this.cartdata.length; i++) {
           this.cartdata[i].itemtotal = this.cartdata[i].price;
           this.total = this.total + this.cartdata[i].itemtotal;
@@ -43,14 +54,23 @@ export class CartPage {
 
   ionViewWillEnter() {
     this.total = 0;
+    this.showplaceorderbtn = true;
     //loading this data each time when the screen enters
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
         this.cartdata = val;
+        if(this.cartdata.length == 0){
+          this.empty_cart = true;
+          this.not_empty_cart = false;
+        }
+        else{
+          this.empty_cart = false;
+          this.not_empty_cart = true;
+        }
         alert("cartdata is there");
         console.log("CART ITEMS THROUGH ORDER",JSON.stringify(this.cartdata));
         for (var i = 0; i < this.cartdata.length; i++) {
-          this.cartdata[i].itemtotal = this.cartdata[i].price;
+          this.cartdata[i].itemtotal = this.cartdata[i].price * this.cartdata[i].item_count;
           this.total = this.total + this.cartdata[i].itemtotal;
         }
       }
@@ -71,6 +91,14 @@ export class CartPage {
     this.total = this.total - this.cartdata[position].itemtotal;
     items.splice(position, 1);
     this.events.publish('cart:updated', this.cartdata.length);
+    if(this.cartdata.length == 0){
+      this.empty_cart = true;
+      this.not_empty_cart = false;
+    }
+    else{
+      this.empty_cart = false;
+      this.not_empty_cart = true;
+    }
   }
 
   reduce(position, item, array) {
@@ -83,6 +111,14 @@ export class CartPage {
       this.total = this.total - array[position].price;
       array.splice(position, 1);
       this.events.publish('cart:updated', this.cartdata.length);
+      if(this.cartdata.length == 0){
+        this.empty_cart = true;
+        this.not_empty_cart = false;
+      }
+      else{
+        this.empty_cart = false;
+        this.not_empty_cart = true;
+      }
     }
   }
   add(position, item, array) {
@@ -105,11 +141,20 @@ export class CartPage {
       }
       this.service.placeOrder(this.billing,"").subscribe((resp:any)=>{
         if(resp.ReturnCode == "RIS"){
-          this.showtoast("Your order will be delivered shortly");
+          this.showplaceorderbtn = false;
           this.cartdata = [];
+          if(this.cartdata.length == 0){
+            this.empty_cart = true;
+            this.not_empty_cart = false;
+            }
+            else{
+            this.empty_cart = false;
+            this.not_empty_cart = true;
+            }
           this.total = 0;
           this.storage.clear();
           this.events.publish('cart:updated', this.cartdata.length);
+          this.showtoast("Your order will be delivered shortly");
         }
         else{
           console.log("There is problem in placing order");

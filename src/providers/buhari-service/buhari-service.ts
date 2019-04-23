@@ -61,7 +61,7 @@ export class BuhariServiceProvider {
 
     let body =
     {
-      "table_no": 1,
+      "table_no": 2,
       "items": items,
       "comments": comments
     }
@@ -80,7 +80,7 @@ export class BuhariServiceProvider {
 
     let body =
     {
-      "table_no":1,
+      "table_no":2,
       "payment_type_id":payment_type
     }
 
@@ -97,7 +97,7 @@ export class BuhariServiceProvider {
 
     let body =
     {
-      "table_no":1
+      "table_no":2
     }
 
     return this.http.post('https://table-ordering-system.herokuapp.com/Get_Order_Item_Table', body, options)
@@ -124,6 +124,7 @@ export class BuhariServiceProvider {
         .map(this.extractData)
         .catch(this.handleError);
     }
+    
     // 8 - Submit Feedback (Feedback Page)
     submitFeedback(param): Observable<object[]> {
       const headers = new Headers();

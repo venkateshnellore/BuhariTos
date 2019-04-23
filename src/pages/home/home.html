@@ -23,8 +23,8 @@
   </ion-slides>
   <h6>Today's Special</h6>
   <div class="card-background-page">
-    <ion-card (click)="navitemlist(Todaysspesials)">
-      <img [src]="Todaysspesials.category_img" style="height:300px;" />
+    <ion-card (click)="navitemlist(todayspecial)">
+      <img [src]="todayspecial.category_img" style="height:300px;" />
     </ion-card>
   </div>
   <h6>Bestsellers</h6>
@@ -73,11 +73,11 @@
   </ion-item>
 </ion-content>
 
-<!-- dummy -->
+<!-- Filter View -->
 
 <ion-content [ngStyle]="{'display': showfilter}" fullscreen padding>
   <h6>Food Categories</h6>
-  <ion-item *ngFor="let items of catarray;let i=index">
+  <ion-item *ngFor="let items of mainmenufilter;let i=index">
     <ion-row>
       <ion-col col-1>
         <img *ngIf="items.food_type == 'VEG'" src="../../assets/imgs/veg.png" />
@@ -96,7 +96,7 @@
       </ion-col>
     </ion-row>
   </ion-item>
-  <h6>{{Todaysspesials.categry_name}}</h6>
+  <h6>{{todayspecial.categry_name}}</h6>
   <ion-item *ngFor="let items of todayspecialfilter;let i=index" >
     <ion-row>
       <ion-col col-1>
@@ -135,7 +135,6 @@
         <button class="height-25" ion-button color="secondary" style="text-transform: none;" *ngIf="items.added" disabled outline>Added</button>
       </ion-col>
     </ion-row>
-
   </ion-item>
   <h6>Offers</h6>
   <ion-item *ngFor="let items of offersfilter;let i=index" class="item-ribbon">
