@@ -95,7 +95,7 @@ export class HomePage {
 
 
   MainmenuLoop() {
-    this.subscription = Observable.interval(10000).subscribe(x => {
+    this.subscription = Observable.interval(1000000).subscribe(x => {
       this.serviceForMenu();
     });
   }
@@ -119,7 +119,7 @@ export class HomePage {
         this.bestsellers[i].added = this.buttonClicked;
       }
       for (var i = 0; i < this.offers.length; i++) {
-        this.offers[i].item_count = 0;
+        this.offers[i].item_count = 0;   
         this.offers[i].itemtotal = this.offers[i].price;
         this.offers[i].add = this.addbutton;
         this.offers[i].added = this.buttonClicked;
