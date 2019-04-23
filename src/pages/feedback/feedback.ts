@@ -31,19 +31,23 @@ export class FeedbackPage {
 
   submitfeedback(feed){
     console.log("Feedback",JSON.stringify(feed));
-    let body= {
-      "q1":"Good",
-      "q2":"Pair",
-      "q3":"Good",
-      "q4":"Yes",
-      "q5":"Good"
-    }
-    this.service.submitFeedback(body).subscribe((resp:any)=>{
+    
+    
+      if(feed.q1 && feed.q2 && feed.q3 && feed.q4 && feed.q5 === ""){ 
+        // console.log("")
+        this.showtoast("thanks for comming our hotel plz visit again..");
+
+      }else{
+        this.service.submitFeedback(feed).subscribe((resp:any)=>{
       if(resp.ReturnCode == "RIS"){
+       
         this.showtoast("Thanks for your feedback. Please come again..");
         this.navCtrl.push(MainPage);         
       }
     })
+    }
+    
+
   }
 
   skipfeedback(){

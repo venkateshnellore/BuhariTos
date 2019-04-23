@@ -5,6 +5,7 @@
     <author email="padmanabhan@infocuittechnologies.com" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
+    <preference name="orientation" value="portrait" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

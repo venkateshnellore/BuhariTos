@@ -77,7 +77,7 @@ export class BillingdetailsPage {
   showtoast(message){
     const toast = this.toast.create({
       message: message,
-      duration: 2000
+      duration: 15000
     });
     toast.present();   
   }
