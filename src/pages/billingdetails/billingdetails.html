@@ -1,57 +1,62 @@
-<ion-content padding>
-  <div *ngIf="no_billing" style="width: 100%;padding: 50px;height: 100%;">
-    <img src="../../assets/imgs/emptycart.png" alt="" style="margin-top: 30%;">
-    <p style="text-align: center;">Sorry! you haven't placed any orders.</p>
-  </div>
-  <div *ngIf="billing">
-    <ion-row>
-      <h5>BILL DETAILS</h5>
-    </ion-row>
-    <ion-row *ngFor="let item of itemdetails.items">
-      <ion-col col-8 class="margin-10 padding-10">
-        <p>{{item.food_name}} x {{item.quantity}}</p>
-      </ion-col>
-      <ion-col col-2></ion-col>
-      <ion-col col-2 class="margin-p">
-        <p> ₹ {{item.total_price}}</p>
-      </ion-col>
-    </ion-row>
-    <ion-item-divider></ion-item-divider>
-    <ion-row>
-      <ion-col col-7>
-        <p>Item Total x{{itemdetails.total_items}}</p>
-        <p>Offers</p>
-        <p>GST</p>
-      </ion-col>
-      <ion-col col-2>
-      </ion-col>
-      <ion-col col-3 class="padding-10">
-        <p>₹{{itemdetails.sub_total}} </p>
-        <p>- ₹{{itemdetails.total_offers}} </p>
-        <p>₹{{itemdetails.GST_Amount}} </p>
-      </ion-col>
-    </ion-row>
-    <ion-item-divider></ion-item-divider>
-    <ion-row>
-      <ion-col col-4 style="text-align:center;">
-        <h6>Total</h6>
-      </ion-col>
-      <ion-col col-4>
-      </ion-col>
-      <ion-col col-4 style="text-align:center;">
-        <h6>₹ {{itemdetails.grand_total}} </h6>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button outline color="secondary" class="pop-in" [hidden]="!showIcon" style="width: 100%;" [ngClass]="{ 'expand' : expanded, 'contract': contracted }"
-          (click)="expand(1)">Cash</button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button [hidden]="!showIcon" outline color="secondary" class="pop-in" style="width: 100%;" [ngClass]="{ 'expand' : expanded, 'contract': contracted }"
-          (click)="expand(2)">Card</button>
-      </ion-col>
-    </ion-row>
-  </div>
-</ion-content>
->>>>>>> 78cb34e6c8e49ae94359f6f3eb09da44b936e13f
+<ion-header>
+    <ion-navbar color="secondary">
+      <ion-title>Billing Details</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <div *ngIf="no_billing" style="width: 100%;padding: 50px;height: 100%;">
+      <img src="../../assets/imgs/emptycart.png" alt="" style="margin-top: 30%;">
+      <p style="text-align: center;">Sorry! you haven't placed any orders.</p>
+    </div>
+    <div *ngIf="billing">
+      <ion-row>
+        <h5>Your Orders</h5>
+      </ion-row>
+      <ion-row *ngFor="let item of itemdetails.items">
+        <ion-col col-8 class="margin-10 padding-10">
+          <p>{{item.food_name}} x {{item.quantity}}</p>
+        </ion-col>
+        <ion-col col-2></ion-col>
+        <ion-col col-2 class="margin-p">
+          <p> ₹ {{item.total_price}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-item-divider></ion-item-divider>
+      <ion-row>
+        <ion-col col-7>
+          <p>Item Total x{{itemdetails.total_items}}</p>
+          <p>Offers</p>
+          <p>GST</p>
+        </ion-col>
+        <ion-col col-2>
+        </ion-col>
+        <ion-col col-3 class="padding-10">
+          <p>₹{{itemdetails.sub_total}} </p>
+          <p>- ₹{{itemdetails.total_offers}} </p>
+          <p>₹{{itemdetails.GST_Amount}} </p>
+        </ion-col>
+      </ion-row>
+      <ion-item-divider></ion-item-divider>
+      <ion-row>
+        <ion-col col-4 style="text-align:center;">
+          <h6>Total</h6>
+        </ion-col>
+        <ion-col col-4>
+        </ion-col>
+        <ion-col col-4 style="text-align:center;">
+          <h6>₹ {{itemdetails.grand_total}} </h6>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button outline color="secondary" class="pop-in" [hidden]="!showIcon" style="width: 100%;" [ngClass]="{ 'expand' : expanded, 'contract': contracted }"
+            (click)="expand(1)">Cash</button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button [hidden]="!showIcon" outline color="secondary" class="pop-in" style="width: 100%;" [ngClass]="{ 'expand' : expanded, 'contract': contracted }"
+            (click)="expand(2)">Card</button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-content>
