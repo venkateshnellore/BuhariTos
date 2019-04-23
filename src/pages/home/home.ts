@@ -91,11 +91,7 @@ export class HomePage {
   }
 
   MainmenuLoop() {
-<<<<<<< HEAD
-    this.subscription = Observable.interval(1000000).subscribe(x => {
-=======
     this.subscription = Observable.interval(180000).subscribe(x => {
->>>>>>> e788a483ecd6b8e7e6fdcfdb0c51398eea171be4
       this.serviceForMenu();
     });
   }
