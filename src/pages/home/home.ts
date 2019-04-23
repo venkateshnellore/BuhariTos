@@ -17,31 +17,33 @@ import {DescriptionpagePage} from '../descriptionpage/descriptionpage'
 export class HomePage {
   @ViewChild('slider') slider: Slides;
 
+  //Main Array
   public foodcategory: any = [];
   public bestsellers: any = [];
   public offers: any = [];
   public menu: any = [];
+  public todayspecial:any=[];
+  public foodcategoryitems:any;
 
+  //dummy flag
   public buttonClicked: boolean = false;
   public addbutton: boolean = true;
   public item_price;
   public item_count = 0;
+
   public cartItems: any = [];
-  public tablenumber;
-  public Todaysspesials:any=[];
   public today_catagory_name;
   
   //filter
   searchTerm: any = "";
   public showdefault:any = 'flex';//showspecialist
   public showfilter:any='none';//showclinicanddoctors
-  public foodcategoryitems:any;
+  public mainmenufilter:any=[];
   public bestsellersfilter:any;
   public offersfilter:any;
   public todayspecialfilter:any;
-  public mixedfilter:any=[];
+
   public subscription;
-  //hideshowonfilter when length=0
 
   constructor(
     public navCtrl: NavController,
@@ -87,15 +89,13 @@ export class HomePage {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
- 
-  // serviceForMenu1(){
-  //   this.subscription = Observable.interval(5000).subscribe(x => {
-  //     this.serviceForMenu();
-  // }
-
 
   MainmenuLoop() {
+<<<<<<< HEAD
     this.subscription = Observable.interval(1000000).subscribe(x => {
+=======
+    this.subscription = Observable.interval(180000).subscribe(x => {
+>>>>>>> e788a483ecd6b8e7e6fdcfdb0c51398eea171be4
       this.serviceForMenu();
     });
   }
@@ -109,9 +109,9 @@ export class HomePage {
       this.foodcategoryitems = this.menu[0].Food_Category;
       this.bestsellers = this.menu[0].Best_Sellers;
       this.offers = this.menu[0].Offers;
-      this.Todaysspesials =this.menu[0].Today_Special;
-      this.today_catagory_name = this.Todaysspesials.categry_name;
-      this.todayspecialfilter = this.Todaysspesials.items;
+      this.todayspecial =this.menu[0].Today_Special;
+      this.today_catagory_name = this.todayspecial.categry_name;
+      this.todayspecialfilter = this.todayspecial.items;
        for (var i = 0; i < this.bestsellers.length; i++) {
         this.bestsellers[i].item_count = 0;
         this.bestsellers[i].itemtotal = this.bestsellers[i].price;
@@ -124,11 +124,11 @@ export class HomePage {
         this.offers[i].add = this.addbutton;
         this.offers[i].added = this.buttonClicked;
       }
-      for (var i = 0; i < this.todayspecialfilter.length; i++) {
-        this.todayspecialfilter[i].item_count = 0;
-        this.todayspecialfilter[i].itemtotal = this.todayspecialfilter[i].price;
-        this.todayspecialfilter[i].add = this.addbutton;
-        this.todayspecialfilter[i].added = this.buttonClicked;
+      for (var i = 0; i < this.todayspecial.length; i++) {
+        this.todayspecial[i].item_count = 0;
+        this.todayspecial[i].itemtotal = this.todayspecial[i].price;
+        this.todayspecial[i].add = this.addbutton;
+        this.todayspecial[i].added = this.buttonClicked;
       }
       for(var i=0;i<this.foodcategoryitems.length;i++){
         for(var j=0;j<this.foodcategoryitems[i].items.length;j++){
@@ -144,7 +144,6 @@ export class HomePage {
 }
   
 
-  public catarray:any=[];
   search(searchTerm) {
     console.log("testtttt",searchTerm.length)
     if (searchTerm == "" || searchTerm === undefined || searchTerm.length == 0) {
@@ -160,13 +159,12 @@ export class HomePage {
       console.log()
       for(var i=0;i<this.foodcategoryitems.length;i++){
         for(var j=0;j<this.foodcategoryitems[i].items.length;j++){
-          this.catarray.push(this.foodcategoryitems[i].items[j]);
+          this.mainmenufilter.push(this.foodcategoryitems[i].items[j]);
         }
       }
-      console.log("test cat",this.catarray)
-      // console.log("foodcategory items-------------",JSON.stringify(this.foodcategoryitems));
-      this.todayspecialfilter = this.todayspecialfilter.filter((item) => {
-        return item.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+      console.log("test cat",this.mainmenufilter)
+      this.todayspecialfilter = this.todayspecial.filter((items) => {
+        return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       });
       this.bestsellersfilter = this.bestsellers.filter((items)=>{
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
@@ -174,7 +172,7 @@ export class HomePage {
       this.offersfilter = this.offers.filter((items)=>{
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       });
-      this.catarray = this.catarray.filter((items)=>{
+      this.mainmenufilter = this.mainmenufilter.filter((items)=>{
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       })
       if(this.bestsellersfilter.length == 0){
