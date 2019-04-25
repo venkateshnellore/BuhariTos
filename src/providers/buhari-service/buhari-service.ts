@@ -116,19 +116,7 @@ export class BuhariServiceProvider {
       .catch(this.handleError);
   }
 
-  // 7 - Reuest Extra Items (Request Items --> Request Page)(No Service)
-  requestItems(): Observable<object[]> {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    const options = new RequestOptions({ headers: headers });
-
-
-    return this.http.post('', options)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  // 8 - Submit Feedback (Feedback Page)
+  // 7 - Submit Feedback (Feedback Page)
   submitFeedback(param): Observable<object[]> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
