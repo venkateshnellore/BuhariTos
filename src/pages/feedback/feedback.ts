@@ -10,43 +10,41 @@ import { MainPage } from '../main/main';
 })
 export class FeedbackPage {
 
-  public feed:any={
-    "q1":"",
-    "q2":"",
-    "q3":"",
-    "q4":"",
-    "q5":"",
+  public feed: any = {
+    "q1": "",
+    "q2": "",
+    "q3": "",
+    "q4": "",
+    "q5": "",
   };
-  
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public viewCtrl: ViewController,
-              public toast: ToastController,
-              public service: BuhariServiceProvider) {
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public toast: ToastController,
+    public service: BuhariServiceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedbackPage');
   }
 
-  submitfeedback(feed){
-    console.log("Feedback",JSON.stringify(feed));
-    let body= {
-      "q1":"Good",
-      "q2":"Pair",
-      "q3":"Good",
-      "q4":"Yes",
-      "q5":"Good"
+  submitfeedback(feed) {
+    if (feed.q1 && feed.q2 && feed.q3 && feed.q4 && feed.q5 != "") {
+      console.log("Feedback", JSON.stringify(feed));
+      this.service.submitFeedback(feed).subscribe((resp: any) => {
+        if (resp.ReturnCode == "RIS") {
+          this.showtoast("Thanks for your feedback. Please come again..");
+          this.navCtrl.push(MainPage);
+        }
+      })
+    } else {
+      this.showtoast("Please come again..");
+      this.navCtrl.push(MainPage);
     }
-    this.service.submitFeedback(body).subscribe((resp:any)=>{
-      if(resp.ReturnCode == "RIS"){
-        this.showtoast("Thanks for your feedback. Please come again..");
-        this.navCtrl.push(MainPage);         
-      }
-    })
   }
 
-  skipfeedback(){
+  skipfeedback() {
     this.showtoast("Thanks for coming. Please come again");
     this.navCtrl.push(MainPage);
   }
@@ -54,11 +52,11 @@ export class FeedbackPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-  showtoast(message){
+  showtoast(message) {
     const toast = this.toast.create({
       message: message,
       duration: 2000
     });
-    toast.present();   
+    toast.present();
   }
 }

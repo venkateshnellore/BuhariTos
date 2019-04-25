@@ -14,13 +14,11 @@ export class CartPage {
   public not_empty_cart:boolean=false;
   public item_count = 1;
   public total = 0;
-  // public tax = 30;
-  // public ordercount = 0;
-  // public order: any;
   public removefromcart: any = [];
   public item_price: any;
   public billing: any = [];
   public cartdata: any = [];
+  public showoffer:boolean = false;
   public showplaceorderbtn:boolean = true;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -55,7 +53,6 @@ export class CartPage {
   ionViewWillEnter() {
     this.total = 0;
     this.showplaceorderbtn = true;
-    //loading this data each time when the screen enters
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
         this.cartdata = val;
@@ -67,22 +64,20 @@ export class CartPage {
           this.empty_cart = false;
           this.not_empty_cart = true;
         }
-        alert("cartdata is there");
-        console.log("CART ITEMS THROUGH ORDER",JSON.stringify(this.cartdata));
         for (var i = 0; i < this.cartdata.length; i++) {
           this.cartdata[i].itemtotal = this.cartdata[i].price * this.cartdata[i].item_count;
           this.total = this.total + this.cartdata[i].itemtotal;
         }
       }
       else{
-        alert("there is no cartdata array exists");
+        this.empty_cart = true;
+        this.not_empty_cart = false;
       }
     });  
   }
 
   ionViewWillLeave(){
     this.total = 0;
-    //setting the increased count for the items while leaving the cart
     this.storage.set('cartdata',this.cartdata);
   }
 
@@ -90,6 +85,7 @@ export class CartPage {
     this.cartdata[position].itemtotal = item.price * item.item_count;
     this.total = this.total - this.cartdata[position].itemtotal;
     items.splice(position, 1);
+    // this.showtoast("The Item"+this.cartdata[position].food_name+"has been removed from cart");
     this.events.publish('cart:updated', this.cartdata.length);
     if(this.cartdata.length == 0){
       this.empty_cart = true;
@@ -155,6 +151,9 @@ export class CartPage {
           this.storage.clear();
           this.events.publish('cart:updated', this.cartdata.length);
           this.showtoast("Your order will be delivered shortly");
+        }
+        else if(resp.ReturnCode == "CNPO"){
+            this.showtoast("Sorry Billing has not been cleared");
         }
         else{
           console.log("There is problem in placing order");

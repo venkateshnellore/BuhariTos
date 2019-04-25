@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides, Events } from 'ionic-angular';
+import { NavController, Slides, Events, ToastController } from 'ionic-angular';
 import { ItemlistPage } from '../itemlist/itemlist';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { Storage } from '@ionic/storage';
@@ -49,7 +49,8 @@ export class HomePage {
     public navCtrl: NavController,
     public service: BuhariServiceProvider,
     public storage: Storage,
-    public events: Events
+    public events: Events,
+    public toast: ToastController
   ) {
 
   }
@@ -57,35 +58,11 @@ export class HomePage {
   ionViewWillEnter() {
     this.serviceForMenu();
     this.MainmenuLoop();
-    // keep 1 variable in session on button click of place order in cart page
-    // and check if condition here to reload this service
   }
+
   ionViewDidLoad() {
-    // this.storage.get("cartdata").then((val: any) => {
-    //   if (val) {
-    //     this.cartdata = val;
-    //   }
-    // }
-    // this.service.menus().subscribe((resp: any) => {
-    //   if (resp.ReturnCode == "RRS") {
-    //     this.menu = resp.Returnvalue;
-    //     this.foodcategory = this.menu[0].Food_Category;
-    //     this.bestsellers = this.menu[0].Best_Sellers;
-    //     this.offers = this.menu[0].Offers;
-    //     for (var i = 0; i < this.bestsellers.length; i++) {
-    //       this.bestsellers[i].item_count = 0;
-    //       this.bestsellers[i].add = this.addbutton;
-    //       this.bestsellers[i].added = this.buttonClicked;
-    //     }
-    //     for (var i = 0; i < this.offers.length; i++) {
-    //       this.offers[i].item_count = 0;
-    //       this.offers[i].add = this.addbutton;
-    //       this.offers[i].added = this.buttonClicked;
-    //     }
-    //     console.log("OFFERRSSSSSSSSSSSSSSS",JSON.stringify(this.offers));
-    //   }
-    // })
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -151,7 +128,6 @@ export class HomePage {
     else {
       this.showfilter= 'block';
       this.showdefault = 'none';
-      // this.foodcategoryitems = this.foodcategory.items;
       console.log()
       for(var i=0;i<this.foodcategoryitems.length;i++){
         for(var j=0;j<this.foodcategoryitems[i].items.length;j++){
@@ -172,13 +148,8 @@ export class HomePage {
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       })
       if(this.bestsellersfilter.length == 0){
-        
       }
     }
-    console.log("MAIN DISHES FILTERED************", this.foodcategoryitems);
-    console.log("BEST SELLERS FILTERED************", this.bestsellersfilter);
-    console.log("OFFERS FILTERED************", this.offersfilter);
-    // console.log("MIXED FILTERED************", this.mixedfilter);
   }
 
   ngAfterViewInit() {
@@ -195,18 +166,19 @@ export class HomePage {
         this.cartItems = val;
         var isPresent = this.cartItems.some(function (el) { return el.food_id == items.food_id });
         if (isPresent === true) {
-          console.log("Items Exists in Cart so Dont add Again");
+          this.showtoast("This Item Already Exists in Cart");
         }
         else {
-          console.log("Item Not Exists in Cart so Add it in Cart");
           this.cartItems.push(items)
           this.storage.set("cartdata", this.cartItems);
+          this.showtoast("Item has been Added to Cart");
           this.events.publish('cart:updated', this.cartItems.length);
         }
       } else {
         this.cartItems = [];
         this.cartItems.push(items);
         this.storage.set("cartdata", this.cartItems);
+        this.showtoast("Item has been Added to Cart");
         this.events.publish('cart:updated', this.cartItems.length);
       }
     })
@@ -222,5 +194,13 @@ export class HomePage {
   
   navdescription(param){
     this.navCtrl.push(DescriptionpagePage,{"itemdescription":param});
+  }
+
+  showtoast(message){
+    const toast = this.toast.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();   
   }
 }

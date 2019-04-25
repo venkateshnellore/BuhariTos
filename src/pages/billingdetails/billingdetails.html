@@ -27,19 +27,21 @@
         <ion-col col-7>
           <p>Item Total x{{itemdetails.total_items}}</p>
           <p>Offers</p>
-          <p>GST</p>
+          <p>CGST</p>
+          <p>SGST</p>
         </ion-col>
         <ion-col col-2>
         </ion-col>
         <ion-col col-3 class="padding-10">
           <p>₹{{itemdetails.sub_total}} </p>
           <p>- ₹{{itemdetails.total_offers}} </p>
-          <p>₹{{itemdetails.GST_Amount}} </p>
+          <p>₹{{itemdetails.CGST_Amount}} </p>
+          <p>₹{{itemdetails.SGST_Amount}} </p>
         </ion-col>
       </ion-row>
       <ion-item-divider></ion-item-divider>
-      <ion-row>
-        <ion-col col-4 style="text-align:center;">
+      <ion-row style="margin-top:10px;">
+        <ion-col col-4>
           <h6>Total</h6>
         </ion-col>
         <ion-col col-4>

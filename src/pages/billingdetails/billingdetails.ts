@@ -2,12 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 import { FeedbackPage } from '../feedback/feedback';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
-/**
- * Generated class for the BillingdetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -30,11 +24,13 @@ export class BillingdetailsPage {
    preload  = true;
    public billing:boolean = false;
    public no_billing:boolean = false;
+   public noItems:any=[];
   ionViewDidLoad() {
     this.service.billing().subscribe((resp:any)=>{
       if(resp.ReturnCode == "RRS"){
         this.itemdetails = resp.Returnvalue;
-        if(this.itemdetails.length == 0){
+        this.noItems = this.itemdetails.items;
+        if(this.noItems.length == 0){
           this.no_billing = true;
           this.billing = false;
         }
@@ -52,7 +48,7 @@ export class BillingdetailsPage {
     //send ready for billing will come here
     this.service.readyForBilling(param).subscribe((resp:any)=>{
       if(resp.ReturnCode == "RUS"){
-        this.showtoast("Waiter Will soon come with Bill");     
+        this.showtoast("Bearer Will soon come with Bill");     
         //open modal for feedback
         this.expanded = true;
         this.contracted = !this.expanded;
@@ -67,9 +63,14 @@ export class BillingdetailsPage {
           modal.present();
         },         200);
       }
+      else if(resp.ReturnCode == "INS"){
+        this.showtoast("Sorry the items you ordered is not yet served.")
+      }
+      else if(resp.ReturnCode == "WVE"){
+        this.showtoast("Sorry No Order has been placed.");
+      }
       else{
         this.showtoast(resp.Return);
-        // this.showtoast("There is problem in Generate the Bill");
       }
     })
   }
@@ -77,7 +78,7 @@ export class BillingdetailsPage {
   showtoast(message){
     const toast = this.toast.create({
       message: message,
-      duration: 2000
+      duration: 3000
     });
     toast.present();   
   }

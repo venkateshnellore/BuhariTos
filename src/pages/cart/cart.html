@@ -14,6 +14,7 @@
     <p style="text-align: center;">Sorry there are no items in your cart</p>
   </div>
   <div *ngIf="not_empty_cart">
+    <p style="font-size: 12px;margin:5px;color:red;">*Swipe Left to Delete Item </p>
     <ion-list>
       <ion-item-sliding *ngFor="let item of cartdata;let i=index">
         <ion-item>
@@ -31,6 +32,7 @@
               </ion-row>
               <ion-row>
                 <b>₹{{item.price}}</b>
+                <span *ngIf="item.offer_value != null && item.offer_value != 0" style="font-size: 12px;padding: 3px;color: red;">OFF ₹ {{item.offer_value}}</span>
               </ion-row>
             </ion-col>
             <ion-col col-6 style="text-align: center;">

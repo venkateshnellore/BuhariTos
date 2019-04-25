@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Events } from 'ionic-angular'; 
+import { IonicPage, NavController, NavParams,Events, ToastController } from 'ionic-angular'; 
 
 import {DescriptionpagePage} from '../descriptionpage/descriptionpage';
 import { Storage } from '@ionic/storage';
@@ -28,9 +28,12 @@ export class ItemlistPage {
   public item_count = 0;
   public cartItems:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage, public events: Events) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public storage: Storage, 
+              public events: Events,
+              public toast: ToastController) {
        this.itemlist = this.navParams.get("itemlist");
-      //  console.log("item listsss",this.itemlist);
        this.items = this.itemlist.items;
       
        console.log("items",this.items);
@@ -46,11 +49,6 @@ export class ItemlistPage {
           
     }
 
-
-
-    // ionViewWillEnter() {
-     
-    // }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemlistPage');
     console.log("soups",this.soups);
@@ -64,18 +62,19 @@ export class ItemlistPage {
         this.cartItems = val;
         var isPresent = this.cartItems.some(function (el) { return el.food_id == items.food_id });
         if (isPresent === true) {
-          console.log("Items Exists in Cart so Dont add Again");
+          this.showtoast("This Item Already Exists in Cart");
         }
         else {
-          console.log("Item Not Exists in Cart so Add it in Cart");
           this.cartItems.push(items)
           this.storage.set("cartdata", this.cartItems);
+          this.showtoast("Item has been Added to Cart");
           this.events.publish('cart:updated', this.cartItems.length);
         }
       } else {
         this.cartItems = [];
         this.cartItems.push(items);
         this.storage.set("cartdata", this.cartItems);
+        this.showtoast("Item has been Added to Cart");
         this.events.publish('cart:updated', this.cartItems.length);
       }
     })
@@ -91,6 +90,14 @@ export class ItemlistPage {
 
   navdescription(param){
     this.navCtrl.push(DescriptionpagePage,{"itemdescription":param});
+  }
+
+  showtoast(message){
+    const toast = this.toast.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();   
   }
 
 }
