@@ -77,7 +77,7 @@
 
 <ion-content [ngStyle]="{'display': showfilter}" fullscreen padding>
   <h6>Food Categories</h6>
-  <ion-item *ngFor="let items of mainmenufilter;let i=index">
+  <ion-item *ngFor="let items of foodcategoryfilter;let i=index">
     <ion-row>
       <ion-col col-1>
         <img *ngIf="items.food_type == 'VEG'" src="../../assets/imgs/veg.png" />
@@ -116,7 +116,7 @@
       </ion-col>
     </ion-row>
   </ion-item>
-  <h6 *ngIf="">Bestsellers</h6>
+  <h6>Bestsellers</h6>
   <ion-item *ngFor="let items of bestsellersfilter;let i=index">
     <ion-row>
       <ion-col col-1>

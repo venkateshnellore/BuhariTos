@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import {MainPage} from  '../main/main';
 import { Observable } from '../../../node_modules/rxjs';
 import {DescriptionpagePage} from '../descriptionpage/descriptionpage'
+import { Jsonp } from '../../../node_modules/@angular/http';
 
 @Component({
   selector: 'page-home',
@@ -39,10 +40,15 @@ export class HomePage {
   public showdefault:any = 'flex';//showspecialist
   public showfilter:any='none';//showclinicanddoctors
   public mainmenufilter:any=[];
+  public todayspecialdummy:any=[];
+  public foodcategoryfilter:any;
   public bestsellersfilter:any;
   public offersfilter:any;
   public todayspecialfilter:any;
 
+
+  //show and hide
+  public showbestsellerslabel:boolean=true;
   public subscription;
 
   constructor(
@@ -102,6 +108,7 @@ export class HomePage {
         this.todayspecial[i].itemtotal = this.todayspecial[i].price;
         this.todayspecial[i].add = this.addbutton;
         this.todayspecial[i].added = this.buttonClicked;
+        this.todayspecialdummy.push(this.todayspecial[i]);
       }
       for(var i=0;i<this.foodcategoryitems.length;i++){
         for(var j=0;j<this.foodcategoryitems[i].items.length;j++){
@@ -111,31 +118,27 @@ export class HomePage {
           this.foodcategoryitems[i].items[j].added = this.buttonClicked;
         }
       }
-      console.log("main food categories*********", JSON.stringify(this.foodcategory));
     }
   })
 }
   
 
   search(searchTerm) {
-    console.log("testtttt",searchTerm.length)
+    // console.log("testtttt",searchTerm.length)
     if (searchTerm == "" || searchTerm === undefined || searchTerm.length == 0) {
-
       this.showdefault = 'flex';
-      this.foodcategory=[];
       this.showfilter = 'none';
     }
     else {
       this.showfilter= 'block';
       this.showdefault = 'none';
-      console.log()
+      console.log("Today's Special Dummy arr",JSON.stringify(this.todayspecialdummy));
       for(var i=0;i<this.foodcategoryitems.length;i++){
         for(var j=0;j<this.foodcategoryitems[i].items.length;j++){
           this.mainmenufilter.push(this.foodcategoryitems[i].items[j]);
         }
       }
-      console.log("test cat",this.mainmenufilter)
-      this.todayspecialfilter = this.todayspecial.filter((items) => {
+      this.todayspecialfilter = this.todayspecialdummy.filter((items) => {
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       });
       this.bestsellersfilter = this.bestsellers.filter((items)=>{
@@ -144,10 +147,15 @@ export class HomePage {
       this.offersfilter = this.offers.filter((items)=>{
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       });
-      this.mainmenufilter = this.mainmenufilter.filter((items)=>{
+      this.foodcategoryfilter = this.mainmenufilter.filter((items)=>{
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       })
+      console.log("FOOD CATEGORY FILTER*********",this.foodcategoryfilter.length)
+      console.log("BEST SELLERS FILTER*********",this.bestsellersfilter.length)
+      console.log("OFFERS FILTER*********",this.offersfilter.length)
+      console.log("TODAY'S FILTER*********",this.todayspecialfilter.length)
       if(this.bestsellersfilter.length == 0){
+        this.showbestsellerslabel = false;
       }
     }
   }
