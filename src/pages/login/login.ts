@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { Storage } from '@ionic/storage';
-// import { SessionStorageService } from 'ngx-webstorage';
+import { SessionStorageService } from 'ngx-webstorage';
+import { HomePage } from '../home/home';
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -19,7 +21,8 @@ export class LoginPage {
     public navParams: NavParams,
     public toast: ToastController,
     public storage: Storage,
-    // public session: SessionStorageService,
+    public session: SessionStorageService,
+    public alertCtrl: AlertController,
     public service: BuhariServiceProvider) {
   }
 
@@ -33,10 +36,8 @@ export class LoginPage {
     }else{
        this.service.login(table).subscribe((resp:any)=>{
         if(resp.ReturnCode == "LS"){
-
           this.showtoast("Login Successful");
-          this.storage.set("tablenumber",table.number);
-          // this.session.store("tablenumber",table.number);
+          this.session.store("tablenumber",table.number);
           this.navCtrl.push(MainPage);
         }
         else{

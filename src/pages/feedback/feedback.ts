@@ -8,9 +8,11 @@ import { MainPage } from '../main/main';
   selector: 'page-feedback',
   templateUrl: 'feedback.html',
 })
+
 export class FeedbackPage {
 
   public feed: any = {
+    "order_no":"",
     "q1": "",
     "q2": "",
     "q3": "",
@@ -23,6 +25,7 @@ export class FeedbackPage {
     public viewCtrl: ViewController,
     public toast: ToastController,
     public service: BuhariServiceProvider) {
+      this.feed.order_no = this.navParams.get("order_id");
   }
 
   ionViewDidLoad() {
@@ -52,6 +55,7 @@ export class FeedbackPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
+
   showtoast(message) {
     const toast = this.toast.create({
       message: message,
@@ -59,4 +63,5 @@ export class FeedbackPage {
     });
     toast.present();
   }
+
 }

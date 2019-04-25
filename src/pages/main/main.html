@@ -1,6 +1,9 @@
 <ion-content>
-  <ion-slides pager="false" autoplay="2000" loop="true" speed="1500" effect="fade">
-    <ion-slide class="slide-background swiper-no-swiping" *ngFor="let background of backgrounds" [ngStyle]="{'background-image': 'url(' + background +')'}" style="background-size: cover;">
+  <ion-slides *ngIf="backgrounds && backgrounds.length" freeMode="true" slidesPerView="1" autoplay="3000" loop="true">
+    <ion-slide *ngFor="let background of backgrounds" 
+    [ngStyle]="{'background': 'url(' + background.image_url +') center'
+              ,'background-repeat': 'no-repeat'
+              ,'background-size':'cover'}">
     </ion-slide>
   </ion-slides>
   <div class="login-container">

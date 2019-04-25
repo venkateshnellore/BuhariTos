@@ -5,10 +5,8 @@ import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { SharedModule } from './shared.module';
 import { HttpModule } from '@angular/http';
-// import {NgxWebstorageModule} from 'ngx-webstorage';
-// import { Ng2Webstorage } from '@ngx-webstorage';
-// import {Ng2Webstorage} from 'ngx-webstorage';
-// import {Ng2Webstorage} from 'ngx-webstorage';
+import { Ng2Webstorage } from "ngx-webstorage";
+
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -21,17 +19,12 @@ import { MainPage } from '../pages/main/main';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-// import {NgxWebstorageModule} from 'ngx-webstorage';
-
-//requst page
-// import{RequstpagePage} from '../pages/requstpage/requstpage';
-//item list
 import{ItemlistPage} from '../pages/itemlist/itemlist';
 
 import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
 import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
 import { BuhariServiceProvider } from '../providers/buhari-service/buhari-service';
-// import { FeedbackPageModule } from '../pages/feedback/feedback.module';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -43,7 +36,6 @@ import { BuhariServiceProvider } from '../providers/buhari-service/buhari-servic
     TabsPage,
     ItemlistPage,
     BillingdetailsPage,
-    // ItemdescriptionPage,
     DescriptionpagePage,
     FeedbackPage,
     LoginPage,
@@ -52,8 +44,7 @@ import { BuhariServiceProvider } from '../providers/buhari-service/buhari-servic
   imports: [
     BrowserModule,
     HttpModule,
-    // NgxWebstorageModule,
-    // FeedbackPageModule,
+    Ng2Webstorage,
     IonicModule.forRoot(MyApp,{
       scrollPadding:false,
     }),    

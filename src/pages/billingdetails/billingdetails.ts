@@ -25,11 +25,13 @@ export class BillingdetailsPage {
    public billing:boolean = false;
    public no_billing:boolean = false;
    public noItems:any=[];
+   public orderNumber:any="";
   ionViewDidLoad() {
     this.service.billing().subscribe((resp:any)=>{
       if(resp.ReturnCode == "RRS"){
         this.itemdetails = resp.Returnvalue;
         this.noItems = this.itemdetails.items;
+        this.orderNumber = this.itemdetails.order_no
         if(this.noItems.length == 0){
           this.no_billing = true;
           this.billing = false;
@@ -49,12 +51,13 @@ export class BillingdetailsPage {
     this.service.readyForBilling(param).subscribe((resp:any)=>{
       if(resp.ReturnCode == "RUS"){
         this.showtoast("Bearer Will soon come with Bill");     
+        
         //open modal for feedback
         this.expanded = true;
         this.contracted = !this.expanded;
         this.showIcon = false;
         setTimeout(() => {
-          const modal = this.modalCtrl.create(FeedbackPage);
+          const modal = this.modalCtrl.create(FeedbackPage,{"order_id":this.orderNumber});
           modal.onDidDismiss(data => {
             this.expanded = false;
             this.contracted = !this.expanded;
@@ -64,7 +67,7 @@ export class BillingdetailsPage {
         },         200);
       }
       else if(resp.ReturnCode == "INS"){
-        this.showtoast("Sorry the items you ordered is not yet served.")
+        this.showtoast(resp.Return);
       }
       else if(resp.ReturnCode == "WVE"){
         this.showtoast("Sorry No Order has been placed.");
