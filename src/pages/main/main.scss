@@ -47,4 +47,28 @@ page-main {
       ion-button {
         opacity: 0.8;
       }
+
+      
+}
+.custom-alert .alert-wrapper {
+  background-color:color($colors,secondary);
+  max-width: 350px;
+  width: 350px;
+  color:white;
+  align-self: center;
+}
+.custom-alert .alert-message{
+  color:white;
+}
+.custom-alert .alert-input{
+  padding:10px;
+  color:white;
+}
+.custom-alert .alert-input:focus{
+  border-bottom: 2px solid white !important;
+}
+.custom-alert .alert-button{
+  color:white;
+  border: 1px solid white;
+  border-radius: 9px;
 }

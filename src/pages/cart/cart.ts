@@ -30,6 +30,7 @@ export class CartPage {
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
         this.cartdata = val;
+        this.total = 0;
         if (this.cartdata.length == 0) {
           this.empty_cart = true;
           this.not_empty_cart = false;
@@ -39,7 +40,7 @@ export class CartPage {
           this.not_empty_cart = true;
         }
         for (var i = 0; i < this.cartdata.length; i++) {
-          this.cartdata[i].itemtotal = this.cartdata[i].price;
+          this.cartdata[i].itemtotal = this.cartdata[i].price * this.cartdata[i].item_count;
           this.total = this.total + this.cartdata[i].itemtotal;
         }
       }
@@ -47,14 +48,15 @@ export class CartPage {
   }
 
   ionViewDidLoad() {
+    this.total = 0;
     console.log('ionViewDidLoad CartPage');
   }
 
   ionViewWillEnter() {
-    this.total = 0;
     this.showplaceorderbtn = true;
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
+        this.total = 0;
         this.cartdata = val;
         if (this.cartdata.length == 0) {
           this.empty_cart = true;
@@ -126,7 +128,7 @@ export class CartPage {
 
   placeOrder(comments) {
     this.showplaceorderbtn = false;
-    if(comments === undefined){
+    if (comments === undefined) {
       comments = "";
     }
     this.billing = [];
@@ -140,7 +142,7 @@ export class CartPage {
         this.billing.push(items)
       }
 
-      this.service.placeOrder(this.billing,comments).subscribe((resp: any) => {
+      this.service.placeOrder(this.billing, comments).subscribe((resp: any) => {
         if (resp.ReturnCode == "RIS") {
           this.cartdata = [];
           if (this.cartdata.length == 0) {
