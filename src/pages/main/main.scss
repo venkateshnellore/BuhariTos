@@ -1,4 +1,8 @@
 page-main {
+
+  .alert-md{
+    background-color: #e92b0aea !important;
+  }
     .scroll-content {
         margin-top: 0 !important;
       }
@@ -47,4 +51,11 @@ page-main {
       ion-button {
         opacity: 0.8;
       }
+      
+      // .element.style{
+      //   opacity: 1;
+      //   transform: scale(1);
+      
+      // }
+      
 }
