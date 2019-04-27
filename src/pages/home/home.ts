@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { NavController, Slides, Events, ToastController } from 'ionic-angular';
 import { ItemlistPage } from '../itemlist/itemlist';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
@@ -6,7 +6,6 @@ import { Storage } from '@ionic/storage';
 import {MainPage} from  '../main/main';
 import { Observable } from '../../../node_modules/rxjs';
 import {DescriptionpagePage} from '../descriptionpage/descriptionpage'
-import { Jsonp } from '../../../node_modules/@angular/http';
 
 @Component({
   selector: 'page-home',
@@ -17,6 +16,8 @@ import { Jsonp } from '../../../node_modules/@angular/http';
 
 export class HomePage {
   @ViewChild('slider') slider: Slides;
+  @ViewChild('myContent') header: number;
+  newHeaderHeight:any;
 
   //Main Array
   public foodcategory: any = [];
@@ -49,14 +50,21 @@ export class HomePage {
 
   //show and hide
   public showbestsellerslabel:boolean=true;
+  public showofferslabel:boolean = true;
+  public showtodayspeciallabel:boolean = true;
+  public showfoodcategorylabel:boolean = true;
+  public showempty:boolean = false;
+
   public subscription;
 
   constructor(
     public navCtrl: NavController,
     public service: BuhariServiceProvider,
     public storage: Storage,
+    public element: ElementRef,
     public events: Events,
-    public toast: ToastController
+    public toast: ToastController,
+    public renderer: Renderer
   ) {
 
   }
@@ -124,12 +132,12 @@ export class HomePage {
   
 
   search(searchTerm) {
-    // console.log("testtttt",searchTerm.length)
     if (searchTerm == "" || searchTerm === undefined || searchTerm.length == 0) {
       this.showdefault = 'flex';
       this.showfilter = 'none';
     }
     else {
+      this.showempty = false;
       this.showfilter= 'block';
       this.showdefault = 'none';
       console.log("Today's Special Dummy arr",JSON.stringify(this.todayspecialdummy));
@@ -156,10 +164,31 @@ export class HomePage {
       console.log("TODAY'S FILTER*********",this.todayspecialfilter.length)
       if(this.bestsellersfilter.length == 0){
         this.showbestsellerslabel = false;
+      }else{
+        this.showbestsellerslabel = true;
       }
+      if(this.offersfilter.length == 0){
+        this.showofferslabel = false;
+      }else{
+        this.showofferslabel = false;
+      }
+      if(this.todayspecialfilter.length == 0){
+        this.showtodayspeciallabel = false;
+      }else{
+        this.showtodayspeciallabel = true;
+      }
+      if(this.foodcategoryfilter.length == 0){
+        this.showfoodcategorylabel = false;
+      }else{
+        this.showfoodcategorylabel = true;
+      }
+      if(this.foodcategoryfilter && this.offersfilter &&
+        this.todayspecialfilter && this.bestsellersfilter == 0){
+          this.showempty = true;
+        }
     }
   }
-
+  
   ngAfterViewInit() {
   }
 

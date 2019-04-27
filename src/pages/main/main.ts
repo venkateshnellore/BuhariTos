@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { TabsPage } from '../tabs/tabs';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { SessionStorageService } from '../../../node_modules/ngx-webstorage';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ export class MainPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              public storage: Storage,
               public service:BuhariServiceProvider,
               public session: SessionStorageService,
               public alertCtrl: AlertController) {
@@ -34,8 +36,9 @@ export class MainPage {
 
   showPrompt() {
     const prompt = this.alertCtrl.create({
-      title: 'Welcome',
-      message: "Enter Name and Mobile number",
+      title: 'Buhari',
+      cssClass:'custom-alert',
+      message: "Welcome would you like to give your details?",
       inputs: [
         {
           name: 'name',
@@ -50,6 +53,7 @@ export class MainPage {
         {
           text: 'Skip',
           handler: data => {
+            // this.storage.clear();
             this.session.store("cus_name","");
             this.session.store("cus_number","");
             this.navCtrl.push(TabsPage);
@@ -58,6 +62,7 @@ export class MainPage {
         {
           text: 'Next',
           handler: data => {
+            // this.storage.clear();
             this.session.store("cus_name",data.name);
             this.session.store("cus_number",data.mobile);
             this.navCtrl.push(TabsPage);

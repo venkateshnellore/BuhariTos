@@ -75,8 +75,17 @@
 
 <!-- Filter View -->
 
+<<<<<<< HEAD
 <ion-content [ngStyle]="{'display': showfilter}" fullscreen  padding>
   <h6>Food Categories</h6>
+=======
+<ion-content [ngStyle]="{'display': showfilter}" fullscreen padding>
+  <div *ngIf="showempty" style="width: 100%;padding: 50px;height: 100%;">
+    <img src="../../assets/imgs/emptycart.png" alt="" style="margin-top: 30%;">
+    <p style="text-align: center;">Sorry there are no items with that name</p>
+  </div>
+  <h6 *ngIf="showfoodcategorylabel">Food Categoriesssss</h6>
+>>>>>>> a54c49936e57be98ef823f9f821267090091a12c
   <ion-item *ngFor="let items of foodcategoryfilter;let i=index">
     <ion-row>
       <ion-col col-1>
@@ -90,14 +99,14 @@
         <b>₹{{items.price}}</b>
       </ion-col>
       <ion-col col-4 style="text-align: center;">
-        <button class="height-25" ion-button color="secondary" *ngIf="items.add" style="text-transform: none;" (click)="onButtonClick(i,items,bestsellers)"
+        <button class="height-25" ion-button color="secondary" *ngIf="items.add" style="text-transform: none;" (click)="onButtonClick(i,items,foodcategoryfilter)"
           outline>Add +</button>
         <button class="height-25" ion-button color="secondary" style="text-transform: none;" *ngIf="items.added" disabled outline>Added</button>
       </ion-col>
     </ion-row>
   </ion-item>
-  <h6>{{todayspecial.categry_name}}</h6>
-  <ion-item *ngFor="let items of todayspecialfilter;let i=index" >
+  <h6 *ngIf="showtodayspeciallabel">Today's Special</h6>
+  <ion-item *ngFor="let items of todayspecialfilter;let i=index">
     <ion-row>
       <ion-col col-1>
         <img *ngIf="items.food_type == 'VEG'" src="../../assets/imgs/veg.png" />
@@ -110,13 +119,13 @@
         <b>₹{{items.price}}</b>
       </ion-col>
       <ion-col col-4 style="text-align: center;">
-        <button class="height-25" ion-button color="secondary" *ngIf="items.add" style="text-transform: none;" (click)="onButtonClick(i,items,bestsellers)"
+        <button class="height-25" ion-button color="secondary" *ngIf="items.add" style="text-transform: none;" (click)="onButtonClick(i,items,todayspecialfilter)"
           outline>Add +</button>
         <button class="height-25" ion-button color="secondary" style="text-transform: none;" *ngIf="items.added" disabled outline>Added</button>
       </ion-col>
     </ion-row>
   </ion-item>
-  <h6>Bestsellers</h6>
+  <h6 *ngIf="showbestsellerslabel">Bestsellers</h6>
   <ion-item *ngFor="let items of bestsellersfilter;let i=index">
     <ion-row>
       <ion-col col-1>
@@ -130,13 +139,13 @@
         <b>₹{{items.price}}</b>
       </ion-col>
       <ion-col col-4 style="text-align: center;">
-        <button class="height-25" ion-button color="secondary" *ngIf="items.add" style="text-transform: none;" (click)="onButtonClick(i,items,bestsellers)"
+        <button class="height-25" ion-button color="secondary" *ngIf="items.add" style="text-transform: none;" (click)="onButtonClick(i,items,bestsellersfilter)"
           outline>Add +</button>
         <button class="height-25" ion-button color="secondary" style="text-transform: none;" *ngIf="items.added" disabled outline>Added</button>
       </ion-col>
     </ion-row>
   </ion-item>
-  <h6>Offers</h6>
+  <h6 *ngIf="showofferslabel">Offers</h6>
   <ion-item *ngFor="let items of offersfilter;let i=index" class="item-ribbon">
     <span class="ribbon default">
       <span>{{items.offer_value}} ₹ OFF</span>
@@ -147,13 +156,13 @@
         <img *ngIf="items.food_type == 'NON VEG'" src="../../assets/imgs/nonveg.png" />
       </ion-col>
       <ion-col col-1></ion-col>
-      <ion-col col-6  (click)="navdescription(items)">
+      <ion-col col-6 (click)="navdescription(items)">
         <h6 style="font-weight: bold;">{{items.food_name}}</h6>
         <p style="font-size:12px;">In {{items.category}}</p>
         <b>₹{{items.price}}</b>
       </ion-col>
       <ion-col col-4 style="text-align: center;">
-        <button class="height-25" ion-button color="secondary" *ngIf="items.add" style="text-transform: none;" (click)="onButtonClick(i,items,offers)"
+        <button class="height-25" ion-button color="secondary" *ngIf="items.add" style="text-transform: none;" (click)="onButtonClick(i,items,offersfilter)"
           outline>Add +</button>
         <button class="height-25" ion-button color="secondary" style="text-transform: none;" *ngIf="items.added" disabled outline>Added</button>
       </ion-col>
