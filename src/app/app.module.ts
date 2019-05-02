@@ -24,6 +24,7 @@ import{ItemlistPage} from '../pages/itemlist/itemlist';
 import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
 import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
 import { BuhariServiceProvider } from '../providers/buhari-service/buhari-service';
+import { StarRatingModule } from 'ionic3-star-rating';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { BuhariServiceProvider } from '../providers/buhari-service/buhari-servic
     MainPage
   ],
   imports: [
+    StarRatingModule,
     BrowserModule,
     HttpModule,
     Ng2Webstorage,

@@ -1,16 +1,34 @@
+<<<<<<< HEAD
 <ion-content padding class="background-color">
   <!-- <ion-header>
     <ion-navbar>
     </ion-navbar>
   </ion-header> -->
+=======
+<ion-content padding [ngStyle]="{'background-image': 'url(../../assets/imgs/restaurant.jpg)'}">
+>>>>>>> 6f621886534b574075a6523f95c8bd0bbab28aa3
   <div padding>
-    <h1 class="hotel-title">Buhari</h1>
-    <ion-item>
-      <ion-input type="number" placeholder="Table Number" [(ngModel)]="table.number"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="Password" [(ngModel)]="table.password"></ion-input>
-    </ion-item>
-    <button ion-button block outline (click)="login(table)" color="light" class="login-button">Login</button>
+    <ion-row>
+      <ion-col>
+        <img class="logo" src="../../assets/imgs/loginlogo.png" />
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list inset class="no-border">
+          <ion-item>
+            <ion-input type="number" placeholder="Table Number" [(ngModel)]="table.number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="number" placeholder="Password" [(ngModel)]="table.password"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button class="login-button" (click)="login(table)">Login</button>
+      </ion-col>
+    </ion-row>
   </div>
 </ion-content>

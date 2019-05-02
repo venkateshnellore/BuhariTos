@@ -5,12 +5,9 @@ page-feedback {
       100% { opacity: 1; }
     }
     .scroll-content {
-      background:color($colors,secondary);
+      background:color($colors,light);
     }  
-    ion-icon, div {
-        color: white;
-        font-weight: bold;
-    }
+
     ion-item{
         background: transparent !important;
         height: 20px;
@@ -19,7 +16,10 @@ page-feedback {
       text-align: center !important;
       
     }
-    .color-white{
-      color: white !important;
+    // .color-white{
+    //   color: white !important;
+    // }
+    .footer-md::before{
+      position:  relative !important;
     }
 }

@@ -3,18 +3,13 @@ import { IonicPage, NavController, NavParams,Events, ToastController } from 'ion
 
 import {DescriptionpagePage} from '../descriptionpage/descriptionpage';
 import { Storage } from '@ionic/storage';
-/**
- * Generated class for the ItemlistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
   selector: 'page-itemlist',
   templateUrl: 'itemlist.html',
 })
+
 export class ItemlistPage {
   public soups:any=[];
    public itemlist:any=[];
@@ -45,8 +40,7 @@ export class ItemlistPage {
         this.items[i].added = this.buttonClicked;
 
       }
-      console.log("itemmmmssssss",this.items);
-          
+      console.log("itemmmmssssss",this.items);      
     }
 
   ionViewDidLoad() {
@@ -67,14 +61,14 @@ export class ItemlistPage {
         else {
           this.cartItems.push(items)
           this.storage.set("cartdata", this.cartItems);
-          this.showtoast("Item has been Added to Cart");
+          // this.showtoast("Item has been Added to Cart");
           this.events.publish('cart:updated', this.cartItems.length);
         }
       } else {
         this.cartItems = [];
         this.cartItems.push(items);
         this.storage.set("cartdata", this.cartItems);
-        this.showtoast("Item has been Added to Cart");
+        // this.showtoast("Item has been Added to Cart");
         this.events.publish('cart:updated', this.cartItems.length);
       }
     })
@@ -99,5 +93,4 @@ export class ItemlistPage {
     });
     toast.present();   
   }
-
 }
