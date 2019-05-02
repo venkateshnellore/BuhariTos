@@ -75,14 +75,6 @@
 
 <!-- Filter View -->
 
-<<<<<<< HEAD
-<ion-content [ngStyle]="{'display': showfilter}" fullscreen padding>
-  <div *ngIf="showempty" style="width: 100%;padding: 50px;height: 100%;">
-    <img src="../../assets/imgs/emptycart.png" alt="" style="margin-top: 30%;">
-    <p style="text-align: center;">Sorry there are no items with that name</p>
-  </div>
-  <h6 *ngIf="showfoodcategorylabel">Food Categoriesssss</h6>
-=======
 <ion-content [ngStyle]="{'display': showfilter}" fullscreen  padding>
   <h6>Food Categories</h6>
 <!-- <ion-content [ngStyle]="{'display': showfilter}" fullscreen padding>
@@ -91,7 +83,6 @@
     <p style="text-align: center;">Sorry there are no items with that name</p>
   </div> -->
   <h6  class="header" *ngIf="showfoodcategorylabel">Food Categories</h6>
->>>>>>> 6f621886534b574075a6523f95c8bd0bbab28aa3
   <ion-item *ngFor="let items of foodcategoryfilter;let i=index">
     <ion-row>
       <ion-col col-1>
