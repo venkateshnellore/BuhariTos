@@ -31,7 +31,7 @@ export class DescriptionpagePage {
     this.item_name = this.itemdescription.food_name;
     this.item_images = this.itemdescription.item_images;
     console.log('ionViewDidLoad DescriptionpagePage');
-    console.log("Item Description",this.itemdescription);
+    console.log("Item Description",this.item_images);
   }
 
 }
