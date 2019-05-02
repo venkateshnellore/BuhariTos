@@ -77,18 +77,22 @@ export class HomePage {
   ionViewDidLoad() {
   }
 
+  ionViewDidLeave(){
+    this.searchTerm="";
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
   MainmenuLoop() {
-    this.subscription = Observable.interval(180000).subscribe(x => {
+    this.subscription = Observable.interval(10000).subscribe(x => {
       this.serviceForMenu();
     });
   }
 
   public serviceForMenu(){
-    
+  this.menu=[];  
   this.service.menus().subscribe((resp: any) => {
     if (resp.ReturnCode == "RRS") {
       this.menu = resp.Returnvalue;
@@ -98,7 +102,6 @@ export class HomePage {
       this.offers = this.menu[0].Offers;
       this.todayspecial =this.menu[0].Today_Special;
       this.today_catagory_name = this.todayspecial.categry_name;
-      this.todayspecialfilter = this.todayspecial.items;
        for (var i = 0; i < this.bestsellers.length; i++) {
         this.bestsellers[i].item_count = 0;
         this.bestsellers[i].itemtotal = this.bestsellers[i].price;
@@ -132,6 +135,8 @@ export class HomePage {
   
 
   search(searchTerm) {
+    this.mainmenufilter=[];
+    this.todayspecialfilter = this.todayspecial.items;
     if (searchTerm == "" || searchTerm === undefined || searchTerm.length == 0) {
       this.showdefault = 'flex';
       this.showfilter = 'none';
@@ -140,7 +145,6 @@ export class HomePage {
       this.showempty = false;
       this.showfilter= 'block';
       this.showdefault = 'none';
-      console.log("Today's Special Dummy arr",JSON.stringify(this.todayspecialdummy));
       for(var i=0;i<this.foodcategoryitems.length;i++){
         for(var j=0;j<this.foodcategoryitems[i].items.length;j++){
           this.mainmenufilter.push(this.foodcategoryitems[i].items[j]);
@@ -162,6 +166,12 @@ export class HomePage {
       console.log("BEST SELLERS FILTER*********",this.bestsellersfilter.length)
       console.log("OFFERS FILTER*********",this.offersfilter.length)
       console.log("TODAY'S FILTER*********",this.todayspecialfilter.length)
+      if(this.foodcategoryfilter.length && this.offersfilter.length &&
+        this.todayspecialfilter.length && this.bestsellersfilter.length == 0){
+          this.showempty = true;
+        }else{
+          this.showempty = false;
+        }
       if(this.bestsellersfilter.length == 0){
         this.showbestsellerslabel = false;
       }else{
@@ -170,7 +180,7 @@ export class HomePage {
       if(this.offersfilter.length == 0){
         this.showofferslabel = false;
       }else{
-        this.showofferslabel = false;
+        this.showofferslabel = true;
       }
       if(this.todayspecialfilter.length == 0){
         this.showtodayspeciallabel = false;
@@ -182,10 +192,6 @@ export class HomePage {
       }else{
         this.showfoodcategorylabel = true;
       }
-      if(this.foodcategoryfilter && this.offersfilter &&
-        this.todayspecialfilter && this.bestsellersfilter == 0){
-          this.showempty = true;
-        }
     }
   }
   
@@ -208,14 +214,14 @@ export class HomePage {
         else {
           this.cartItems.push(items)
           this.storage.set("cartdata", this.cartItems);
-          this.showtoast("Item has been Added to Cart");
+          // this.showtoast("Item has been Added to Cart");
           this.events.publish('cart:updated', this.cartItems.length);
         }
       } else {
         this.cartItems = [];
         this.cartItems.push(items);
         this.storage.set("cartdata", this.cartItems);
-        this.showtoast("Item has been Added to Cart");
+        // this.showtoast("Item has been Added to Cart");
         this.events.publish('cart:updated', this.cartItems.length);
       }
     })
