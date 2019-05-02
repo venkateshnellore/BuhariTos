@@ -37,6 +37,7 @@ export class LoginPage {
        this.service.login(table).subscribe((resp:any)=>{
         if(resp.ReturnCode == "LS"){
           this.showtoast("Login Successful");
+          console.log(resp,"Login Successful")
           this.session.store("tablenumber",table.number);
           this.navCtrl.push(MainPage);
         }
