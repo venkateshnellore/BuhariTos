@@ -96,6 +96,7 @@ export class HomePage {
   this.service.menus().subscribe((resp: any) => {
     if (resp.ReturnCode == "RRS") {
       this.menu = resp.Returnvalue;
+      console.log(JSON.stringify("menu",this.menu));
       this.foodcategory = this.menu[0].Food_Category;
       this.foodcategoryitems = this.menu[0].Food_Category;
       this.bestsellers = this.menu[0].Best_Sellers;

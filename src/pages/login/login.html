@@ -1,4 +1,4 @@
-<ion-content padding [ngStyle]="{'background-image': 'url(../../assets/imgs/restaurant.jpg)'}">
+<ion-content padding ionic >
   <div padding>
     <ion-row>
       <ion-col>
@@ -8,6 +8,9 @@
     <ion-row>
       <ion-col>
         <ion-list inset class="no-border">
+          <ion-item>
+            <ion-input type="text" placeholder="Branchid" [(ngModel)]="table.businessid"></ion-input>
+          </ion-item>
           <ion-item>
             <ion-input type="number" placeholder="Table Number" [(ngModel)]="table.number"></ion-input>
           </ion-item>

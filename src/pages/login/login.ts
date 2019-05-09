@@ -14,8 +14,10 @@ import { HomePage } from '../home/home';
 export class LoginPage {
 
   public loginForm: any;
-  public table:any ={
-  };
+  public table:any ={};
+  public branchdetails:any=[];
+  public branch_id;
+
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -31,14 +33,22 @@ export class LoginPage {
   }
 
   login(table) {
-    if(table.number && table.password == "" || table.number && table.password === undefined ){
+    if(table.number && table.password && table.businessid == "" || table.number && table.password && table.businessid === undefined ){
       this.showtoast("Please Enter Valid Table Number and Password");
     }else{
        this.service.login(table).subscribe((resp:any)=>{
         if(resp.ReturnCode == "LS"){
+          this.branchdetails = resp.branch_details;
+          this.branch_id = this.branchdetails[0].branch_id;
+          console.log("businessdetaILSSSSSSS",this.branch_id)
           this.showtoast("Login Successful");
           console.log(resp,"Login Successful")
           this.session.store("tablenumber",table.number);
+          this.session.store("businessid",table.businessid);
+          console.log("tablenummm",table.number)
+          console.log("businessid",table.businessid)
+
+          // console.log("bisinessidddd", this.session.store("businessid",table.branch_id));
           this.navCtrl.push(MainPage);
         }
         else{

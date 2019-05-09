@@ -38,18 +38,29 @@ export class BuhariServiceProvider {
     {
       "table_no": table.number,
       "password": table.password,
+      "branch_id":table.businessid,
+
       "login_status_id": 1
     }
 
-    return this.http.post('https://table-ordering-system.herokuapp.com/Tablet_Login_And_Logout', body, options)
+    return this.http.post('https://tos-production.herokuapp.com/Tablet_Login_And_Logout', body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   // 2 - Food Menu (Home Page)
   menus(): Observable<object[]> {
+   
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({ headers: headers });
+    let body ={
+      
 
-    return this.http.get('https://table-ordering-system.herokuapp.com/Display_Food_Menus')
+      "branch_id":this.session.retrieve("businessid"),
+      
+    }
+    return this.http.post('https://tos-production.herokuapp.com/Display_Food_Menus',body,options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -65,12 +76,13 @@ export class BuhariServiceProvider {
       "table_no": this.session.retrieve("tablenumber"),
       "cus_name": this.session.retrieve("cus_name"),
       "cus_mobile": this.session.retrieve("cus_number"),
+      "branch_id":this.session.retrieve("businessid"),
       "items": items,
       "comments": comments
     }
 
     console.log("REQUEST EXTRA ITEMS", JSON.stringify(body));
-    return this.http.post('https://table-ordering-system.herokuapp.com/Choose_Food_Order', body, options)
+    return this.http.post('https://tos-production.herokuapp.com/Choose_Food_Order', body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -84,10 +96,11 @@ export class BuhariServiceProvider {
     let body =
     {
       "table_no": this.session.retrieve("tablenumber"),
+      "branch_id":this.session.retrieve("businessid"),
       "payment_type_id": payment_type
     }
 
-    return this.http.post('https://table-ordering-system.herokuapp.com/Update_ReadyforPayment_Status', body, options)
+    return this.http.post('https://tos-production.herokuapp.com/Update_ReadyforPayment_Status', body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -100,10 +113,12 @@ export class BuhariServiceProvider {
 
     let body =
     {
-      "table_no": this.session.retrieve("tablenumber")
+      "table_no": this.session.retrieve("tablenumber"),
+      "branch_id":this.session.retrieve("businessid"),
+
     }
 
-    return this.http.post('https://table-ordering-system.herokuapp.com/Get_Order_Item_Table', body, options)
+    return this.http.post('https://tos-production.herokuapp.com/Get_Order_Item_Table', body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -111,7 +126,7 @@ export class BuhariServiceProvider {
   // 6 - Request Extra Items (Select Items --> Request Page) (GET)
   requestItemsSelect(): Observable<object[]> {
 
-    return this.http.get('https://table-ordering-system.herokuapp.com/Query_Extra_Item_Category')
+    return this.http.get('https://tos-production.herokuapp.com/Query_Extra_Item_Category')
       .map(this.extractData)
       .catch(this.handleError);
   }
