@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
 export class MainPage {
 
   public backgrounds:any = [];
+  public hoteldetails:any = [];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -28,10 +29,17 @@ export class MainPage {
         console.log("toda*****************",JSON.stringify(this.backgrounds));
       }
     })
+
+    this.hoteldetails = this.session.retrieve("Hoteldetails");
+    console.log("hoteldetails",this.hoteldetails);
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainPage');
+
+
   }
 
   showPrompt() {

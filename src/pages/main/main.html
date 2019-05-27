@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-slides *ngIf="backgrounds && backgrounds.length" freeMode="true" slidesPerView="1" autoplay="3000" loop="true">
+  <ion-slides *ngIf="backgrounds && backgrounds.length" direction="vertical" freeMode="true" slidesPerView="1" autoplay="3000" loop="true">
     <ion-slide *ngFor="let background of backgrounds" 
     [ngStyle]="{'background': 'url(' + background.image_url +') center'
               ,'background-repeat': 'no-repeat'

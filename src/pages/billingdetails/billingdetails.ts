@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 import { FeedbackPage } from '../feedback/feedback';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -14,6 +15,7 @@ export class BillingdetailsPage {
               public navParams: NavParams,
               public toast: ToastController,
               public modalCtrl: ModalController,
+              public storage:Storage,
               public service: BuhariServiceProvider) {
   }
    public itemdetails:any=[];
@@ -50,6 +52,8 @@ export class BillingdetailsPage {
     //send ready for billing will come here
     this.service.readyForBilling(param).subscribe((resp:any)=>{
       if(resp.ReturnCode == "RUS"){
+        // this.itemdetails=[];
+        this.storage.clear();
         this.showtoast("Bearer Will soon come with Bill");     
         
         //open modal for feedback
