@@ -1,4 +1,4 @@
-<ion-content padding ionic >
+<ion-content padding [ngStyle]="{'background-image': 'url(../../assets/imgs/restaurant.jpg)'}" >
   <div padding>
     <ion-row>
       <ion-col>
@@ -15,7 +15,7 @@
             <ion-input type="number" placeholder="Table Number" [(ngModel)]="table.number"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="number" placeholder="Password" [(ngModel)]="table.password"></ion-input>
+            <ion-input type="text" placeholder="Password" [(ngModel)]="table.password"></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
