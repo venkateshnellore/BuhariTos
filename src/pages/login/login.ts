@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, MenuController, Events } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { Storage } from '@ionic/storage';
@@ -25,11 +25,21 @@ export class LoginPage {
     public storage: Storage,
     public session: SessionStorageService,
     public alertCtrl: AlertController,
-    public service: BuhariServiceProvider) {
+    public service: BuhariServiceProvider,
+    public menu: MenuController,
+    public events: Events) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  ionViewDidEnter(){
+    this.menu.enable(false);
+  }
+
+  ionViewDidLeave(){
+    this.menu.enable(true);
   }
 
   login(table) {
@@ -40,8 +50,7 @@ export class LoginPage {
         if(resp.ReturnCode == "LS"){
           this.branchdetails = resp.branch_details;
           // this.branchdetails = this.branchdetails[0].branchdetails;
-          this.session.store("Hoteldetails",this.branchdetails);
-          console.log("businessdetaILSSSSSSS",this.branchdetails);
+          this.session.store("hoteldetails",this.branchdetails[0]);
           this.showtoast("Login Successful");
           console.log(resp,"Login Successful")
           this.session.store("logindetails",table);
@@ -49,7 +58,7 @@ export class LoginPage {
           this.session.store("businessid",table.businessid);
           console.log("tablenummm",table.number)
           console.log("businessid",table.businessid)
-
+          this.events.publish('user:logout');
           // console.log("bisinessidddd", this.session.store("businessid",table.branch_id));
           this.navCtrl.push(MainPage);
         }

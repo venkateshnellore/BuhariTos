@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @IonicPage()
 @Component({
@@ -13,12 +14,16 @@ export class RequestPage {
   public request_items = [];
   public tablenum;
   public subscription;
+  public hoteldetails:any={};
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public service: BuhariServiceProvider,
               public toast: ToastController,
+              public session: SessionStorageService
             ) 
   {
+    this.hoteldetails = this.session.retrieve("hoteldetails");
     this.requestItemsSelect();
   }
 
