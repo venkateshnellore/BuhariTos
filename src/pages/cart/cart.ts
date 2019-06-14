@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { BillingdetailsPage } from '../billingdetails/billingdetails';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { HomePage } from '../home/home';
+import { SessionStorageService } from 'ngx-webstorage';
 @IonicPage()
 @Component({
   selector: 'page-cart',
@@ -20,13 +21,17 @@ export class CartPage {
   public cartdata: any = [];
   public showoffer: boolean = false;
   public showplaceorderbtn: boolean = true;
+  public hoteldetails:any={};
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public storage: Storage,
     public toast: ToastController,
     public service: BuhariServiceProvider,
-    public events: Events
+    public events: Events,
+    public session: SessionStorageService
   ) {
+    this.hoteldetails = this.session.retrieve("hoteldetails");
+
     this.storage.get("cartdata").then((val: any) => {
       if (val) {
         this.cartdata = val;

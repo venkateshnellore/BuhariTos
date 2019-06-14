@@ -13,7 +13,7 @@ import { Storage } from '@ionic/storage';
 export class MainPage {
 
   public backgrounds:any = [];
-  public hoteldetails:any = [];
+  public hoteldetails:any = {};
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -30,7 +30,7 @@ export class MainPage {
       }
     })
 
-    this.hoteldetails = this.session.retrieve("Hoteldetails");
+    this.hoteldetails = this.session.retrieve("hoteldetails");
     console.log("hoteldetails",this.hoteldetails);
 
 
@@ -44,7 +44,7 @@ export class MainPage {
 
   showPrompt() {
     const prompt = this.alertCtrl.create({
-      title: 'Buhari',
+      title: this.hoteldetails.restaurant_name,
       cssClass:'custom-alert',
       message: "Welcome would you like to give your details?",
       inputs: [
@@ -61,7 +61,6 @@ export class MainPage {
         {
           text: 'Skip',
           handler: data => {
-            // this.storage.clear();
             this.session.store("cus_name","");
             this.session.store("cus_number","");
             this.navCtrl.push(TabsPage);
@@ -70,7 +69,6 @@ export class MainPage {
         {
           text: 'Next',
           handler: data => {
-            // this.storage.clear();
             this.session.store("cus_name",data.name);
             this.session.store("cus_number",data.mobile);
             this.navCtrl.push(TabsPage);

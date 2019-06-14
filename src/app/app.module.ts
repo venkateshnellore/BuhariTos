@@ -49,7 +49,8 @@ import { StarRatingModule } from 'ionic3-star-rating';
     Ng2Webstorage,
     IonicModule.forRoot(MyApp,{
       scrollPadding:false,
-    }),    
+    }),
+
     IonicStorageModule.forRoot(),
     SharedModule
   ],

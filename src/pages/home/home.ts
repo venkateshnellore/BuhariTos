@@ -3,9 +3,10 @@ import { NavController, Slides, Events, ToastController } from 'ionic-angular';
 import { ItemlistPage } from '../itemlist/itemlist';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
 import { Storage } from '@ionic/storage';
-import {MainPage} from  '../main/main';
+import { MainPage } from '../main/main';
 import { Observable } from '../../../node_modules/rxjs';
-import {DescriptionpagePage} from '../descriptionpage/descriptionpage'
+import { DescriptionpagePage } from '../descriptionpage/descriptionpage'
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'page-home',
@@ -17,15 +18,15 @@ import {DescriptionpagePage} from '../descriptionpage/descriptionpage'
 export class HomePage {
   @ViewChild('slider') slider: Slides;
   @ViewChild('myContent') header: number;
-  newHeaderHeight:any;
+  newHeaderHeight: any;
 
   //Main Array
   public foodcategory: any = [];
   public bestsellers: any = [];
   public offers: any = [];
   public menu: any = [];
-  public todayspecial:any=[];
-  public foodcategoryitems:any;
+  public todayspecial: any = [];
+  public foodcategoryitems: any;
 
   //dummy flag
   public buttonClicked: boolean = false;
@@ -35,27 +36,31 @@ export class HomePage {
 
   public cartItems: any = [];
   public today_catagory_name;
-  
+
   //filter
   searchTerm: any = "";
-  public showdefault:any = 'flex';//showspecialist
-  public showfilter:any='none';//showclinicanddoctors
-  public mainmenufilter:any=[];
-  public todayspecialdummy:any=[];
-  public foodcategoryfilter:any;
-  public bestsellersfilter:any;
-  public offersfilter:any;
-  public todayspecialfilter:any;
+  public showdefault: any = 'flex';//showspecialist
+  public showfilter: any = 'none';//showclinicanddoctors
+  public mainmenufilter: any = [];
+  public todayspecialdummy: any = [];
+  public foodcategoryfilter: any;
+  public bestsellersfilter: any;
+  public offersfilter: any;
+  public todayspecialfilter: any;
 
 
   //show and hide
-  public showbestsellerslabel:boolean=true;
-  public showofferslabel:boolean = true;
-  public showtodayspeciallabel:boolean = true;
-  public showfoodcategorylabel:boolean = true;
-  public showempty:boolean = false;
+  public showbestsellerslabel: boolean = true;
+  public showofferslabel: boolean = true;
+  public showtodayspeciallabel: boolean = true;
+  public showfoodcategorylabel: boolean = true;
+  public showempty: boolean = false;
 
   public subscription;
+
+
+  //session storage
+  public hoteldetails:any={};
 
   constructor(
     public navCtrl: NavController,
@@ -64,79 +69,139 @@ export class HomePage {
     public element: ElementRef,
     public events: Events,
     public toast: ToastController,
-    public renderer: Renderer
+    public renderer: Renderer,
+    public session: SessionStorageService
   ) {
-
+    this.hoteldetails = this.session.retrieve("hoteldetails");
+    
   }
 
   ionViewWillEnter() {
-    this.serviceForMenu();
+    this.loadFirstTime();
     this.MainmenuLoop();
   }
 
   ionViewDidLoad() {
   }
 
-  ionViewDidLeave(){
-    this.searchTerm="";
+  ionViewDidLeave() {
+    this.subscription.unsubscribe();
+    this.searchTerm = "";
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   MainmenuLoop() {
-    this.subscription = Observable.interval(10000).subscribe(x => {
+    this.subscription = Observable.interval(1000).subscribe(x => {
       this.serviceForMenu();
     });
   }
 
-  public serviceForMenu(){
-  this.menu=[];  
-  this.service.menus().subscribe((resp: any) => {
-    if (resp.ReturnCode == "RRS") {
-      this.menu = resp.Returnvalue;
-      console.log(JSON.stringify("menu",this.menu));
-      this.foodcategory = this.menu[0].Food_Category;
-      this.foodcategoryitems = this.menu[0].Food_Category;
-      this.bestsellers = this.menu[0].Best_Sellers;
-      this.offers = this.menu[0].Offers;
-      this.todayspecial =this.menu[0].Today_Special;
-      this.today_catagory_name = this.todayspecial.categry_name;
-       for (var i = 0; i < this.bestsellers.length; i++) {
-        this.bestsellers[i].item_count = 0;
-        this.bestsellers[i].itemtotal = this.bestsellers[i].price;
-        this.bestsellers[i].add = this.addbutton;
-        this.bestsellers[i].added = this.buttonClicked;
-      }
-      for (var i = 0; i < this.offers.length; i++) {
-        this.offers[i].item_count = 0;   
-        this.offers[i].itemtotal = this.offers[i].price;
-        this.offers[i].add = this.addbutton;
-        this.offers[i].added = this.buttonClicked;
-      }
-      for (var i = 0; i < this.todayspecial.length; i++) {
-        this.todayspecial[i].item_count = 0;
-        this.todayspecial[i].itemtotal = this.todayspecial[i].price;
-        this.todayspecial[i].add = this.addbutton;
-        this.todayspecial[i].added = this.buttonClicked;
-        this.todayspecialdummy.push(this.todayspecial[i]);
-      }
-      for(var i=0;i<this.foodcategoryitems.length;i++){
-        for(var j=0;j<this.foodcategoryitems[i].items.length;j++){
-          this.foodcategoryitems[i].items[j].item_count = 0;
-          this.foodcategoryitems[i].items[j].itemtotal = this.foodcategoryitems[i].items[j].price;
-          this.foodcategoryitems[i].items[j].add = this.addbutton;
-          this.foodcategoryitems[i].items[j].added = this.buttonClicked;
+  public loadFirstTime() {
+    this.menu = [];
+    this.service.menus().subscribe((resp: any) => {
+      if (resp.ReturnCode == "RRS") {
+        this.menu = resp.Returnvalue;
+        console.log(JSON.stringify("menu", this.menu));
+        this.foodcategory = this.menu[0].Food_Category;
+        this.foodcategoryitems = this.menu[0].Food_Category;
+        this.bestsellers = this.menu[0].Best_Sellers;
+        this.offers = this.menu[0].Offers;
+        this.todayspecial = this.menu[0].Today_Special;
+        this.today_catagory_name = this.todayspecial.categry_name;
+        for (var i = 0; i < this.bestsellers.length; i++) {
+          this.bestsellers[i].item_count = 0;
+          this.bestsellers[i].itemtotal = this.bestsellers[i].price;
+          this.bestsellers[i].add = this.addbutton;
+          this.bestsellers[i].added = this.buttonClicked;
+        }
+        for (var i = 0; i < this.offers.length; i++) {
+          this.offers[i].item_count = 0;
+          this.offers[i].itemtotal = this.offers[i].price;
+          this.offers[i].add = this.addbutton;
+          this.offers[i].added = this.buttonClicked;
+        }
+        for (var i = 0; i < this.todayspecial.length; i++) {
+          this.todayspecial[i].item_count = 0;
+          this.todayspecial[i].itemtotal = this.todayspecial[i].price;
+          this.todayspecial[i].add = this.addbutton;
+          this.todayspecial[i].added = this.buttonClicked;
+          this.todayspecialdummy.push(this.todayspecial[i]);
+        }
+        for (var i = 0; i < this.foodcategoryitems.length; i++) {
+          for (var j = 0; j < this.foodcategoryitems[i].items.length; j++) {
+            this.foodcategoryitems[i].items[j].item_count = 0;
+            this.foodcategoryitems[i].items[j].itemtotal = this.foodcategoryitems[i].items[j].price;
+            this.foodcategoryitems[i].items[j].add = this.addbutton;
+            this.foodcategoryitems[i].items[j].added = this.buttonClicked;
+          }
         }
       }
-    }
-  })
-}
-  
+      else {
+        this.showtoast(resp.Return);
+      }
+    })
+  }
+
+  public serviceForMenu() {
+    this.service.checkFlag().subscribe((check: any) => {
+      if (check.Changes_Flage === 1) {
+        console.log("there is change in Food Items");
+        this.menu = [];
+        this.service.menus().subscribe((resp: any) => {
+          if (resp.ReturnCode == "RRS") {
+            this.menu = resp.Returnvalue;
+            this.foodcategory = this.menu[0].Food_Category;
+            this.foodcategoryitems = this.menu[0].Food_Category;
+            this.bestsellers = this.menu[0].Best_Sellers;
+            this.offers = this.menu[0].Offers;
+            this.todayspecial = this.menu[0].Today_Special;
+            this.today_catagory_name = this.todayspecial.categry_name;
+            for (var i = 0; i < this.bestsellers.length; i++) {
+              this.bestsellers[i].item_count = 0;
+              this.bestsellers[i].itemtotal = this.bestsellers[i].price;
+              this.bestsellers[i].add = this.addbutton;
+              this.bestsellers[i].added = this.buttonClicked;
+            }
+            for (var i = 0; i < this.offers.length; i++) {
+              this.offers[i].item_count = 0;
+              this.offers[i].itemtotal = this.offers[i].price;
+              this.offers[i].add = this.addbutton;
+              this.offers[i].added = this.buttonClicked;
+            }
+            for (var i = 0; i < this.todayspecial.length; i++) {
+              this.todayspecial[i].item_count = 0;
+              this.todayspecial[i].itemtotal = this.todayspecial[i].price;
+              this.todayspecial[i].add = this.addbutton;
+              this.todayspecial[i].added = this.buttonClicked;
+              this.todayspecialdummy.push(this.todayspecial[i]);
+            }
+            for (var i = 0; i < this.foodcategoryitems.length; i++) {
+              for (var j = 0; j < this.foodcategoryitems[i].items.length; j++) {
+                this.foodcategoryitems[i].items[j].item_count = 0;
+                this.foodcategoryitems[i].items[j].itemtotal = this.foodcategoryitems[i].items[j].price;
+                this.foodcategoryitems[i].items[j].add = this.addbutton;
+                this.foodcategoryitems[i].items[j].added = this.buttonClicked;
+              }
+            }
+          }
+          else {
+            this.showtoast(resp.Return);
+          }
+        })
+        this.service.updateFlag().subscribe()
+      }
+      else {
+        console.log("There is no Change");
+      }
+    });
+
+  }
+
 
   search(searchTerm) {
-    this.mainmenufilter=[];
+    this.mainmenufilter = [];
     this.todayspecialfilter = this.todayspecial.items;
     if (searchTerm == "" || searchTerm === undefined || searchTerm.length == 0) {
       this.showdefault = 'flex';
@@ -144,58 +209,58 @@ export class HomePage {
     }
     else {
       this.showempty = false;
-      this.showfilter= 'block';
+      this.showfilter = 'block';
       this.showdefault = 'none';
-      for(var i=0;i<this.foodcategoryitems.length;i++){
-        for(var j=0;j<this.foodcategoryitems[i].items.length;j++){
+      for (var i = 0; i < this.foodcategoryitems.length; i++) {
+        for (var j = 0; j < this.foodcategoryitems[i].items.length; j++) {
           this.mainmenufilter.push(this.foodcategoryitems[i].items[j]);
         }
       }
       this.todayspecialfilter = this.todayspecialdummy.filter((items) => {
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       });
-      this.bestsellersfilter = this.bestsellers.filter((items)=>{
+      this.bestsellersfilter = this.bestsellers.filter((items) => {
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       });
-      this.offersfilter = this.offers.filter((items)=>{
+      this.offersfilter = this.offers.filter((items) => {
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       });
-      this.foodcategoryfilter = this.mainmenufilter.filter((items)=>{
+      this.foodcategoryfilter = this.mainmenufilter.filter((items) => {
         return items.food_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       })
-      console.log("FOOD CATEGORY FILTER*********",this.foodcategoryfilter.length)
-      console.log("BEST SELLERS FILTER*********",this.bestsellersfilter.length)
-      console.log("OFFERS FILTER*********",this.offersfilter.length)
-      console.log("TODAY'S FILTER*********",this.todayspecialfilter.length)
-      if(this.foodcategoryfilter.length && this.offersfilter.length &&
-        this.todayspecialfilter.length && this.bestsellersfilter.length == 0){
-          this.showempty = true;
-        }else{
-          this.showempty = false;
-        }
-      if(this.bestsellersfilter.length == 0){
+      console.log("FOOD CATEGORY FILTER*********", this.foodcategoryfilter.length)
+      console.log("BEST SELLERS FILTER*********", this.bestsellersfilter.length)
+      console.log("OFFERS FILTER*********", this.offersfilter.length)
+      console.log("TODAY'S FILTER*********", this.todayspecialfilter.length)
+      if (this.foodcategoryfilter.length && this.offersfilter.length &&
+        this.todayspecialfilter.length && this.bestsellersfilter.length == 0) {
+        this.showempty = true;
+      } else {
+        this.showempty = false;
+      }
+      if (this.bestsellersfilter.length == 0) {
         this.showbestsellerslabel = false;
-      }else{
+      } else {
         this.showbestsellerslabel = true;
       }
-      if(this.offersfilter.length == 0){
+      if (this.offersfilter.length == 0) {
         this.showofferslabel = false;
-      }else{
+      } else {
         this.showofferslabel = true;
       }
-      if(this.todayspecialfilter.length == 0){
+      if (this.todayspecialfilter.length == 0) {
         this.showtodayspeciallabel = false;
-      }else{
+      } else {
         this.showtodayspeciallabel = true;
       }
-      if(this.foodcategoryfilter.length == 0){
+      if (this.foodcategoryfilter.length == 0) {
         this.showfoodcategorylabel = false;
-      }else{
+      } else {
         this.showfoodcategorylabel = true;
       }
     }
   }
-  
+
   ngAfterViewInit() {
   }
 
@@ -235,16 +300,16 @@ export class HomePage {
       console.log('elseeeee')
     }
   }
-  
-  navdescription(param){
-    this.navCtrl.push(DescriptionpagePage,{"itemdescription":param});
+
+  navdescription(param) {
+    this.navCtrl.push(DescriptionpagePage, { "itemdescription": param });
   }
 
-  showtoast(message){
+  showtoast(message) {
     const toast = this.toast.create({
       message: message,
       duration: 2000
     });
-    toast.present();   
+    toast.present();
   }
 }

@@ -38,7 +38,7 @@ export class BuhariServiceProvider {
     {
       "table_no": table.number,
       "password": table.password,
-      "branch_id":table.businessid,
+      "branch_id": table.businessid,
 
       "login_status_id": 1
     }
@@ -71,17 +71,17 @@ export class BuhariServiceProvider {
 
   // 2 - Food Menu (Home Page)
   menus(): Observable<object[]> {
-   
+
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const options = new RequestOptions({ headers: headers });
-    let body ={
-      
+    let body = {
 
-      "branch_id":this.session.retrieve("businessid"),
-      
+
+      "branch_id": this.session.retrieve("businessid"),
+
     }
-    return this.http.post('https://tos-production.herokuapp.com/Display_Food_Menus',body,options)
+    return this.http.post('https://tos-production.herokuapp.com/Display_Food_Menus', body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -97,7 +97,7 @@ export class BuhariServiceProvider {
       "table_no": this.session.retrieve("tablenumber"),
       "cus_name": this.session.retrieve("cus_name"),
       "cus_mobile": this.session.retrieve("cus_number"),
-      "branch_id":this.session.retrieve("businessid"),
+      "branch_id": this.session.retrieve("businessid"),
       "items": items,
       "comments": comments
     }
@@ -117,7 +117,7 @@ export class BuhariServiceProvider {
     let body =
     {
       "table_no": this.session.retrieve("tablenumber"),
-      "branch_id":this.session.retrieve("businessid"),
+      "branch_id": this.session.retrieve("businessid"),
       "payment_type_id": payment_type
     }
 
@@ -135,8 +135,7 @@ export class BuhariServiceProvider {
     let body =
     {
       "table_no": this.session.retrieve("tablenumber"),
-      "branch_id":this.session.retrieve("businessid"),
-
+      "branch_id": this.session.retrieve("businessid"),
     }
 
     return this.http.post('https://tos-production.herokuapp.com/Get_Order_Item_Table', body, options)
@@ -146,8 +145,17 @@ export class BuhariServiceProvider {
 
   // 6 - Request Extra Items (Select Items --> Request Page) (GET)
   requestItemsSelect(): Observable<object[]> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({ headers: headers });
 
-    return this.http.get('https://tos-production.herokuapp.com/Query_Extra_Item_Category')
+    let body=
+    {
+      "branch_id":this.session.retrieve("businessid")
+    }
+    
+
+    return this.http.post('https://tos-production.herokuapp.com/Query_Extra_Item_Category',body,options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -164,9 +172,68 @@ export class BuhariServiceProvider {
       .catch(this.handleError);
   }
 
+  // 8  - LogOut
+  logout(): Observable<object[]> {
+    let logindetails = this.session.retrieve("logindetails")
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({ headers: headers });
+
+    let body =
+    {
+      "table_no": logindetails.number,
+      "password": logindetails.password,
+      "branch_id": logindetails.businessid,
+      "login_status_id": 2
+    }
+    console.log("logout", body)
+    return this.http.post('https://tos-production.herokuapp.com/Tablet_Login_And_Logout', body, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  // 9  - Checkflag for Changes in FoodMenu
+  checkFlag(): Observable<object[]> {
+    let logindetails = this.session.retrieve("logindetails")
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({ headers: headers });
+
+    let body =
+    {
+      "table_no": logindetails.number,
+      "branch_id": logindetails.businessid,
+    }
+    return this.http.post('https://tos-production.herokuapp.com/Get_FoodMenu_Flag', body, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  // 10  - Update Flag after Loading the screen for Food Menu
+  updateFlag(): Observable<object[]> {
+    let logindetails = this.session.retrieve("logindetails")
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({ headers: headers });
+
+    let body =
+    {
+      "table_no": logindetails.number,
+      "branch_id": logindetails.businessid,
+    }
+    
+    console.log("logout", body)
+    return this.http.post('https://tos-production.herokuapp.com/Update_FoodMenu_Flag', body, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     let body = res.json();
-    console.log("SUCCESS************", JSON.stringify(body));
+    // console.log("SUCCESS************", JSON.stringify(body));
     return body;
   }
 
