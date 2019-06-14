@@ -47,6 +47,27 @@ export class BuhariServiceProvider {
       .map(this.extractData)
       .catch(this.handleError);
   }
+  //extra logout
+  logout(): Observable<object[]> {
+    let logindetails = this.session.retrieve("logindetails")
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({ headers: headers });
+
+    let body =
+    {
+      "table_no": logindetails.number,
+      "password": logindetails.password,
+      "branch_id":logindetails.businessid,
+
+      "login_status_id": 2
+    }
+    console.log("logout",body)
+    return this.http.post('https://tos-production.herokuapp.com/Tablet_Login_And_Logout', body, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
 
   // 2 - Food Menu (Home Page)
   menus(): Observable<object[]> {

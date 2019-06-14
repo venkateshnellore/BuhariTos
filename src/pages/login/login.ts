@@ -39,10 +39,12 @@ export class LoginPage {
        this.service.login(table).subscribe((resp:any)=>{
         if(resp.ReturnCode == "LS"){
           this.branchdetails = resp.branch_details;
-          this.branch_id = this.branchdetails[0].branch_id;
-          console.log("businessdetaILSSSSSSS",this.branch_id)
+          // this.branchdetails = this.branchdetails[0].branchdetails;
+          this.session.store("Hoteldetails",this.branchdetails);
+          console.log("businessdetaILSSSSSSS",this.branchdetails);
           this.showtoast("Login Successful");
           console.log(resp,"Login Successful")
+          this.session.store("logindetails",table);
           this.session.store("tablenumber",table.number);
           this.session.store("businessid",table.businessid);
           console.log("tablenummm",table.number)
