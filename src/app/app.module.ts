@@ -15,6 +15,7 @@ import { RequestPage } from '../pages/request/request';
 import { CartPage } from '../pages/cart/cart';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { LogoutPage } from '../pages/logout/logout';
 import { MainPage } from '../pages/main/main';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -25,6 +26,8 @@ import {DescriptionpagePage} from '../pages/descriptionpage/descriptionpage';
 import {BillingdetailsPage} from '../pages/billingdetails/billingdetails';
 import { BuhariServiceProvider } from '../providers/buhari-service/buhari-service';
 import { StarRatingModule } from 'ionic3-star-rating';
+
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
     DescriptionpagePage,
     FeedbackPage,
     LoginPage,
+    LogoutPage,
     MainPage
   ],
   imports: [
@@ -47,6 +51,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
     BrowserModule,
     HttpModule,
     Ng2Webstorage,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding:false,
     }),
@@ -68,6 +73,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
     // ItemdescriptionPage,
     DescriptionpagePage,
     LoginPage,
+    LogoutPage,
     MainPage,
     FeedbackPage
   ],

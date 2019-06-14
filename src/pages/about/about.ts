@@ -10,6 +10,7 @@ import { Http } from '@angular/http';
 })
 export class AboutPage {
   public hoteldetails:any={};
+  qrcode = "https://tableorderingsystem-c0b92.firebaseapp.com/?business=buhady145&table=2&password=123";
 
 
   constructor(public navCtrl: NavController,

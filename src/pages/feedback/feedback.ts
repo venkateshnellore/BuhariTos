@@ -1,8 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController,Events } from 'ionic-angular';
 import { BuhariServiceProvider } from '../../providers/buhari-service/buhari-service';
-import { MainPage } from '../main/main';
-
+import { LogoutPage } from '../logout/logout';
 @IonicPage()
 @Component({
   selector: 'page-feedback',
@@ -21,7 +20,7 @@ export class FeedbackPage {
     "q5": "",
   };
   public ratings:any=[
-    {"sno":"1","question":"How was the food from our hotel ?","rating":3},
+    {"sno":"1","question":"How was the food from our hotel ?","rating":0},
     {"sno":"2","question":"How did our office staff behave during service ?","rating":0},
     {"sno":"3","question":"How would you rate our hotel overall ?","rating":0},
   ]
@@ -62,18 +61,18 @@ export class FeedbackPage {
       this.service.submitFeedback(feed).subscribe((resp: any) => {
         if (resp.ReturnCode == "RIS") {
           this.showtoast("Thanks for your feedback. Please come again..");
-          this.navCtrl.push(MainPage);
+          this.navCtrl.push(LogoutPage);
         }
       })
     } else {
       this.showtoast("Thankyou,Please come again..");
-      this.navCtrl.push(MainPage);
+      this.navCtrl.push(LogoutPage);
     }
   }
 
   skipfeedback(ratings) {
     this.showtoast("Thanks for coming. Please come again");
-    this.navCtrl.push(MainPage);
+    this.navCtrl.push(LogoutPage);
   }
 
   dismiss() {

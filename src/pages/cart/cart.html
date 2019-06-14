@@ -24,16 +24,10 @@
               <img *ngIf="item.food_type == 'NON VEG'" src="../../assets/imgs/nonveg.png" />
             </ion-col>
             <ion-col col-5>
-              <ion-row>
-                <h6>{{item.food_name}}</h6>
-              </ion-row>
-              <ion-row>
-                <p>{{item.category}}</p>
-              </ion-row>
-              <ion-row>
+                <h6 style="font-weight: bold;white-space: normal;">{{item.food_name}}</h6>
+                <p style="font-size:10px;white-space: normal;">{{item.category}}</p>
                 <b>₹{{item.price}}</b>
                 <span *ngIf="item.offer_value != null && item.offer_value != 0" style="font-size: 12px;padding: 3px;color: red;">OFF ₹ {{item.offer_value}}</span>
-              </ion-row>
             </ion-col>
             <ion-col col-6 style="text-align: center;">
               <ion-row style="margin-left:43%">

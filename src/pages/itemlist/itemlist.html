@@ -16,13 +16,12 @@
               <img *ngIf="item.food_type == 'VEG'" src="../assets/imgs/veg.png" /> 
               <img *ngIf="item.food_type == 'NON VEG'" src="../assets/imgs/nonveg.png" /> 
             </ion-col>
-            <ion-col col-8  (click)="navdescription(item)">
-              <h6>{{item.food_name}}</h6>
-              <p style="font-size:12px;">In {{item.category}}</p>
+            <ion-col col-7  (click)="navdescription(item)">
+              <h6 style="font-weight: bold;white-space: normal;">{{item.food_name}}</h6>
+              <p style="font-size:10px;white-space: normal;">In {{item.category}}</p>
               <b>₹ {{item.price}}</b>
             </ion-col>
-            <!-- <ion-col col-2></ion-col> -->
-            <ion-col col-3>
+            <ion-col col-4>
               <button class="height-25" ion-button color="secondary"  *ngIf="item.add"  style="text-transform: none;" (click)="onButtonClick(i,item,items)" outline>Add +</button>
               <button class="height-25" ion-button color="secondary"   style="text-transform: none;" *ngIf="item.added" disabled  outline>Added</button>
             </ion-col>
